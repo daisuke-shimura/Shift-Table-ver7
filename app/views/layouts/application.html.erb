@@ -14,7 +14,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <ul>
+        <p>管理者ログイン：<%= admin_signed_in? %></p>
+        <li><%= link_to "ホーム", root_path %></li>
+        <li><%= link_to "管理者作成", new_admin_registration_path %></li>
+        <li><%= link_to "管理者ログイン", new_admin_session_path %></li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, data: {turbo_method: :delete} %></li>
+      </ul>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+
+    </footer>
     <!-- Bootstrap JS (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
