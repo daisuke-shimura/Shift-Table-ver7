@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_07_050730) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "frist_name", null: false
+    t.string "first_name", null: false
     t.string "middle_name"
     t.string "last_name", null: false
     t.integer "status", default: 0, null: false
