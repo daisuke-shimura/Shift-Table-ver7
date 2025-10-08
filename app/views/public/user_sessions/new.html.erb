@@ -1,0 +1,9 @@
+<h1>ユーザーログイン</h1>
+
+<%= form_with url: login_path, local: true do |f| %>
+  <div class="mb-3">
+    <%= label_tag :user_id, "名前を選択" %>
+    <%= select_tag :user_id, options_from_collection_for_select(@users, :id, :full_name), prompt: "選択", class: "form-select" %>
+  </div>
+  <%= submit_tag "ログイン", class: "btn btn-primary" %>
+<% end %>

@@ -1,2 +1,13 @@
 <h1>Public::Homes#top</h1>
 <p>Find me in app/views/public/homes/top.html.erb</p>
+
+<hr>
+<p>一般ユーザログイン：<%= user_signed_in? %></p>
+<% if user_signed_in? %>
+  <p>ID：<%= current_user.id %></p>
+  <p>ユーザ名：<%= current_user.full_name %></p>
+  <%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %>
+<% else %>
+  <%= link_to "新規登録", new_user_path %>
+  <%= link_to "ログイン", login_path %>
+<% end %>
