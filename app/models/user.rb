@@ -10,7 +10,11 @@ class User < ApplicationRecord
     end
   end  
   
-  # def job_for(week)
-  #   
-  # end
+  def job_for(jobs)
+    if jobs[id].present?
+      jobs[id].first
+    else
+      [].first
+    end
+  end
 end

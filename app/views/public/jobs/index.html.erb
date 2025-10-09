@@ -84,13 +84,13 @@
     <% @users.each do |user| %>
     <tr class="">
       <td><%= user.full_name %></td>
-      <td><%= (@jobs[user.id] || []).first&.time1 %></td>
-      <td><%= (@jobs[user.id] || []).first&.time2 %></td>
-      <td><%= (@jobs[user.id] || []).first&.time3 %></td>
-      <td><%= (@jobs[user.id] || []).first&.time4 %></td>
-      <td><%= (@jobs[user.id] || []).first&.time5 %></td>
-      <td><%= (@jobs[user.id] || []).first&.time6 %></td>
-      <td><%= (@jobs[user.id] || []).first&.time7 %></td>
+      <td><%= user.job_for(@jobs)&.time1 %></td>
+      <td><%= user.job_for(@jobs)&.time2 %></td>
+      <td><%= user.job_for(@jobs)&.time3 %></td>
+      <td><%= user.job_for(@jobs)&.time4 %></td>
+      <td><%= user.job_for(@jobs)&.time5 %></td>
+      <td><%= user.job_for(@jobs)&.time6 %></td>
+      <td><%= user.job_for(@jobs)&.time7 %></td>
       <td></td>
       <td></td>
     </tr>
