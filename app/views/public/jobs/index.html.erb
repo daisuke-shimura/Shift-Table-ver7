@@ -2,19 +2,22 @@
 <p>Find me in app/views/public/jobs/index.html.erb</p>
 <h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
 
+<p>ログインユーザがこの週出したか：<%= Job.exists?(week_id: @week.id, user_id: @user.id) %></p>
+<hr>
+
 <h3>希望提出</h3>
 <%= form_with model:[@week, @job], url: week_jobs_path(@week.id), method: :post do |f| %>
   <table class="table table-bordered table-hover">
     <thead>
       <tr class="table-secondary">
         <th></th>
-        <th class="<%= holiday_class(@week.monday) %>"><%= (@week.monday).month %>/<%= (@week.monday).day %></th>
-        <th class="<%= holiday_class(@week.tuesday) %>"><%= (@week.tuesday).month %>/<%= (@week.tuesday).day %></th>
-        <th class="<%= holiday_class(@week.wednesday) %>"><%= (@week.wednesday).month %>/<%= (@week.wednesday).day %></th>
-        <th class="<%= holiday_class(@week.thursday) %>"><%= (@week.thursday).month %>/<%= (@week.thursday).day %></th>
-        <th class="<%= holiday_class(@week.friday) %>"><%= (@week.friday).month %>/<%= (@week.friday).day %></th>
-        <th class="<%= holiday_class(@week.saturday) || 'text-primary' %>"><%= (@week.saturday).month %>/<%= (@week.saturday).day %></th>
-        <th class="text-danger"><%= (@week.sunday).month %>/<%= (@week.sunday).day %></th>
+        <th class="<%= holiday_class(@week.monday) %>"><%= day_header(@week.monday) %></th>
+        <th class="<%= holiday_class(@week.tuesday) %>"><%= day_header(@week.tuesday) %></th>
+        <th class="<%= holiday_class(@week.wednesday) %>"><%= day_header(@week.wednesday) %></th>
+        <th class="<%= holiday_class(@week.thursday) %>"><%= day_header(@week.thursday) %></th>
+        <th class="<%= holiday_class(@week.friday) %>"><%= day_header(@week.friday) %></th>
+        <th class="<%= holiday_class(@week.saturday) || 'text-primary' %>"><%= day_header(@week.saturday) %></th>
+        <th class="text-danger"><%= day_header(@week.sunday) %></th>
         <th>備考</th>
         <th></th>
       </tr>
@@ -45,6 +48,7 @@
         <td><%= f.submit '提出', class: 'btn btn-primary' %></td>
       </tr>
     </tbody>
+  </table>
 <% end %>
 
 <h3>希望一覧</h3>
@@ -52,13 +56,13 @@
   <thead>
     <tr class="table-secondary">
       <th></th>
-      <th class="<%= holiday_class(@week.monday) %>"><%= (@week.monday).month %>/<%= (@week.monday).day %></th>
-      <th class="<%= holiday_class(@week.tuesday) %>"><%= (@week.tuesday).month %>/<%= (@week.tuesday).day %></th>
-      <th class="<%= holiday_class(@week.wednesday) %>"><%= (@week.wednesday).month %>/<%= (@week.wednesday).day %></th>
-      <th class="<%= holiday_class(@week.thursday) %>"><%= (@week.thursday).month %>/<%= (@week.thursday).day %></th>
-      <th class="<%= holiday_class(@week.friday) %>"><%= (@week.friday).month %>/<%= (@week.friday).day %></th>
-      <th class="<%= holiday_class(@week.saturday) || 'text-primary' %>"><%= (@week.saturday).month %>/<%= (@week.saturday).day %></th>
-      <th class="text-danger"><%= (@week.sunday).month %>/<%= (@week.sunday).day %></th>
+      <th class="<%= holiday_class(@week.monday) %>"><%= day_header(@week.monday) %></th>
+      <th class="<%= holiday_class(@week.tuesday) %>"><%= day_header(@week.tuesday) %></th>
+      <th class="<%= holiday_class(@week.wednesday) %>"><%= day_header(@week.wednesday) %></th>
+      <th class="<%= holiday_class(@week.thursday) %>"><%= day_header(@week.thursday) %></th>
+      <th class="<%= holiday_class(@week.friday) %>"><%= day_header(@week.friday) %></th>
+      <th class="<%= holiday_class(@week.saturday) || 'text-primary' %>"><%= day_header(@week.saturday) %></th>
+      <th class="text-danger"><%= day_header(@week.sunday) %></th>
       <th>備考</th>
       <th></th>
     </tr>
@@ -80,14 +84,14 @@
     <% @users.each do |user| %>
     <tr class="">
       <td><%= user.full_name %></td>
-      <td><%= user.jobs.first.time1 %></td>
-      <td><%= user.jobs.first.time2 %></td>
-      <td><%= user.jobs.first.time3 %></td>
-      <td><%= user.jobs.first.time4 %></td>
-      <td><%= user.jobs.first.time5 %></td>
-      <td><%= user.jobs.first.time6 %></td>
-      <td><%= user.jobs.first.time7 %></td>
-      <td><%= user.jobs.first.comment %></td>
+      <td><%= (@jobs[user.id] || []).first&.time1 %></td>
+      <td><%= (@jobs[user.id] || []).first&.time2 %></td>
+      <td><%= (@jobs[user.id] || []).first&.time3 %></td>
+      <td><%= (@jobs[user.id] || []).first&.time4 %></td>
+      <td><%= (@jobs[user.id] || []).first&.time5 %></td>
+      <td><%= (@jobs[user.id] || []).first&.time6 %></td>
+      <td><%= (@jobs[user.id] || []).first&.time7 %></td>
+      <td></td>
       <td></td>
     </tr>
     <% end %>

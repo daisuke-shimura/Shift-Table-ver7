@@ -2,7 +2,13 @@ class Public::JobsController < ApplicationController
   def index
     @week = Week.find(params[:week_id])
     #@users = User.all
-    @users = User.includes(:jobs).where(jobs: { week_id: @week.id })
+    # @users = User.includes(:jobs).where(jobs: { week_id: @week.id })
+    # @users = User
+    # .includes(:jobs)
+    # .left_joins(:jobs)
+    # .where('jobs.week_id = ? OR jobs.week_id IS NULL', @week.id)
+    @users = User.all
+    @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
     @job = Job.new
   end
