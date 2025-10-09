@@ -1,15 +1,238 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap');
+
+/*カレンダー（既存クラスを使って見た目を強化）*/
+.calendar-grid {
+  font-family: 'M PLUS Rounded 1c', system-ui, sans-serif;
+  color: #1f2937;
+  line-height: 1;
+}
+
+.calendar-grid.box {
+  border: 1px solid rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 1080px;
+  margin: 18px auto;
+  max-height: 78vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  background: linear-gradient(180deg,#ffffff,#fbfbff);
+  border-radius: 10px;
+  /*padding: 12px;*/
+  box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+}
+
+/* ヘッダーを目立たせる（sticky のまま） */
+.calendar-grid.header {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  font-weight: 700;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(4px);
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-radius: 6px;
+}
+
+/* 本体グリッド */
+.calendar-grid.body {
+  display: block;
+  margin-top: 8px;
+}
+
+/* 週行の見た目（hover を無効化、角丸をなくす） */
+.week-row, .week-row-2, .week-row-3 {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0;                 /* 表っぽくするため隙間は 0 */
+  align-items: stretch;
+  padding: 0;
+  margin-bottom: 6px;
+  transition: none;       /* hover アニメ無効 */
+  background: transparent;
+}
+
+.week-row {
+  background-color: rgba(61, 139, 255, 0.3);
+  border: 2px solid #ff69b4; /* 鮮やかなピンクの太い実線 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative; /* overlay 用の基準にする */
+  overflow: visible;
+}
+
+.week-row::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; と同じ */
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(175, 132, 154, 0.12), rgba(255,105,180,0.08));
+  mix-blend-mode: multiply; /* 色の馴染みを良くする */
+  transition: opacity 160ms ease;
+  opacity: 1;
+  z-index: 2;
+}
+
+/*無効用*/
+.week-row-3 {
+  position: relative;
+  pointer-events: none; /* クリック無効 */
+  border-color: rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.week-row-3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6); /* 半透明の白 */
+  border-radius: inherit;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* .week-row-3 {
+  position: relative;
+  pointer-events: none; 
+  opacity: 0.6; 
+  filter: grayscale(80%) brightness(0.9); 
+  border-color: rgba(0,0,0,0.05);
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.week-row-3::after {
+  position: absolute;
+  inset: 0;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: inherit;
+  z-index: 3;
+} */
+
+
+/* public/admin は grid-template を上書きしているのでそのまま活用 */
+.public-calendar { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.admin-calendar  { grid-template-columns: repeat(7, minmax(0, 1fr)) 72px; }
+
+/* week-link の見た目はそのまま、子 .date に影響を与える */
+.week-link { display: contents; color: inherit; }
+
+/* 日セル：角丸・影をなくして線だけの表風に */
+.date {
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  height: 72px;           /* 表風に高さを揃える（必要なら調整） */
+  padding: 8px;
+  box-sizing: border-box;
+  position: relative; /* 必要 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: none;
+  overflow: hidden;
+  box-shadow: none;
+  padding-top: 28px;  /* 左上ラベル分の余白を確保 */
+}
+
+/* 明示的なラベルがある場合（推奨） */
+.date > .date-label {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  z-index: 2;
+  display: inline-block;
+}
+
+/* ラベル要素が無い場合のフォールバック：最初の子要素を左上に寄せる */
+/* .date > *:first-child:not(.month-chip) {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  font-weight: 700;
+  z-index: 2;
+} */
+
+/* 月表示等の補助要素は右下に移動（存在するなら競合回避） */
+.date .month-chip,
+.date .extra {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-size: 0.75rem;
+  color: rgba(31,41,55,0.45);
+  z-index: 1;
+}
+
+/* 月での背景色は廃止して線だけにする */
+.date.odd-month {
+  background: #dcdcdc;
+}
+.date.even-month {
+  background: #ffffff;
+}
+
+/* 大きめの数字は cell 内テキストの先頭にくる想定 */
+.date > * { z-index: 1; }
+
+/* 表っぽい罫線を各セルに適用（ヘッダーと同じ仕上がりに） */
+.week-row .date,
+.week-row-2 .date,
+.week-row-3 .date,
+.calendar-grid.header > .week-day {
+  border-left: 1px solid rgba(0,0,0,0.06);
+  border-top: 1px solid rgba(0,0,0,0.03);
+}
+
+/* 左端だけ線を消す */
+.week-row .date:first-child,
+.week-row-2 .date:first-child,
+.week-row-3 .date:first-child,
+.calendar-grid.header > .week-day:first-child {
+  border-left: none;
+}
+
+
+/* today は控えめに色付け（影は消す）*/
+.date.today {
+  position: relative; /* ← これ必須！ */
+  z-index: 3; /* week-row-3::after より前に出す */
+  background: #fffbe6;
+  border-color: rgba(245,158,11,0.14);
+  border: 1px solid #f5f10b;
+  box-shadow: none;
+}
+
+
+/* 小さな注釈領域（既存 note などを活かす） */
+.note-head { text-align: left; font-weight: 600; color: #111827; }
+.note { text-align: left; color: #6b7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 曜日セルの調整（高さを合わせる） */
+.calendar-grid.header > .week-day {
+  padding: 8px 6px;
+  background: #fafafa;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* レスポンシブ */
+@media (max-width: 900px) {
+  .date { height: 64px; padding: 6px; }
+  .calendar-grid.header { padding: 6px 4px; }
+}
+
+@media (max-width: 600px) {
+  .calendar-grid.box { max-height: 70vh; }
+  .date { height: 64px; padding: 6px; border-radius: 0; }
+  .week-row, .week-row-2, .week-row-3 { gap: 0; padding: 6px 4px; }
+}

@@ -1,5 +1,6 @@
 # app/controllers/public/user_sessions_controller.rb
 class Public:: UserSessionsController < ApplicationController
+  before_action :authenticate_user!, only: [:destroy]
   def new
     @users = User.all
   end

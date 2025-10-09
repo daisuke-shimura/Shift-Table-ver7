@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_10_07_050730) do
+ActiveRecord::Schema[7.0].define(version: 2025_10_08_085019) do
   create_table "admins", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -25,6 +25,21 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_07_050730) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.string "time1", default: "", null: false
+    t.string "time2", default: "", null: false
+    t.string "time3", default: "", null: false
+    t.string "time4", default: "", null: false
+    t.string "time5", default: "", null: false
+    t.string "time6", default: "", null: false
+    t.string "time7", default: "", null: false
+    t.string "comment", default: "", null: false
+    t.integer "user_id", null: false
+    t.integer "week_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "middle_name"
@@ -37,6 +52,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_07_050730) do
     t.string "time5"
     t.string "time6"
     t.string "time7"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weeks", force: :cascade do |t|
+    t.date "monday", null: false
+    t.boolean "is_created", default: false, null: false
+    t.boolean "is_invisible", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

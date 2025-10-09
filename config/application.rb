@@ -2,6 +2,9 @@ require_relative "boot"
 
 require "rails/all"
 
+require 'holidays'
+require 'holidays/core_extensions/date'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

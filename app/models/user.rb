@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :jobs
+  
   def full_name
     if middle_name.present?
       "#{first_name}・#{middle_name}・#{last_name}"
