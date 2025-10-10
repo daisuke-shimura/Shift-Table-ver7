@@ -2,6 +2,8 @@
 
 <p>ログインユーザがこの週出したか：<%= Job.exists?(week_id: @week.id, user_id: @user.id) %></p>
 <hr>
+<p>切り換えボタン；<%= @week.is_invisible %></p>
+<hr>
 
 <% unless Job.exists?(week_id: @week.id, user_id: @user.id) %>
   <h3>希望提出</h3>
