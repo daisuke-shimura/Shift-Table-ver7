@@ -38,7 +38,9 @@ class Public::JobsController < ApplicationController
   end
 
   def destroy
-    
+    job = Job.find(params[:id])
+    job.destroy
+    redirect_to request.referer
   end
 
   private

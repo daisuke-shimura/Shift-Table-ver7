@@ -32,13 +32,17 @@
   <tbody>
     <% @users.each do |user| %>
       <tr class="">
-        <td><%= user.full_name %></td>
+        <td class="table-secondary"><%= user.full_name %></td>
         <% (1..7).each do |n| %>
           <td><%= user.job_for(@jobs)&.public_send("time#{n}") %></td>
         <% end %>
         <td><%= user.job_for(@jobs)&.comment %></td>
-        <% if user == @user %>
-          <td><%= link_to '編集', edit_week_job_path(@week.id, @user.id), class: 'btn btn-primary' %></td>
+        <% if user == @user && Job.exists?(week_id: @week.id, user_id: @user.id) %>
+          <td>
+            <%= link_to '編集', edit_week_job_path(@week.id, @user.job_for(@jobs).id), class: 'btn btn-primary' %>
+            <br>
+            <%= link_to '削除', week_job_path(@week.id, @user.job_for(@jobs).id), data: {turbo_method: :delete}, class: 'btn btn-danger', onclick: "return confirm('本当に削除しますか？');" %>
+          </td>
         <% else %>
           <td></td>
         <% end %>
