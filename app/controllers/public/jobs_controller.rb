@@ -1,12 +1,6 @@
 class Public::JobsController < ApplicationController
   def index
     @week = Week.find(params[:week_id])
-    #@users = User.all
-    # @users = User.includes(:jobs).where(jobs: { week_id: @week.id })
-    # @users = User
-    # .includes(:jobs)
-    # .left_joins(:jobs)
-    # .where('jobs.week_id = ? OR jobs.week_id IS NULL', @week.id)
     @users = User.all
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
@@ -23,11 +17,24 @@ class Public::JobsController < ApplicationController
   end
 
   def edit
-    
+    @week = Week.find(params[:week_id])
+    @users = User.all
+    @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
+    @user = current_user
+    @job = Job.find(params[:id])
   end
 
   def update
-    
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      redirect_to week_jobs_path(@job.week_id), notice: 'Job was successfully updated.'
+    else
+      @week = Week.find(params[:week_id])
+      @users = User.all
+      @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
+      @user = current_user
+      render :edit, alert: 'Failed to update job.'
+    end
   end
 
   def destroy
