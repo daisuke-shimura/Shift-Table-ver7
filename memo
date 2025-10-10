@@ -1,0 +1,18 @@
+スマホからアクセス
+0 ファイヤーウォール関連（一回やればおけ）※Powershell 管理者
+netsh advfirewall firewall add rule name="Rails3000" dir=in action=allow protocol=TCP localport=3000
+
+1 WSL側のIPアドレスを確認（毎回変わる？）
+ip addr show eth0
+
+2 ポートフォワード設定 ※Powershell 管理者
+netsh interface portproxy add v4tov4 listenport=3000 listenaddress=0.0.0.0 connectport=3000 connectaddress=<WSLのIPアドレス>
+
+3 Rails起動
+rails s -b 0.0.0.0 -p 3000
+
+4 スマホで確認
+※Windowsのipアドレス
+
+5 終了後ポートフォワード解除 ※Powershell 管理者
+netsh interface portproxy delete v4tov4 listenport=3000 listenaddress=0.0.0.0
