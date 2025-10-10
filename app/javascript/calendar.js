@@ -1,5 +1,5 @@
 document.addEventListener("turbo:load", initCalendar);
-document.addEventListener("DOMContentLoaded", initCalendar);
+// document.addEventListener("turbolinks:load", initCalendar);
 
 function initCalendar() {
   console.log("initCalendar called");

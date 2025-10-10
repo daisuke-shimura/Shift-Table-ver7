@@ -1,0 +1,36 @@
+<h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
+
+<p>ログインユーザがこの週出したか：<%= Job.exists?(week_id: @week.id, user_id: @user.id) %></p>
+<hr>
+
+<h3>希望一覧</h3>
+<%= form_with model:[@week, @job] do |f| %>
+<table class="table table-bordered table-hover">
+  <thead>
+    <%= render "header-shift", week:@week %>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user == @user %>
+        <tr class="">
+          <td><%= @user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= f.text_area :"time#{n}", value: @user.job_for(@jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
+          <% end %>
+          <td><%= f.text_area :comment ,value: @user.job_for(@jobs)&.comment, class: 'form-control' %></td>
+          <td><%= f.submit '更新', class: 'btn btn-primary' %></td>
+        </tr>
+      <% else %>
+      <tr class="">
+        <td><%= user.full_name %></td>
+        <% (1..7).each do |n| %>
+          <td><%= user.job_for(@jobs)&.public_send("time#{n}") %></td>
+        <% end %>
+        <td><%= user.job_for(@jobs)&.comment %></td>
+        <td></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

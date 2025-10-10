@@ -1,2 +1,59 @@
-<h1>Public::Jobs#index</h1>
-<p>Find me in app/views/public/jobs/index.html.erb</p>
+<h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
+
+<p>ログインユーザがこの週出したか：<%= Job.exists?(week_id: @week.id, user_id: @user.id) %></p>
+<hr>
+
+<% unless Job.exists?(week_id: @week.id, user_id: @user.id) %>
+  <h3>希望提出</h3>
+  <%= form_with model:[@week, @job], url: week_jobs_path(@week.id), method: :post do |f| %>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <%= render "header-shift", week:@week %>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= f.text_area :"time#{n}", class: 'form-control' %></td>
+          <% end %>
+          <td><%= f.text_area :comment ,class: 'form-control' %></td>
+          <td><%= f.submit '提出', class: 'btn btn-primary' %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+<h3>希望一覧</h3>
+<table class="table table-bordered table-hover">
+  <thead>
+    <%= render "header-shift", week:@week %>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user == @user && Job.exists?(week_id: @week.id, user_id: @user.id) %>
+        <tr class="">
+          <td class="table-secondary"><%= user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= user.job_for(@jobs)&.public_send("time#{n}") %></td>
+          <% end %>
+          <td><%= user.job_for(@jobs)&.comment %></td>
+          <td>
+            <%= link_to '編集', edit_week_job_path(@week.id, @user.job_for(@jobs).id), class: 'btn btn-primary' %>
+            <br>
+            <%= link_to '削除', week_job_path(@week.id, @user.job_for(@jobs).id), data: {turbo_method: :delete}, class: 'btn btn-danger', onclick: "return confirm('本当に削除しますか？');" %>
+          </td>
+        </tr>
+      <% else %>
+        <tr class="">
+          <td class="table-secondary"><%= user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= user.job_for(@jobs)&.public_send("time#{n}") %></td>
+          <% end %>
+          <td><%= user.job_for(@jobs)&.comment %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

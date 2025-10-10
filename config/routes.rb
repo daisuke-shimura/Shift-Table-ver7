@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     # Week routes
     resources :weeks, only: [:index, :create, :destroy] do
       # Job routes
-      resources :jobs, only: [:index, :create, :update, :destroy]
+      resources :jobs, only: [:index, :create, :edit, :update, :destroy]
     end
   end
 
