@@ -3,6 +3,11 @@
 <p>ログインユーザがこの週出したか：<%= Job.exists?(week_id: @week.id, user_id: @user.id) %></p>
 <hr>
 <p>切り換えボタン；<%= @week.is_invisible %></p>
+<%= button_to toggle_invisible_week_path(@week),
+  data: {turbo_method: :patch},
+  class: "btn #{@week.is_invisible? ? 'btn-outline-secondary' : 'btn-success'}" do %>
+  <%= @week.is_invisible? ? "🔒 非表示" : "✅ 表示中" %>
+<% end %>
 <hr>
 
 <% unless Job.exists?(week_id: @week.id, user_id: @user.id) %>

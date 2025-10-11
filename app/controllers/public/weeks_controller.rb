@@ -31,6 +31,14 @@ class Public::WeeksController < ApplicationController
     end
   end
 
+  def toggle_invisible
+    @week = Week.find(params[:id])
+    @week.update(is_invisible: !@week.is_invisible)
+  
+    redirect_to request.referer
+  end
+
+
   private
 
   def week_params
