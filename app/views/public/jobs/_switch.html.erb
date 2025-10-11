@@ -1,0 +1,7 @@
+<%= link_to toggle_invisible_week_path(week),
+    data: { turbo_method: :patch },
+    class: "btn #{week.is_invisible? ? 'btn-outline-secondary' : 'btn-success'}" do %>
+
+  <%= week.is_invisible? ? "非表示中" : "表示中" %>
+
+<% end %>

@@ -34,7 +34,11 @@ class Public::WeeksController < ApplicationController
   def toggle_invisible
     @week = Week.find(params[:id])
     @week.update!(is_invisible: !@week.is_invisible)
-    redirect_to request.referer
+
+    respond_to do |format|
+      format.turbo_stream { render }
+      format.html { redirect_back fallback_location: week_jobs_path(@week.id) }
+    end
   end
 
 
