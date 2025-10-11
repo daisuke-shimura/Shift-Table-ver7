@@ -9,6 +9,10 @@ function initCalendar() {
   const titleEl = document.getElementById('calendar-title');
   if (!container || !header || !titleEl) return;
 
+  // 一度初期化済みならスキップ
+  if (container.dataset.initialized) return;
+  container.dataset.initialized = "true";
+
   let ticking = false;
   let prevMonth = null;
 
@@ -83,4 +87,11 @@ function initCalendar() {
   container.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', () => requestAnimationFrame(updateTitleAndCellsIfNeeded));
   updateTitleAndCellsIfNeeded();
+
+  // cleanup: Turboでページ離脱時にイベント解除
+  document.addEventListener("turbo:before-cache", () => {
+    container.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', updateTitleAndCellsIfNeeded);
+    container.removeAttribute('data-initialized');
+  });
 }
