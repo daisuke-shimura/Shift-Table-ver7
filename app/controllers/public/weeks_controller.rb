@@ -33,8 +33,7 @@ class Public::WeeksController < ApplicationController
 
   def toggle_invisible
     @week = Week.find(params[:id])
-    @week.update(is_invisible: !@week.is_invisible)
-  
+    @week.update!(is_invisible: !@week.is_invisible)
     redirect_to request.referer
   end
 
@@ -42,7 +41,7 @@ class Public::WeeksController < ApplicationController
   private
 
   def week_params
-    params.require(:week).permit(:monday)
+    params.require(:week).permit(:monday, :is_invisible)
   end
 
   def load_weeks
