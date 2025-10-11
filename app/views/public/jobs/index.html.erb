@@ -8,6 +8,17 @@
   class: "btn #{@week.is_invisible? ? 'btn-outline-secondary' : 'btn-success'}" do %>
   <%= @week.is_invisible? ? "🔒 非表示" : "✅ 表示中" %>
 <% end %>
+<div class="form-check form-switch">
+  <%= form_with model: @week, url: toggle_invisible_week_path(@week), method: :patch do %>
+    <%= check_box_tag :is_invisible, '1', @week.is_invisible, 
+          class: "form-check-input", 
+          id: "toggle-week-#{@week.id}", 
+          onchange: "this.form.requestSubmit()" %>
+    <label class="form-check-label" for="toggle-week-<%= @week.id %>">
+      非表示モード
+    </label>
+  <% end %>
+</div>
 <hr>
 
 <% unless Job.exists?(week_id: @week.id, user_id: @user.id) %>
