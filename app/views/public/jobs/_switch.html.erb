@@ -1,7 +1,15 @@
-<%= link_to toggle_invisible_week_path(week),
-    data: { turbo_method: :patch },
-    class: "btn #{week.is_invisible? ? 'btn-outline-secondary' : 'btn-success'}" do %>
+<%= form_with url: toggle_invisible_week_path(week),
+              method: :patch,
+              data: { turbo_frame: "_top" },
+              class: "d-inline" do %>
+  <div class="form-check form-switch d-flex align-items-center">
+    <%= check_box_tag 'is_invisible', '1', week.is_invisible?,
+        class: "form-check-input",
+        id: "switch-#{week.id}",
+        onchange: 'this.form.requestSubmit()' %>
 
-  <%= week.is_invisible? ? "非表示中" : "表示中" %>
-
+    <%= label_tag "switch-#{week.id}",
+        (week.is_invisible? ? "表示中" : "非表示中"),
+        class: "form-check-label toggle-label #{week.is_invisible? ? 'text-primary' : 'text-secondary'}" %>
+  </div>
 <% end %>
