@@ -1,4 +1,11 @@
-<% users.each do |user| %>
+<%= week.is_invisible %>
+<h3>希望一覧</h3>
+<table class="table table-bordered table-hover">
+  <thead>
+    <%= render "public/jobs/header-shift", week:week %>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
       <% if user == login_user && Job.exists?(week_id: week.id, user_id: login_user.id) %>
         <tr class="">
           <td class="table-secondary"><%= user.full_name %></td>
@@ -23,3 +30,5 @@
         </tr>
       <% end %>
     <% end %>
+  </tbody>
+</table>

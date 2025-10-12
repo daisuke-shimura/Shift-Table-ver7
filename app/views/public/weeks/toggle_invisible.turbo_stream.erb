@@ -6,6 +6,6 @@
 
 <%= turbo_stream.replace "week_content_#{@week.id}" do %>
   <div id="week_content_<%= @week.id %>">
-    <%= render "public/jobs/exsample", week: @week %>
+    <%= render "public/jobs/exsample", week: @week, users: @users, jobs: @jobs, login_user: @user %>
   </div>
 <% end %>

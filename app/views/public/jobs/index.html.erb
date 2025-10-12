@@ -30,16 +30,7 @@
   <% end %>
 <% end %>
 
-<h3>希望一覧</h3>
-<table class="table table-bordered table-hover">
-  <thead>
-    <%= render "header-shift", week:@week %>
-  </thead>
-  <tbody>
-    <div id="week_content_<%= @week.id %>">
-      <%= render "public/jobs/exsample", week: @week, users: @users, jobs: @jobs, login_user: @user %>
-    </div>
+<div id="week_content_<%= @week.id %>">
+  <%= render "public/jobs/exsample", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+</div>
 
-    
-  </tbody>
-</table>

@@ -1,5 +1,3 @@
-<p>切り換えボタン；<%= week.is_invisible %></p>
-
 <% if week.is_invisible %>
   <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs, login_user: @user %>
 <% else %>
