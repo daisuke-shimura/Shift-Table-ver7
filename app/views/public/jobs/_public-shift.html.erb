@@ -1,0 +1,25 @@
+<% users.each do |user| %>
+      <% if user == login_user && Job.exists?(week_id: week.id, user_id: login_user.id) %>
+        <tr class="">
+          <td class="table-secondary"><%= user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
+          <% end %>
+          <td><%= user.job_for(jobs)&.comment %></td>
+          <td>
+            <%= link_to '編集', edit_week_job_path(week.id, login_user.job_for(jobs).id), class: 'btn btn-primary' %>
+            <br>
+            <%= link_to '削除', week_job_path(week.id, login_user.job_for(jobs).id), data: {turbo_method: :delete}, class: 'btn btn-danger', onclick: "return confirm('本当に削除しますか？');" %>
+          </td>
+        </tr>
+      <% else %>
+        <tr class="">
+          <td class="table-secondary"><%= user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
+          <% end %>
+          <td><%= user.job_for(jobs)&.comment %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    <% end %>
