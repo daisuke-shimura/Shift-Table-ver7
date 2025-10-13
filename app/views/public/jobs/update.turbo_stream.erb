@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "week_content_#{@week.id}" do %>
+  <%= render "public/jobs/table",
+      week: @week,
+      users: User.all,
+      jobs: Job.where(week_id: @week.id).group_by(&:user_id),
+      login_user: current_user %>
+<% end %>

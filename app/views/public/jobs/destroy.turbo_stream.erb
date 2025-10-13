@@ -1,0 +1,15 @@
+<%= turbo_stream.replace "week_form_#{@week.id}_user_#{@user.id}" do %>
+  <div id="week_form_<%= @week.id %>_user_<%= @user.id %>">
+    <%= render "public/jobs/form", week: @week, job: @job, login_user: @user %>
+  </div>
+<% end %>
+
+<%= turbo_stream.replace "week_content_#{@week.id}" do %>
+  <div id="week_content_<%= @week.id %>">
+    <%= render "public/jobs/table",
+        week: @week,
+        users: @users,
+        jobs: @jobs,
+        login_user: @user %>
+  </div>
+<% end %>
