@@ -1,6 +1,6 @@
 <%= week.is_invisible %>
-<h3>希望一覧</h3>
 <% if Job.exists?(week_id: week.id, user_id: login_user.id) %>
+  <h3>希望一覧</h3>
   <table class="table table-bordered table-hover">
     <thead>
       <%= render "public/jobs/header-shift", week:week %>
