@@ -31,10 +31,25 @@ class Public::WeeksController < ApplicationController
     end
   end
 
+  def toggle_invisible
+    @week = Week.find(params[:id])
+    @week.update!(is_invisible: !@week.is_invisible)
+
+    @users = User.all
+    @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
+    @user = current_user
+
+    respond_to do |format|
+      format.turbo_stream { render }
+      format.html { redirect_back fallback_location: week_jobs_path(@week.id) }
+    end
+  end
+
+
   private
 
   def week_params
-    params.require(:week).permit(:monday)
+    params.require(:week).permit(:monday, :is_invisible)
   end
 
   def load_weeks

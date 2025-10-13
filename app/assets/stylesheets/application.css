@@ -225,6 +225,40 @@
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
+
+/* スイッチの大きさを調整 */
+.form-switch .form-check-input {
+  width: 4rem;    /* 横幅 */
+  height: 2rem; /* 縦幅 */
+  cursor: pointer;
+}
+
+/* ONのときの色（緑） 
+.form-check-input:checked {
+  background-color: #28a745; 
+  border-color: #28a745;
+}*/
+
+/* ON状態でフォーカスされたときの影 
+.form-check-input:focus:checked {
+  box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}*/
+
+/* OFFのときの色（灰色） 
+.form-check-input:not(:checked) {
+  background-color: #e0e0e0;
+  border-color: #bdbdbd;
+}*/
+
+/* スイッチラベルの文字のスタイル */
+.toggle-label {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-left: 0.5em;
+  user-select: none;
+}
+
+
 /* レスポンシブ */
 @media (max-width: 900px) {
   .date { height: 64px; padding: 6px; }

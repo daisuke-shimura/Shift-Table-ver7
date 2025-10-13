@@ -29,7 +29,7 @@
 
 
 <h3><span id="calendar-title"><%= @start_date.strftime('%-m月') %></span></h3>
-<div id="calendar-container" class="calendar-grid box theme-dark">
+<div id="calendar-container" data-controller="calendar" class="calendar-grid box theme-dark">
   <div class="calendar-grid header public-calendar">
     <div class="week-day">月</div>
     <div class="week-day">火</div>
@@ -108,5 +108,3 @@
     <% end %>
   </div>
 </div>
-
-<%= javascript_import_module_tag "calendar" %>

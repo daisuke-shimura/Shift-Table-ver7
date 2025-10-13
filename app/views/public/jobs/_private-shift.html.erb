@@ -1,0 +1,23 @@
+<%= week.is_invisible %>
+<% if Job.exists?(week_id: week.id, user_id: login_user.id) %>
+  <h3>希望一覧</h3>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <%= render "public/jobs/header-shift", week:week %>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="table-secondary"><%= login_user.full_name %></td>
+        <% (1..7).each do |n| %>
+          <td><%= login_user.job_for(jobs)&.public_send("time#{n}") %></td>
+        <% end %>
+        <td><%= login_user.job_for(jobs)&.comment %></td>
+        <td>
+          <%= link_to '編集', edit_week_job_path(week.id, login_user.job_for(jobs).id), class: 'btn btn-primary' %>
+          <br>
+          <%= link_to '削除', week_job_path(week.id, login_user.job_for(jobs).id), data: {turbo_method: :delete}, class: 'btn btn-danger', onclick: "return confirm('本当に削除しますか？');" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
