@@ -37,6 +37,9 @@ class Public::JobsController < ApplicationController
     job = Job.find(params[:id])
     @week = Week.find(params[:week_id])
     if job.update(job_params)
+      @users = User.all
+      @jobs  = Job.where(week_id: @week.id).group_by(&:user_id)
+      @user  = current_user
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to week_jobs_path(@job.week_id) }

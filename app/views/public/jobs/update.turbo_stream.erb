@@ -2,8 +2,8 @@
   <turbo-frame id="week_content_<%= @week.id %>">
     <%= render "public/jobs/table",
         week: @week,
-        users: User.all,
-        jobs: Job.where(week_id: @week.id).group_by(&:user_id),
-        login_user: current_user %>
+        users: @users,
+        jobs: @jobs,
+        login_user: @user %>
   </turbo-frame>
 <% end %>
