@@ -5,7 +5,7 @@
 <% end %>
 
 <%= turbo_stream.replace "week_content_#{@week.id}" do %>
-    <%= render "public/jobs/broadcast", week: @week, users: @users, jobs: @jobs %>
+    <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
 <% end %>
 
 <%= turbo_stream.replace "week_button_#{@week.id}" do %>

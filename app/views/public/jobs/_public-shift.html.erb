@@ -1,10 +1,19 @@
-<%= week.is_invisible %>
-<h3>希望一覧</h3>
-<div class="tables-grid">
-  <div id="week_broadcast_<%= week.id %>">
-    <%= render "public/jobs/broadcast", week: week, users: users, jobs: jobs %>
-  </div>
-  <% if  Job.exists?(week_id: week.id, user_id: login_user.id) %>
-    <%= render "public/jobs/button", week: week, users: users, jobs: jobs, login_user: login_user %>
-  <% end %>
+<div id="week_content_<%= week.id %>">
+  <table class="table table-bordered">
+    <thead>
+      <%= render "public/jobs/header-shift", week: week %>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td class="table-secondary"><%= user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
+          <% end %>
+          <td><%= user.job_for(jobs)&.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= week.is_invisible %>
 </div>

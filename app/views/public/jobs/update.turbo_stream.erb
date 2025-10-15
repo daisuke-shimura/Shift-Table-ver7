@@ -1,5 +1,11 @@
+<%= turbo_stream.replace "week_title_#{@week.id}" do %>
+  <div id="week_title_<%= @week.id %>">
+    <h3>希望一覧</h3>
+  </div>
+<% end %>
+
 <%= turbo_stream.replace "week_content_#{@week.id}" do %>
-    <%= render "public/jobs/broadcast", week: @week, users: @users, jobs: @jobs %>
+    <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
 <% end %>
 
 <%= turbo_stream.replace "week_unhide-button_#{@week.id}" do %>

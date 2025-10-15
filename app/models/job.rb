@@ -18,7 +18,7 @@ class Job < ApplicationRecord
     broadcast_replace_to(
       "weeks",
       target: "week_content_#{week.id}",
-      partial: "public/jobs/broadcast",
+      partial: "public/jobs/public-shift",
       locals: { week: week, users: users, jobs: jobs }
     )
   end
