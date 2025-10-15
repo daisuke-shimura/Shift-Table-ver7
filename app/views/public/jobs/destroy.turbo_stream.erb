@@ -5,11 +5,11 @@
 <% end %>
 
 <%= turbo_stream.replace "week_content_#{@week.id}" do %>
-  <turbo-frame id="week_content_<%= @week.id %>">
-    <%= render "public/jobs/table",
-        week: @week,
-        users: @users,
-        jobs: @jobs,
-        login_user: @user %>
-  </turbo-frame>
+    <%= render "public/jobs/broadcast", week: @week, users: @users, jobs: @jobs %>
+<% end %>
+
+<%= turbo_stream.replace "week_button_#{@week.id}" do %>
+  <div id="week_button_<%= @week.id %>">
+    <%= render "public/jobs/button", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+  </div>
 <% end %>

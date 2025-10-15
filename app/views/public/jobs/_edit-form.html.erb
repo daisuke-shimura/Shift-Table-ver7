@@ -1,8 +1,7 @@
-<h3>希望編集</h3>
 <%= form_with model:[week, job], local: false do |f| %>
-<table class="table table-bordered table-hover">
+<table class="table table-bordered">
   <thead>
-    <%= render "header-shift", week:week %>
+    <%= render "header-form", week:week %>
   </thead>
   <tbody>
     <% if week.is_invisible %>
@@ -14,13 +13,9 @@
               <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
             <% end %>
             <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
-            <td>
-              <%= f.submit '更新', class: 'btn btn-primary' %>
-              <br>
-              <%= link_to "戻る",
-                week_jobs_path(week.id),
-                data: { turbo_frame: "week_content_#{week.id}" },
-                class: "btn btn-secondary" %>
+            <td class=" text-nowrap">
+              <%= link_to "キャンセル", week_jobs_path(week.id), class: "btn btn-outline-primary no-hover-reverse" %>
+              <%= f.submit "保存", class: "btn btn-primary " %>
             </td>
           </tr>
         <% else %>

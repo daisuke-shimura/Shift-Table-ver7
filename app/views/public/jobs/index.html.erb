@@ -14,7 +14,19 @@
   <%= render "public/jobs/new-form", week: @week, job: @job, login_user: @user %>
 </div>
 
-<turbo-frame id="week_content_<%= @week.id %>">
-  <%= render "public/jobs/table", week: @week, users: @users, jobs: @jobs, login_user: @user %>
-</turbo-frame>
+<div class="d-flex justify-content-between align-items-center">
+  <h3>希望一覧</h3>
+</div>
 
+
+<div class="tables-grid">
+  <div id="week_content_<%= @week.id %>">
+    <%= render "public/jobs/broadcast", week: @week, users: @users, jobs: @jobs %>
+  </div>
+
+  <div id="week_unhide-button_<%= @week.id %>">
+    <div id="week_button_<%= @week.id %>">
+      <%= render "public/jobs/button", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+    </div>
+  </div>
+</div>

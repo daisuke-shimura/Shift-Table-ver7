@@ -1,0 +1,18 @@
+<div id="week_content_<%= week.id %>">
+  <table class="table table-bordered">
+    <thead>
+      <%= render "public/jobs/header-shift", week: week %>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td class="table-secondary"><%= user.full_name %></td>
+          <% (1..7).each do |n| %>
+            <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
+          <% end %>
+          <td><%= user.job_for(jobs)&.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

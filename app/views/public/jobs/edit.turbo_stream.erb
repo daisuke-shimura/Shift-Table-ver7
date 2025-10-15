@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "week_content_#{@week.id}" do %>
+  <div id="week_content_<%= @week.id %>">
+    <%= render "edit-form", week: @week, jobs: @jobs, job: @job, users: @users, login_user: @user %>
+  </div>
+<% end %>
+
+<%= turbo_stream.remove "week_button_#{@week.id}" %>

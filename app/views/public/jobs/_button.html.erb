@@ -1,0 +1,29 @@
+<% if Job.exists?(week_id: week.id, user_id: login_user.id) %>
+<table class="table table-bordered table-no-left-border">
+  <thead>
+    <tr class="table-secondary"><th></th></tr>
+    <tr class="table-secondary"><th></th></tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <% if user == login_user %>
+        <tr>
+          <td class="">
+            <%= button_to "編集", edit_week_job_path(week, login_user.job_for(jobs).id, format: :turbo_stream),
+                  method: :get,
+                  form: { data: { turbo: true }, class: 'd-inline'},
+                  class: 'btn btn-primary' %>
+
+            <%= button_to "削除", week_job_path(week, login_user.job_for(jobs).id),
+                  method: :delete,
+                  form: { data: { turbo: true, turbo_confirm: '本当に削除しますか？' }, class: 'd-inline'},
+                  class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% else %>
+        <tr><td></td></tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
