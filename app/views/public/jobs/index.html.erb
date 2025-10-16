@@ -1,4 +1,4 @@
-<%= turbo_stream_from "jobs_week_#{@week.id}" %>
+<%= turbo_stream_from "weeks" %>
 
 <h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
 
@@ -14,7 +14,20 @@
   <%= render "public/jobs/new-form", week: @week, job: @job, login_user: @user %>
 </div>
 
-<turbo-frame id="week_content_<%= @week.id %>">
-  <%= render "public/jobs/table", week: @week, users: @users, jobs: @jobs, login_user: @user %>
-</turbo-frame>
+<% if @week.is_invisible %>
+<div class="tables-grid">
+  <div id="week_content_<%= @week.id %>">
+    <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
+  </div>
 
+  <div id="week_unhide-button_<%= @week.id %>">
+    <div id="week_button_<%= @week.id %>">
+      <%= render "public/jobs/button", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+    </div>
+  </div>
+</div>
+<% else %>
+  <div id="week_private_<%= @week.id %>">
+    <%= render "public/jobs/private-shift", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+  </div>
+<% end %>

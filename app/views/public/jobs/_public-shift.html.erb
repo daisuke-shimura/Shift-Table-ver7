@@ -1,34 +1,19 @@
-<%= week.is_invisible %>
-<h3>希望一覧</h3>
-<table class="table table-bordered table-hover">
-  <thead>
-    <%= render "public/jobs/header-shift", week:week %>
-  </thead>
-  <tbody>
-    <% users.each do |user| %>
-      <% if user == login_user && Job.exists?(week_id: week.id, user_id: login_user.id) %>
-        <tr class="">
+<div id="week_content_<%= week.id %>">
+  <h3>希望一覧</h3>
+  <table class="table table-bordered">
+    <thead>
+      <%= render "public/jobs/header-shift", week: week %>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
           <td class="table-secondary"><%= user.full_name %></td>
           <% (1..7).each do |n| %>
             <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
           <% end %>
           <td><%= user.job_for(jobs)&.comment %></td>
-          <td>
-            <%= link_to "編集", edit_week_job_path(week.id, login_user.job_for(jobs).id), data: { turbo_frame: "week_content_#{week.id}" }, class: 'btn btn-primary' %>
-            <br>
-            <%= link_to '削除', week_job_path(week.id, login_user.job_for(jobs).id), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
-          </td>
-        </tr>
-      <% else %>
-        <tr class="">
-          <td class="table-secondary"><%= user.full_name %></td>
-          <% (1..7).each do |n| %>
-            <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
-          <% end %>
-          <td><%= user.job_for(jobs)&.comment %></td>
-          <td></td>
         </tr>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

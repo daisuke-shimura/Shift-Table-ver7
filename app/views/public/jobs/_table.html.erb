@@ -1,5 +1,5 @@
 <% if week.is_invisible %>
-  <%= render "public/jobs/public-shift",  week: week, users: users, jobs: jobs, login_user: login_user %>
+  <%= render "public/jobs/public-shift",  week: week, users: users, jobs: jobs %>
 <% else %>
   <%= render "public/jobs/private-shift", week: week, users: users, jobs: jobs, login_user: login_user %>
 <% end %>

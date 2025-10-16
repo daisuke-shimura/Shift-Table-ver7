@@ -5,6 +5,10 @@ class Public::JobsController < ApplicationController
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
     @job = Job.new
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create
@@ -31,6 +35,10 @@ class Public::JobsController < ApplicationController
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
     @job = Job.find(params[:id])
+    respond_to do |format|
+      format.turbo_stream { render } # app/views/public/jobs/edit.turbo_stream.erb を使う
+      format.html
+    end
   end
 
   def update
