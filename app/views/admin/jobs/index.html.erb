@@ -1,0 +1,16 @@
+<%= turbo_stream_from "weeks" %>
+
+<h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
+
+<p>管理者ユーザ</p>
+<hr>
+
+<div id="week_toggle_<%= @week.id %>">
+  <%= render "public/jobs/switch", week: @week %>
+</div>
+<hr>
+
+<div id="week_content_<%= @week.id %>">
+  <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
+</div>
+

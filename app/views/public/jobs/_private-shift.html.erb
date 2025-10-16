@@ -1,9 +1,8 @@
-<%= week.is_invisible %>
 <% if Job.exists?(week_id: week.id, user_id: login_user.id) %>
   <h3>希望一覧</h3>
-  <table class="table table-bordered table-hover">
+  <table class="table table-bordered">
     <thead>
-      <%= render "public/jobs/header-shift", week:week %>
+      <%= render "public/jobs/header-form", week: week %>
     </thead>
     <tbody>
       <tr>
@@ -13,9 +12,15 @@
         <% end %>
         <td><%= login_user.job_for(jobs)&.comment %></td>
         <td>
-          <%= link_to "編集", edit_week_job_path(week.id, login_user.job_for(jobs).id), data: { turbo_frame: "week_content_#{week.id}" }, class: 'btn btn-primary' %>
-          <br>
-          <%= link_to '削除', week_job_path(week.id, login_user.job_for(jobs).id), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
+          <%= button_to "編集", edit_week_job_path(week, login_user.job_for(jobs).id, format: :turbo_stream),
+                method: :get,
+                form: { data: { turbo: true }, class: 'd-inline'},
+                class: 'btn btn-primary' %>
+
+          <%= button_to "削除", week_job_path(week, login_user.job_for(jobs).id),
+                method: :delete,
+                form: { data: { turbo: true, turbo_confirm: '本当に削除しますか？' }, class: 'd-inline'},
+                class: 'btn btn-danger' %>
         </td>
       </tr>
     </tbody>

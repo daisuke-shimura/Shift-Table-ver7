@@ -4,10 +4,18 @@
   </div>
 <% end %>
 
-<%= turbo_stream.replace "week_content_#{@week.id}" do %>
-  <div id="week_content_<%= @week.id %>">
-    <%= render "edit-form", week: @week, jobs: @jobs, job: @job, users: @users, login_user: @user %>
-  </div>
-<% end %>
+<% if @week.is_invisible %>
+  <%= turbo_stream.replace "week_content_#{@week.id}" do %>
+    <div id="week_content_<%= @week.id %>">
+      <%= render "public/jobs/edit-form", week: @week, jobs: @jobs, job: @job, users: @users, login_user: @user %>
+    </div>
+  <% end %>
 
-<%= turbo_stream.remove "week_button_#{@week.id}" %>
+  <%= turbo_stream.remove "week_button_#{@week.id}" %>
+<% else %>
+  <%= turbo_stream.replace "week_private_#{@week.id}" do %>
+    <div id="week_private_<%= @week.id %>">
+      <%= render "public/jobs/edit-form", week: @week, jobs: @jobs, job: @job, login_user: @user %>
+    </div>
+  <% end %>
+<% end %>

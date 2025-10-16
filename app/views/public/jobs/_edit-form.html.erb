@@ -1,3 +1,4 @@
+<h3>希望編集</h3>
 <%= form_with model:[week, job], local: false do |f| %>
 <table class="table table-bordered">
   <thead>
@@ -14,7 +15,10 @@
             <% end %>
             <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
             <td class=" text-nowrap">
-              <%= link_to "キャンセル", week_jobs_path(week.id), class: "btn btn-outline-primary no-hover-reverse" %>
+              <%= link_to 'キャンセル',
+                week_jobs_path(week.id, format: :turbo_stream), 
+                data: { turbo_stream: true },
+                class: 'btn btn-outline-primary no-hover-reverse' %>
               <%= f.submit "保存", class: "btn btn-primary " %>
             </td>
           </tr>
@@ -36,13 +40,12 @@
           <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
         <% end %>
         <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
-        <td>
-          <%= f.submit '更新', class: 'btn btn-primary' %>
-          <br>
-          <%= link_to "戻る",
-            week_jobs_path(week.id),
-            data: { turbo_frame: "week_content_#{week.id}" },
-            class: "btn btn-secondary" %>
+        <td class=" text-nowrap">
+          <%= link_to 'キャンセル',
+            week_jobs_path(week.id, format: :turbo_stream), 
+            data: { turbo_stream: true },
+            class: 'btn btn-outline-primary no-hover-reverse' %>
+          <%= f.submit "保存", class: "btn btn-primary " %>
         </td>
       </tr>
     <% end %>

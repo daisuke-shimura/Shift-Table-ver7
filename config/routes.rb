@@ -22,6 +22,15 @@ Rails.application.routes.draw do
     registrations: "admin/registrations"
     
   }
+
+  namespace :admin do
+    resources :weeks, only: [:index, :create, :destroy] do
+      member do
+        patch :toggle_invisible
+      end
+      resources :jobs, only: [:index]
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

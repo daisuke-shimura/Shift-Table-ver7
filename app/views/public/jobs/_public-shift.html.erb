@@ -1,4 +1,5 @@
 <div id="week_content_<%= week.id %>">
+  <h3>希望一覧</h3>
   <table class="table table-bordered">
     <thead>
       <%= render "public/jobs/header-shift", week: week %>
@@ -15,5 +16,4 @@
       <% end %>
     </tbody>
   </table>
-  <%= week.is_invisible %>
 </div>

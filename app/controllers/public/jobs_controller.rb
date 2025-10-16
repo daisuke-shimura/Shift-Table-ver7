@@ -5,6 +5,10 @@ class Public::JobsController < ApplicationController
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
     @job = Job.new
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create
@@ -16,12 +20,6 @@ class Public::JobsController < ApplicationController
       @users = User.all
       @jobs  = Job.where(week_id: @week.id).group_by(&:user_id)
       @user  = current_user
-      # job.broadcast_replace_to(
-      #   "weeks",
-      #   target: "week_content_#{@week.id}",
-      #   partial: "public/jobs/broadcast",
-      #   locals: { week: @week, users: @users, jobs: @jobs }
-      # )
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to request.referer }

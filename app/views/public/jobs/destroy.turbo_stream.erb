@@ -4,12 +4,21 @@
   </div>
 <% end %>
 
-<%= turbo_stream.replace "week_content_#{@week.id}" do %>
-    <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
-<% end %>
+<% if @week.is_invisible %>
+  <%= turbo_stream.replace "week_content_#{@week.id}" do %>
+      <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
+  <% end %>
 
-<%= turbo_stream.replace "week_button_#{@week.id}" do %>
-  <div id="week_button_<%= @week.id %>">
-    <%= render "public/jobs/button", week: @week, users: @users, jobs: @jobs, login_user: @user %>
-  </div>
+  <%= turbo_stream.replace "week_button_#{@week.id}" do %>
+    <div id="week_button_<%= @week.id %>">
+      <%= render "public/jobs/button", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+    </div>
+  <% end %>
+<% else %>
+
+  <%= turbo_stream.replace "week_private_#{@week.id}" do %>
+    <div id="week_private_<%= @week.id %>">
+      <%= render "public/jobs/private-shift", week: @week, jobs: @jobs, job: @job, login_user: @user %>
+    </div>
+  <% end %>
 <% end %>

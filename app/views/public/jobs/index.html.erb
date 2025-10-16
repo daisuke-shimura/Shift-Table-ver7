@@ -14,11 +14,7 @@
   <%= render "public/jobs/new-form", week: @week, job: @job, login_user: @user %>
 </div>
 
-<div id="week_title_<%= @week.id %>">
-  <h3>希望一覧</h3>
-</div>
-
-
+<% if @week.is_invisible %>
 <div class="tables-grid">
   <div id="week_content_<%= @week.id %>">
     <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
@@ -30,3 +26,8 @@
     </div>
   </div>
 </div>
+<% else %>
+  <div id="week_private_<%= @week.id %>">
+    <%= render "public/jobs/private-shift", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+  </div>
+<% end %>
