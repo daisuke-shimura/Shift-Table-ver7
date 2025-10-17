@@ -1,5 +1,4 @@
 <%= turbo_stream_from "weeks" %>
-<div id="week-container" data-week-id="<%= @week.id %>">
 
 <h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
 
@@ -27,5 +26,3 @@
     <%= render "public/jobs/private-shift", week: @week, users: @users, jobs: @jobs, login_user: @user %>
   </div>
 <% end %>
-
-</div>

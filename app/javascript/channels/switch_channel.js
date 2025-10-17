@@ -1,16 +1,15 @@
 import consumer from "channels/consumer"
 
 function setupSwitchChannel() {
-  const element = document.getElementById("week-container")
-  if (!element) return
+  // URLが /weeks/:id/jobs のときだけ購読
+  const match = window.location.pathname.match(/^\/weeks\/\d+\/jobs/)
+  if (!match) return
 
-  const weekId = element.dataset.weekId
-  // グローバルに保持して重複生成を防ぐ
-  window.switchSubscriptions = window.switchSubscriptions || {}
-  if (window.switchSubscriptions[weekId]) return
+  // グローバル購読（id関係なし）
+  if (window.switchSubscription) return
 
-  window.switchSubscriptions[weekId] = consumer.subscriptions.create(
-    { channel: "SwitchChannel", week_id: weekId },
+  window.switchSubscription = consumer.subscriptions.create(
+    { channel: "SwitchChannel" },
     {
       received(data) {
         if (data.action === "reload") {
@@ -24,36 +23,25 @@ function setupSwitchChannel() {
   )
 }
 
-// Turbo の初期ロードとページ遷移後の両方で初期化する
 document.addEventListener("DOMContentLoaded", setupSwitchChannel)
 document.addEventListener("turbo:load", setupSwitchChannel)
-
-// Turbo がページをキャッシュする前にオーバーレイを消す（不要な場合は削除可）
 document.addEventListener("turbo:before-cache", () => {
   const overlay = document.getElementById("reload-overlay")
   if (overlay) overlay.remove()
 })
 
-// 「更新中です」オーバーレイを表示する関数
 function showReloadOverlay() {
-  // すでに存在していたら再作成しない
   if (document.getElementById("reload-overlay")) return
 
   const overlay = document.createElement("div")
-  overlay.id = "reload-overlay"
-  overlay.style.position = "fixed"
-  overlay.style.top = "0"
-  overlay.style.left = "0"
-  overlay.style.width = "100vw"
-  overlay.style.height = "100vh"
-  overlay.style.backgroundColor = "rgba(0,0,0,0.5)"
-  overlay.style.display = "flex"
-  overlay.style.justifyContent = "center"
-  overlay.style.alignItems = "center"
-  overlay.style.zIndex = "9999"
-  overlay.style.color = "white"
-  overlay.style.fontSize = "2rem"
-  overlay.innerText = "データ更新中です..."
-
+  overlay.className = "d-flex justify-content-center align-items-center position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 text-white"
+  overlay.innerHTML = `
+    <div class="text-center">
+      <div class="spinner-border text-light" role="status" style="width: 4rem; height: 4rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="mt-3 fs-4">データ更新中</div>
+    </div>
+  `
   document.body.appendChild(overlay)
 }

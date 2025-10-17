@@ -8,6 +8,6 @@ class Admin::SettingsController < ApplicationController
       format.html { redirect_to admin_settings_path, notice: "表示状態を変更しました" }
     end
 
-    ActionCable.server.broadcast("reload_all", { action: "reload" })
+    ActionCable.server.broadcast("reload_weeks", { action: "reload" })
   end
 end

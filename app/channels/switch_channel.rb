@@ -1,6 +1,6 @@
 class SwitchChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "reload_week_#{params[:week_id]}"
+    stream_from "reload_weeks"
   end
 
   def unsubscribed
