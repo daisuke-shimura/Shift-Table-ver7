@@ -2,7 +2,6 @@
   <h4>他の人のシフト</h4>
   <%= form_with url: admin_settings_toggle_visible_path,
                 method: :patch,
-                data: { turbo_frame: "_top" },
                 class: "d-inline" do %>
     <div class="form-check form-switch d-flex align-items-center">
       <%= label_tag "switch",
