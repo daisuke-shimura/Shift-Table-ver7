@@ -5,7 +5,7 @@
     <%= render "header-form", week:week %>
   </thead>
   <tbody>
-    <% if week.is_invisible %>
+    <% if setting.is_visible %>
       <% users.each do |user| %>
         <% if user == login_user %>
           <tr class="">

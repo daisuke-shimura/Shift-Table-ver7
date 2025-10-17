@@ -4,10 +4,10 @@
   </div>
 <% end %>
 
-<% if @week.is_invisible %>
+<% if @setting.is_visible %>
   <%= turbo_stream.replace "week_content_#{@week.id}" do %>
     <div id="week_content_<%= @week.id %>">
-      <%= render "public/jobs/edit-form", week: @week, jobs: @jobs, job: @job, users: @users, login_user: @user %>
+      <%= render "public/jobs/edit-form", week: @week, jobs: @jobs, job: @job, users: @users, login_user: @user, setting: @setting %>
     </div>
   <% end %>
 
@@ -15,7 +15,7 @@
 <% else %>
   <%= turbo_stream.replace "week_private_#{@week.id}" do %>
     <div id="week_private_<%= @week.id %>">
-      <%= render "public/jobs/edit-form", week: @week, jobs: @jobs, job: @job, login_user: @user %>
+      <%= render "public/jobs/edit-form", week: @week, jobs: @jobs, job: @job, login_user: @user, setting: @setting %>
     </div>
   <% end %>
 <% end %>

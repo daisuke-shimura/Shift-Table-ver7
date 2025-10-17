@@ -4,7 +4,7 @@
   </div>
 <% end %>
 
-<% if @week.is_invisible %>
+<% if @setting.is_visible %>
   <%= turbo_stream.replace "week_content_#{@week.id}" do %>
       <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
   <% end %>

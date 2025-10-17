@@ -9,9 +9,6 @@ Rails.application.routes.draw do
     delete "logout", to: "user_sessions#destroy"
     # Week routes
     resources :weeks, only: [:index, :create, :destroy] do
-      member do
-        patch :toggle_invisible
-      end
       # Job routes
       resources :jobs, only: [:index, :create, :edit, :update, :destroy]
     end

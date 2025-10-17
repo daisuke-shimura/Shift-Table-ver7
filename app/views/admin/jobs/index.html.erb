@@ -2,6 +2,12 @@
 
 <h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
 
+<hr>
+<div id="setting-visible">
+  <%= render "admin/settings/switch", setting: @setting %>
+</div>
+<hr>
+
 <p>管理者ユーザ</p>
 
 <div id="week_content_<%= @week.id %>">
