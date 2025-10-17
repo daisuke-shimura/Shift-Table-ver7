@@ -1,13 +1,9 @@
 <%= turbo_stream_from "weeks" %>
+<div id="week-container" data-week-id="<%= @week.id %>">
 
 <h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
 
 <p>ログインユーザがこの週出したか：<%= Job.exists?(week_id: @week.id, user_id: @user.id) %></p>
-<hr>
-
-<div id="week_toggle_<%= @week.id %>">
-  <%= render "public/jobs/switch", week: @week %>
-</div>
 <hr>
 
 <div id="week_form_<%= @week.id %>_user_<%= @user.id %>">
@@ -31,3 +27,5 @@
     <%= render "public/jobs/private-shift", week: @week, users: @users, jobs: @jobs, login_user: @user %>
   </div>
 <% end %>
+
+</div>

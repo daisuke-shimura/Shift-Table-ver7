@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "week_toggle_#{@week.id}" do %>
+  <div id="week_toggle_<%= @week.id %>">
+    <%= render "admin/jobs/switch", week: @week %>
+  </div>
+<% end %>
