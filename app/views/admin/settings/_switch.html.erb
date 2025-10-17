@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-between align-items-center mx-2">
+  <h4>他の人のシフト</h4>
+  <%= form_with url: admin_settings_toggle_visible_path,
+                method: :patch,
+                class: "d-inline" do %>
+    <div class="form-check form-switch d-flex align-items-center">
+      <%= label_tag "switch",
+          (setting.is_visible? ? "表示中" : "非表示中"),
+          class: "form-check-label toggle-label #{setting.is_visible? ? 'text-primary' : 'text-secondary'} me-5" %>
+      <%= check_box_tag 'is_visible', '1', setting.is_visible?,
+          class: "form-check-input",
+          id: "switch",
+          onchange: 'this.form.requestSubmit()' %>
+    </div>
+  <% end %>
+</div>

@@ -4,8 +4,8 @@ class Admin::WeeksController < ApplicationController
     load_weeks
     load_calendar
     @admin = current_admin
-
     @month = params[:month] ? Date.parse(params[:month]) : Date.today.beginning_of_month
+    @setting = Setting.instance
   end
 
   def create
@@ -30,25 +30,27 @@ class Admin::WeeksController < ApplicationController
     end
   end
 
-  def toggle_invisible
-    @week = Week.find(params[:id])
-    @week.update!(is_invisible: !@week.is_invisible)
+  # def toggle_invisible
+  #   @week = Week.find(params[:id])
+  #   @week.update!(is_invisible: !@week.is_invisible)
 
-    @users = User.all
-    @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
-    @user = current_user
+  #   @users = User.all
+  #   @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
 
-    respond_to do |format|
-      format.turbo_stream { render }
-      format.html { redirect_back fallback_location: week_jobs_path(@week.id) }
-    end
-  end
+  #   respond_to do |format|
+  #     format.turbo_stream { render }
+  #     format.html { redirect_back fallback_location: week_jobs_path(@week.id) }
+  #   end
+
+  #   ActionCable.server.broadcast("reload_week_#{@week.id}", { action: "reload" })
+
+  # end
 
 
   private
 
   def week_params
-    params.require(:week).permit(:monday, :is_invisible)
+    params.require(:week).permit(:monday)
   end
 
   def load_weeks

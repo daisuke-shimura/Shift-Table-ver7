@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_10_08_085019) do
+ActiveRecord::Schema[7.0].define(version: 2025_10_17_151447) do
   create_table "admins", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -40,6 +40,12 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_08_085019) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "settings", force: :cascade do |t|
+    t.boolean "is_visible", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "middle_name"
@@ -59,7 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_08_085019) do
   create_table "weeks", force: :cascade do |t|
     t.date "monday", null: false
     t.boolean "is_created", default: false, null: false
-    t.boolean "is_invisible", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

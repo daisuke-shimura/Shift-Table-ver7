@@ -5,6 +5,7 @@ class Public::JobsController < ApplicationController
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
     @job = Job.new
+    @setting = Setting.instance
     respond_to do |format|
       format.html
       format.turbo_stream
@@ -20,6 +21,7 @@ class Public::JobsController < ApplicationController
       @users = User.all
       @jobs  = Job.where(week_id: @week.id).group_by(&:user_id)
       @user  = current_user
+      @setting = Setting.instance
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to request.referer }
@@ -35,6 +37,7 @@ class Public::JobsController < ApplicationController
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
     @job = Job.find(params[:id])
+    @setting = Setting.instance
     respond_to do |format|
       format.turbo_stream { render } # app/views/public/jobs/edit.turbo_stream.erb を使う
       format.html
@@ -48,6 +51,7 @@ class Public::JobsController < ApplicationController
       @users = User.all
       @jobs  = Job.where(week_id: @week.id).group_by(&:user_id)
       @user  = current_user
+      @setting = Setting.instance
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to week_jobs_path(@job.week_id) }
@@ -65,6 +69,7 @@ class Public::JobsController < ApplicationController
       @jobs  = Job.where(week_id: @week.id).group_by(&:user_id)
       @user  = current_user
       @job = Job.new
+      @setting = Setting.instance
       respond_to do |format|
         format.turbo_stream { render }
         format.html { redirect_to request.referer }
