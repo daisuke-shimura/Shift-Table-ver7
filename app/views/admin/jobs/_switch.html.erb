@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center mx-2">
 <h4>他の人のシフト</h4>
-<%= form_with url: toggle_invisible_admin_week_path(week),
+<%= form_with url: admin_settings_toggle_visible_path,
               method: :patch,
               data: { turbo_frame: "_top" },
               class: "d-inline" do %>

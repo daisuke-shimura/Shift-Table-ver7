@@ -2,6 +2,11 @@
 
 <h3><%= @admin %>さんがログイン中</h3>
 
+<hr>
+<div id="setting-visible">
+  <%= render "admin/settings/switch", setting: @setting %>
+</div>
+<hr>
 
 <hr>
 <h3>新規作成</h3>

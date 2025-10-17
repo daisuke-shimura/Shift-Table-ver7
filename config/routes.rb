@@ -24,10 +24,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+    patch 'settings/toggle_visible', to: 'settings#toggle_visible'
     resources :weeks, only: [:index, :create, :destroy] do
-      member do
-        patch :toggle_invisible
-      end
       resources :jobs, only: [:index]
     end
   end

@@ -6,6 +6,8 @@ class Admin::WeeksController < ApplicationController
     @admin = current_admin
 
     @month = params[:month] ? Date.parse(params[:month]) : Date.today.beginning_of_month
+
+    @setting = Setting.instance
   end
 
   def create
