@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>印刷用シフト表</title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <%= yield %>
+  <script>
+    window.onload = function() {
+      window.print();
+      setTimeout(() => window.close(), 1000); // 印刷後に自動で閉じる（任意）
+    }
+  </script>
+</body>
+</html>

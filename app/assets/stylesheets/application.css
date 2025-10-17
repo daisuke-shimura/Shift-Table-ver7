@@ -240,6 +240,24 @@
   border-color: #0d6efd;   /* 枠線の色は維持 */
 }
 
+
+/* 印刷 */
+@media print {
+  header, footer, .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    font-size: 12pt;
+  }
+}
+
+@page {
+  size: A4 landscape;
+}
+
+
+
 /* レスポンシブ */
 @media (max-width: 900px) {
   .date { height: 64px; padding: 6px; }

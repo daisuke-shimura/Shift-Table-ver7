@@ -10,6 +10,8 @@
 
 <p>管理者ユーザ</p>
 
+<%= link_to "印刷", print_admin_week_jobs_path(@week.id), class: "btn btn-outline-primary", target: "_blank" %>
+
 <div id="week_content_<%= @week.id %>">
   <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
 </div>

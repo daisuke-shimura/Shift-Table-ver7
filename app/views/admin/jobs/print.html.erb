@@ -1,0 +1,28 @@
+<!-- app/views/weeks/print.html.erb -->
+<h1><%= @week.monday.strftime("%Y年%m月%d日") %> のシフト表</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>スタッフ名</th>
+      <th>月</th>
+      <th>火</th>
+      <th>水</th>
+      <th>木</th>
+      <th>金</th>
+      <th>土</th>
+      <th>日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% job = @jobs[user.id]&.first %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <% (1..7).each do |i| %>
+          <td><%= job ? job.send("time#{i}") : "-" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
