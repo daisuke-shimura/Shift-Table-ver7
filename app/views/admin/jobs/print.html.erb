@@ -1,28 +1,106 @@
-<!-- app/views/weeks/print.html.erb -->
-<h1><%= @week.monday.strftime("%Y年%m月%d日") %> のシフト表</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>スタッフ名</th>
-      <th>月</th>
-      <th>火</th>
-      <th>水</th>
-      <th>木</th>
-      <th>金</th>
-      <th>土</th>
-      <th>日</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <% job = @jobs[user.id]&.first %>
-      <tr>
-        <td><%= user.full_name %></td>
-        <% (1..7).each do |i| %>
-          <td><%= job ? job.send("time#{i}") : "-" %></td>
+<table class="table table-bordered table-sm text-center align-middle">
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan="3" class="<%= holiday_class(@week.monday) %>" style="width: 150px;"><%= day_header(@week.monday) %> (月)</th>
+            <th colspan="3" class="<%= holiday_class(@week.tuesday) %>" style="width: 150px;"><%= day_header(@week.tuesday) %> (火)</th>
+            <th colspan="3" class="<%= holiday_class(@week.wednesday) %>" style="width: 150px;"><%= day_header(@week.wednesday) %> (水)</th>
+            <th colspan="3" class="<%= holiday_class(@week.thursday) %>" style="width: 150px;"><%= day_header(@week.thursday) %> (木)</th>
+            <th colspan="3" class="<%= holiday_class(@week.friday) %>" style="width: 150px;"><%= day_header(@week.friday) %> (金)</th>
+            <th colspan="3" class="<%= holiday_class(@week.saturday) || 'text-primary' %>" style="width: 150px;"><%= day_header(@week.saturday) %> (土)</th>
+            <th colspan="3" class="text-danger" style="width: 150px;"><%= day_header(@week.sunday) %> (日)</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3" class="table-light print-bg-yellow">アイス・包材発注</td>
+            <td colspan="3" class="table-light"></td>
+            <td colspan="3" class="table-light"></td>
+            <td colspan="3" class="table-light print-bg-yellow">アイス・包材発注</td>
+            <td colspan="3" class="table-light"></td>
+            <td colspan="3" class="table-light print-bg-yellow" >アイス発注</td>
+            <td colspan="3" class="table-light"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3" class="table-light">アイス・包材納品</td>
+            <td colspan="3" class="table-light"></td>
+            <td colspan="3" class="table-light">アイス納品</td>
+            <td colspan="3" class="table-light">包材納品</td>
+            <td colspan="3" class="table-light"></td>
+            <td colspan="3" class="table-light">アイス納品</td>
+            <td colspan="3" class="table-light"></td>
+        </tr>
+        <tr>
+            <td>氏名</td>
+            <td colspan="3"></td>
+            <td colspan="3">デフロスト</td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3">デフロスト</td>
+            <td colspan="3"></td>
+            <td colspan="3" class="text-danger">原価</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+        <tr>
+            <td><%= user.full_name %></td>
+            <td>12.0</td>
+            <td>1.0</td>
+            <td>21.0</td>
+            <td>12.0</td>
+            <td>1.0</td>
+            <td>21.0</td>
+            <td>12.0</td>
+            <td>1.0</td>
+            <td>21.0</td>
+            <td>12.0</td>
+            <td>1.0</td>
+            <td>20.0</td>
+            <td>12.0</td>
+            <td>1.0</td>
+            <td>21.0</td>
+            <td>12.0</td>
+            <td>1.0</td>
+            <td>21.0</td>
+            <td>10.0</td>
+            <td>1.0</td>
+            <td>19.0</td>
+        </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
+    </tbody>
 </table>

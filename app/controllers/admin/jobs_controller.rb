@@ -8,8 +8,9 @@ class Admin::JobsController < ApplicationController
 
   def print
     @week = Week.find(params[:week_id])
-    @users = User.all
-    @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
+    @users = User.includes(:jobs).where(jobs: { week_id: @week.id })
+    # @users = User.all
+    # @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     render layout: "print"
   end
 end
