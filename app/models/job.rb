@@ -8,6 +8,15 @@ class Job < ApplicationRecord
   
   after_commit :broadcast_replace_job
 
+  def split_time(str)
+    return [str] if str.nil? || str.empty?
+    str.split(/[-ー~～]/).map(&:strip)
+  end
+
+  def parsed_time(n)
+    time_value = self["time#{n}"]
+    split_time(time_value)
+  end
 
   private
 

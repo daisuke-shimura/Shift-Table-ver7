@@ -256,24 +256,6 @@
     table-layout: fixed;
     white-space: nowrap; /* 改行防止 */
   }
-  th:first-child, td:first-child {
-    width: 120px;
-  }
-
-  .print-bg-yellow {
-    position: relative;
-    color: black; /* 文字が読めるように */
-    z-index: 0;   /* 疑似要素の下に文字が来るようにする */
-  }
-  .print-bg-yellow::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #ffff00; /* 背景色を再現 */
-    z-index: -1; /* テキストの下に置く */
-    -webkit-print-color-adjust: exact; /* Chrome系ブラウザで色を正確に印刷 */
-    print-color-adjust: exact; /* 標準化された指定 */
-  }
 }
 
 @page {

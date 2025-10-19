@@ -1,7 +1,40 @@
 <table class="table table-bordered table-sm text-center align-middle">
+    <colgroup>
+        <col style="width: 120px;">
+        <col style="width: 50px;">
+        <col style="width: 50px;">
+        <% 7.times do %>
+            <col style="width: 40%;"> <!-- 出勤 -->
+            <col style="width: 20%;"> <!-- 休 -->
+            <col style="width: 40%;"> <!-- 退勤 -->
+        <% end %>
+    </colgroup>
     <thead>
+        <tr><th colspan="24">シフト表</th></tr>
         <tr>
-            <th></th>
+            <td colspan="2" style="text-align: left; font-size: 10pt;">売上予測（千円）</td>
+            <td rowspan="2" style="font-size: 8pt;">人時<br>売予<br>算！</td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: left; font-size: 10pt;">人時数（時間）</td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+            <td colspan="3" ></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: left; vertical-align: middle; font-size: 10pt;">人時売上（円）</td>
+            <td></td>
             <th colspan="3" class="<%= holiday_class(@week.monday) %>" style="width: 150px;"><%= day_header(@week.monday) %> (月)</th>
             <th colspan="3" class="<%= holiday_class(@week.tuesday) %>" style="width: 150px;"><%= day_header(@week.tuesday) %> (火)</th>
             <th colspan="3" class="<%= holiday_class(@week.wednesday) %>" style="width: 150px;"><%= day_header(@week.wednesday) %> (水)</th>
@@ -12,94 +45,59 @@
         </tr>
         <tr>
             <td></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-        </tr>
-        <tr>
             <td></td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-        </tr>
-        <tr>
             <td></td>
-            <td colspan="3" class="table-light print-bg-yellow">アイス・包材発注</td>
-            <td colspan="3" class="table-light"></td>
-            <td colspan="3" class="table-light"></td>
-            <td colspan="3" class="table-light print-bg-yellow">アイス・包材発注</td>
-            <td colspan="3" class="table-light"></td>
-            <td colspan="3" class="table-light print-bg-yellow" >アイス発注</td>
-            <td colspan="3" class="table-light"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td colspan="3" class="table-light">アイス・包材納品</td>
-            <td colspan="3" class="table-light"></td>
-            <td colspan="3" class="table-light">アイス納品</td>
-            <td colspan="3" class="table-light">包材納品</td>
-            <td colspan="3" class="table-light"></td>
-            <td colspan="3" class="table-light">アイス納品</td>
-            <td colspan="3" class="table-light"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
         </tr>
         <tr>
             <td>氏名</td>
-            <td colspan="3"></td>
-            <td colspan="3">デフロスト</td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3">デフロスト</td>
-            <td colspan="3"></td>
-            <td colspan="3" class="text-danger">原価</td>
+            <td style="font-size: 7pt;">ヘルプ込</td>
+            <td style="font-size: 7pt;">労働時間</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
+            <td scope="col">出勤</td>
+            <td scope="col">休</td>
+            <td scope="col">退勤</td>
         </tr>
     </thead>
     <tbody>
         <% @users.each do |user| %>
         <tr>
             <td><%= user.full_name %></td>
-            <td>12.0</td>
-            <td>1.0</td>
-            <td>21.0</td>
-            <td>12.0</td>
-            <td>1.0</td>
-            <td>21.0</td>
-            <td>12.0</td>
-            <td>1.0</td>
-            <td>21.0</td>
-            <td>12.0</td>
-            <td>1.0</td>
-            <td>20.0</td>
-            <td>12.0</td>
-            <td>1.0</td>
-            <td>21.0</td>
-            <td>12.0</td>
-            <td>1.0</td>
-            <td>21.0</td>
-            <td>10.0</td>
-            <td>1.0</td>
-            <td>19.0</td>
+            <td></td>
+            <td></td>
+            <% (1..7).each do |n| %>
+                <% if user.job_for(@jobs).parsed_time(n).size == 2 %>
+                    <td><%= user.job_for(@jobs).parsed_time(n).first %></td>
+                    <td></td>
+                    <td><%= user.job_for(@jobs).parsed_time(n).last %></td>
+                <% else %>
+                    <td colspan="3"><%= user.job_for(@jobs).parsed_time(n).first %></td>
+                <% end %>
+            <% end %>
+
         </tr>
         <% end %>
     </tbody>
