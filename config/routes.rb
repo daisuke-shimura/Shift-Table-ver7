@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   namespace :admin do
     patch 'settings/toggle_visible', to: 'settings#toggle_visible'
     resources :weeks, only: [:index, :create, :destroy] do
-      resources :jobs, only: [:index]
+      resources :jobs, only: [:index] do 
+        collection do
+          get :print
+        end
+      end
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
