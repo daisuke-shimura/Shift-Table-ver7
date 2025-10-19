@@ -10,7 +10,11 @@ class Job < ApplicationRecord
 
   def split_time(str)
     return [str] if str.nil? || str.empty?
-    str.split(/[-ー~～]/).map(&:strip)
+    if str.scan(/[-ー~～]/).size == 1
+      str.split(/[-ー~～]/).map(&:strip)
+    else
+      [str]
+    end
   end
 
   def parsed_time(n)

@@ -1,104 +1,106 @@
 <table class="table table-bordered table-sm text-center align-middle">
     <colgroup>
-        <col style="width: 120px;">
-        <col style="width: 50px;">
-        <col style="width: 50px;">
-        <% 7.times do %>
-            <col style="width: 40%;"> <!-- 出勤 -->
-            <col style="width: 20%;"> <!-- 休 -->
-            <col style="width: 40%;"> <!-- 退勤 -->
+        <col style="width: 120px; border-left: 2px solid black;">
+        <col style="width: 46px;">
+        <col style="width: 46px;">
+        <% 6.times do %>
+        <col style="width: 40%;"> <!-- 出勤 -->
+        <col style="width: 20%;"> <!-- 休 -->
+        <col style="width: 40%;"> <!-- 退勤 -->
         <% end %>
+        <col style="width: 40%;"> <!-- 出勤 -->
+        <col style="width: 20%;"> <!-- 休 -->
+        <col style="width: 40%; border-right: 2px solid black;"> <!-- 退勤 -->
     </colgroup>
     <thead>
-        <tr><th colspan="24">シフト表</th></tr>
+        <tr><th colspan="24" style="border-top: 2px solid black; border-bottom: 1px solid black;">シフト表</th></tr>
         <tr>
             <td colspan="2" style="text-align: left; font-size: 10pt;">売上予測（千円）</td>
-            <td rowspan="2" style="font-size: 8pt;">人時<br>売予<br>算！</td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
+            <td rowspan="2" style="font-size: 8pt; border-right: 1px solid black;">人時<br>売予<br>算　</td>
+            <% 6.times do %>
+            <td colspan="3" style="border-right: 1px solid black;"></td>
+            <% end %>
+            <td colspan="3"></td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: left; font-size: 10pt;">人時数（時間）</td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
-            <td colspan="3" ></td>
+            <% 6.times do %>
+            <td colspan="3" style="border-right: 1px solid black;"></td>
+            <% end %>
+            <td colspan="3"></td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: left; vertical-align: middle; font-size: 10pt;">人時売上（円）</td>
-            <td></td>
-            <th colspan="3" class="<%= holiday_class(@week.monday) %>" style="width: 150px;"><%= day_header(@week.monday) %> (月)</th>
-            <th colspan="3" class="<%= holiday_class(@week.tuesday) %>" style="width: 150px;"><%= day_header(@week.tuesday) %> (火)</th>
-            <th colspan="3" class="<%= holiday_class(@week.wednesday) %>" style="width: 150px;"><%= day_header(@week.wednesday) %> (水)</th>
-            <th colspan="3" class="<%= holiday_class(@week.thursday) %>" style="width: 150px;"><%= day_header(@week.thursday) %> (木)</th>
-            <th colspan="3" class="<%= holiday_class(@week.friday) %>" style="width: 150px;"><%= day_header(@week.friday) %> (金)</th>
-            <th colspan="3" class="<%= holiday_class(@week.saturday) || 'text-primary' %>" style="width: 150px;"><%= day_header(@week.saturday) %> (土)</th>
+            <td style="border-right: 1px solid black;"></td>
+            <th colspan="3" class="<%= holiday_class(@week.monday) %>" style="width: 150px; border-right: 1px solid black;"><%= day_header(@week.monday) %> (月)</th>
+            <th colspan="3" class="<%= holiday_class(@week.tuesday) %>" style="width: 150px; border-right: 1px solid black;"><%= day_header(@week.tuesday) %> (火)</th>
+            <th colspan="3" class="<%= holiday_class(@week.wednesday) %>" style="width: 150px; border-right: 1px solid black;"><%= day_header(@week.wednesday) %> (水)</th>
+            <th colspan="3" class="<%= holiday_class(@week.thursday) %>" style="width: 150px; border-right: 1px solid black;"><%= day_header(@week.thursday) %> (木)</th>
+            <th colspan="3" class="<%= holiday_class(@week.friday) %>" style="width: 150px; border-right: 1px solid black;"><%= day_header(@week.friday) %> (金)</th>
+            <th colspan="3" class="<%= holiday_class(@week.saturday) || 'text-primary' %>" style="width: 150px; border-right: 1px solid black;"><%= day_header(@week.saturday) %> (土)</th>
             <th colspan="3" class="text-danger" style="width: 150px;"><%= day_header(@week.sunday) %> (日)</th>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-            <td colspan="3"></td>
-        </tr>
-        <tr>
-            <td>氏名</td>
-            <td style="font-size: 7pt;">ヘルプ込</td>
-            <td style="font-size: 7pt;">労働時間</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
-            <td scope="col">出勤</td>
-            <td scope="col">休</td>
-            <td scope="col">退勤</td>
+            <td style="border-bottom: 1px solid black;">氏名</td>
+            <td style="font-size: 7pt; border-bottom: 1px solid black;">ヘルプ込</td>
+            <td style="font-size: 7pt; border-bottom: 1px solid black; border-right: 1px solid black;">労働時間</td>
+            <% 6.times do %>
+            <td scope="col" style="border-bottom: 1px solid black;">出勤</td>
+            <td scope="col" style="border-bottom: 1px solid black;">休</td>
+            <td scope="col" style="border-bottom: 1px solid black; border-right: 1px solid black;">退勤</td>
+            <% end %>
+            <td scope="col" style="border-bottom: 1px solid black;">出勤</td>
+            <td scope="col" style="border-bottom: 1px solid black;">休</td>
+            <td scope="col" style="border-bottom: 1px solid black;">退勤</td>
         </tr>
     </thead>
     <tbody>
         <% @users.each do |user| %>
-        <tr>
-            <td><%= user.full_name %></td>
-            <td></td>
-            <td></td>
-            <% (1..7).each do |n| %>
-                <% if user.job_for(@jobs).parsed_time(n).size == 2 %>
-                    <td><%= user.job_for(@jobs).parsed_time(n).first %></td>
-                    <td></td>
-                    <td><%= user.job_for(@jobs).parsed_time(n).last %></td>
-                <% else %>
-                    <td colspan="3"><%= user.job_for(@jobs).parsed_time(n).first %></td>
+            <% unless user == @users.last %>
+            <tr>
+                <td style="border-right: 1px solid black;"><%= user.full_name %></td>
+                <td ></td>
+                <td style="border-right: 1px solid black;"></td>
+                <% (1..6).each do |n| %>
+                    <% if user.job_for(@jobs).parsed_time(n).size == 2 %>
+                        <td><%= user.job_for(@jobs).parsed_time(n).first %></td>
+                        <td></td>
+                        <td style="border-right: 1px solid black;"><%= user.job_for(@jobs).parsed_time(n).last %></td>
+                    <% else %>
+                        <td colspan="3" style="border-right: 1px solid black;"><%= user.job_for(@jobs).parsed_time(n).first %></td>
+                    <% end %>
                 <% end %>
+                    <% if user.job_for(@jobs).parsed_time(7).size == 2 %>
+                        <td><%= user.job_for(@jobs).parsed_time(7).first %></td>
+                        <td></td>
+                        <td><%= user.job_for(@jobs).parsed_time(7).last %></td>
+                    <% else %>
+                        <td colspan="3"><%= user.job_for(@jobs).parsed_time(7).first %></td>
+                    <% end %>
+            </tr>
+            <% else %>
+            <tr>
+                <td style="border-right: 1px solid black; border-bottom: 2px solid black;"><%= user.full_name %></td>
+                <td style="border-bottom: 2px solid black;"></td>
+                <td style="border-right: 1px solid black; border-bottom: 2px solid black;"></td>
+                <% (1..6).each do |n| %>
+                    <% if user.job_for(@jobs).parsed_time(n).size == 2 %>
+                        <td style="border-bottom: 2px solid black;"><%= user.job_for(@jobs).parsed_time(n).first %></td>
+                        <td style="border-bottom: 2px solid black;"></td>
+                        <td style="border-bottom: 2px solid black; border-right: 1px solid black;"><%= user.job_for(@jobs).parsed_time(n).last %></td>
+                    <% else %>
+                        <td colspan="3" style="border-bottom: 2px solid black; border-right: 1px solid black;"><%= user.job_for(@jobs).parsed_time(n).first %></td>
+                    <% end %>
+                <% end %>
+                    <% if user.job_for(@jobs).parsed_time(7).size == 2 %>
+                        <td style="border-bottom: 2px solid black;"><%= user.job_for(@jobs).parsed_time(7).first %></td>
+                        <td style="border-bottom: 2px solid black;"></td>
+                        <td style="border-bottom: 2px solid black;"><%= user.job_for(@jobs).parsed_time(7).last %></td>
+                    <% else %>
+                        <td colspan="3" style="border-bottom: 2px solid black;"><%= user.job_for(@jobs).parsed_time(7).first %></td>
+                    <% end %>
+            </tr>
             <% end %>
-
-        </tr>
         <% end %>
     </tbody>
 </table>

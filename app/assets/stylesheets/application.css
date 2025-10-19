@@ -256,6 +256,12 @@
     table-layout: fixed;
     white-space: nowrap; /* 改行防止 */
   }
+  .thick-left {
+    border-left: 1px solid black !important;
+  }
+  .thick-right {
+    border-right: 3px solid black;
+  }
 }
 
 @page {
