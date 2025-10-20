@@ -1,9 +1,0 @@
-0000000000000000000000000000000000000000 db501e391b3bef871daed45b1fd4167e1e7c7d45 daisuke-shimura <daisuke.s0707@icloud.com> 1759983461 +0900	branch: Created from HEAD
-db501e391b3bef871daed45b1fd4167e1e7c7d45 0d5233cb7e73371527c7039ac0ea39e30e611e76 daisuke-shimura <daisuke.s0707@icloud.com> 1759992393 +0900	commit: Jobの提出はできる
-0d5233cb7e73371527c7039ac0ea39e30e611e76 f20f9df6b65533057c7baa3c1efdd4751cd3f503 daisuke-shimura <daisuke.s0707@icloud.com> 1760024565 +0900	commit: 希望提出の表示
-f20f9df6b65533057c7baa3c1efdd4751cd3f503 76d285382baa2649a81e67b0f7b6c8845c600347 daisuke-shimura <daisuke.s0707@icloud.com> 1760025872 +0900	commit: バリデーション
-76d285382baa2649a81e67b0f7b6c8845c600347 8f16ce59e9ee9983a510bb1efc371f40b283086d daisuke-shimura <daisuke.s0707@icloud.com> 1760048221 +0900	commit: job_forメソッド作成
-8f16ce59e9ee9983a510bb1efc371f40b283086d 29e5f22fb44928d1f5ed09705f8f6756329f33cd daisuke-shimura <daisuke.s0707@icloud.com> 1760058215 +0900	commit: コードをまとめた
-29e5f22fb44928d1f5ed09705f8f6756329f33cd 7248af25de6921043b1262658efd8d46afd45a91 daisuke-shimura <daisuke.s0707@icloud.com> 1760068519 +0900	commit: 編集機能
-7248af25de6921043b1262658efd8d46afd45a91 8eaa114f191fab14db366d4ed5306d968c1521dd daisuke-shimura <daisuke.s0707@icloud.com> 1760074005 +0900	commit: 編集・削除
-8eaa114f191fab14db366d4ed5306d968c1521dd e4f08c25fb52305e3f406750285afa502fef2648 daisuke-shimura <daisuke.s0707@icloud.com> 1760075802 +0900	commit: 微調整

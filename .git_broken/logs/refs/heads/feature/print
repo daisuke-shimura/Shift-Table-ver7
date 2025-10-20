@@ -1,6 +1,0 @@
-0000000000000000000000000000000000000000 ce3103bcdc29a239ce2f0de0404884b6ac8f7c62 daisuke-shimura <daisuke.s0707@icloud.com> 1760715304 +0900	branch: Created from HEAD
-ce3103bcdc29a239ce2f0de0404884b6ac8f7c62 50de6f1093a1b8edc047f35283055afad9b71d97 daisuke-shimura <daisuke.s0707@icloud.com> 1760716705 +0900	commit: 印刷ダイヤログ作成
-50de6f1093a1b8edc047f35283055afad9b71d97 a7825fdf4e076086da673ada11251c73bc3ab71a daisuke-shimura <daisuke.s0707@icloud.com> 1760782633 +0900	commit: 印刷を黄色にできた
-a7825fdf4e076086da673ada11251c73bc3ab71a 3eaff5ef0d4d2102d3f5324d645723b94f92ea9a daisuke-shimura <daisuke.s0707@icloud.com> 1760866697 +0900	commit: 印刷物出力
-3eaff5ef0d4d2102d3f5324d645723b94f92ea9a 05aa4acfe5d6d44eaaaae9eca4e14b6ff6171fb6 daisuke-shimura <daisuke.s0707@icloud.com> 1760875909 +0900	commit: 表に枠線をつけた
-05aa4acfe5d6d44eaaaae9eca4e14b6ff6171fb6 5c1aebbfd9586e2165bb7995f7f0d7b5a1265d8c daisuke-shimura <daisuke.s0707@icloud.com> 1760877265 +0900	commit: 備考欄を追加
