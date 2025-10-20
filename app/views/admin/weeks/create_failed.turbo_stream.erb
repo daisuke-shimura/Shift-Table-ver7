@@ -1,10 +1,16 @@
 <%= turbo_stream.replace "week_errors" do %>
-  <div class="alert alert-danger" id="week_errors">
-    <% @week.errors.each do |error| %>
-      <%= error.message %><br>
+  <div id="week_errors">
+    <% if @week.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+        <% @week.errors.full_messages.each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <% end %>
   </div>
 <% end %>
+
 
 <%= turbo_stream.replace "week_form" do %>
   <div class="card-body" id="week_form">
