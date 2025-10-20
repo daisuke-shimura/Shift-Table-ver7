@@ -5,58 +5,34 @@ class Public::WeeksController < ApplicationController
     load_weeks
     load_calendar
     @user = current_user 
-
-    @month = params[:month] ? Date.parse(params[:month]) : Date.today.beginning_of_month
-  end
-
-  def create
-    @week = Week.new(week_params)
-    if @week.save
-      redirect_to weeks_path, notice: 'Week was successfully created.'
-    else
-      @weeks = Week.all
-      load_weeks
-      load_calendar
-      @user = current_user 
-      render :index, alert: 'Failed to create week.'
+    @date = @today.beginning_of_week(:monday) + 28
+    if Time.zone.now.hour >= 9 && !@weeks.exists?(monday: @date)
+      puts "＝＝＝＝＝＝＝＝＝＝自動作成: #{@date}＝＝＝＝＝＝＝＝＝＝"
+      Week.create(monday: @date)
+      Week.find_by(monday: (@date-21))&.update(is_created: true)
     end
   end
 
-  def destroy
-    @week = Week.find(params[:id])
-    if @week.destroy
-      redirect_to admin_weeks_path, notice: 'Week was successfully deleted.'
-    else
-      redirect_to admin_weeks_path, alert: 'Failed to delete week.'
-    end
+  def past
+    past_load_weeks
+    load_calendar
+    @user = current_user
   end
-
-  # def toggle_invisible
-  #   @week = Week.find(params[:id])
-  #   @week.update!(is_invisible: !@week.is_invisible)
-
-  #   @users = User.all
-  #   @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
-  #   @user = current_user
-
-  #   respond_to do |format|
-  #     format.turbo_stream { render }
-  #     format.html { redirect_back fallback_location: week_jobs_path(@week.id) }
-  #   end
-  # end
 
 
   private
-
-  def week_params
-    params.require(:week).permit(:monday)
-  end
 
   def load_weeks
     #@weeks = Week.all
     @today = Date.today
     after_tommorow = Date.today + 7
     @weeks = Week.order(monday: :asc).where("monday > ?", after_tommorow)
+  end
+
+  def past_load_weeks
+    @today = Date.today
+    after_tommorow = Date.today + 7
+    @weeks = Week.order(monday: :asc).where("monday <= ?", after_tommorow)
   end
 
   def load_calendar
@@ -73,6 +49,7 @@ class Public::WeeksController < ApplicationController
     latest_date   = @weeks.maximum(:monday)
     @start_date = earliest_date.beginning_of_month
     @end_date = latest_date.end_of_month
+    @past_start_date = latest_date.beginning_of_month
 
     week_by_start = @start_date.cwday # 週番号（1:月曜, 7:日曜）
     week_by_end   = @end_date.cwday

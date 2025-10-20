@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 d148046e3fe14f946babfa3c31eeb4befe1b60e3 daisuke-shimura <daisuke.s0707@icloud.com> 1760629202 +0900	branch: Created from HEAD
+d148046e3fe14f946babfa3c31eeb4befe1b60e3 9e94ecafe6abeff483a11945cef7142674b4fc7c daisuke-shimura <daisuke.s0707@icloud.com> 1760670951 +0900	commit: 非同期でリロードを入れた
+9e94ecafe6abeff483a11945cef7142674b4fc7c 1e9410021ca9725beea8d7325edfeb17a1411e66 daisuke-shimura <daisuke.s0707@icloud.com> 1760674138 +0900	commit: setting.visible を非同期
+1e9410021ca9725beea8d7325edfeb17a1411e66 6eb2eb7f1cc1d1b4d9e4eef15dd9e4023db447f7 daisuke-shimura <daisuke.s0707@icloud.com> 1760674204 +0900	commit: 微修正
+6eb2eb7f1cc1d1b4d9e4eef15dd9e4023db447f7 e58e2f56749cd03d2bfa1e60e2e8e3d8d58aac82 daisuke-shimura <daisuke.s0707@icloud.com> 1760710004 +0900	commit: settingに変えて適応
+e58e2f56749cd03d2bfa1e60e2e8e3d8d58aac82 011c37932d6394d128224252a1d8c0ee14c6b7e3 daisuke-shimura <daisuke.s0707@icloud.com> 1760714151 +0900	commit: リロードのブロードキャスト

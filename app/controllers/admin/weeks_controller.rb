@@ -4,8 +4,14 @@ class Admin::WeeksController < ApplicationController
     load_weeks
     load_calendar
     @admin = current_admin
-    @month = params[:month] ? Date.parse(params[:month]) : Date.today.beginning_of_month
+    # @month = params[:month] ? Date.parse(params[:month]) : Date.today.beginning_of_month
     @setting = Setting.instance
+    @date = @today.beginning_of_week(:monday) + 28
+    if Time.zone.now.hour >= 9 && !@weeks.exists?(monday: @date)
+      puts "＝＝＝＝＝＝＝＝＝＝自動作成: #{@date}＝＝＝＝＝＝＝＝＝＝"
+      Week.create(monday: @date)
+      Week.find_by(monday: @date - 21)&.update(is_created: true)
+    end
   end
 
   def create
@@ -26,25 +32,15 @@ class Admin::WeeksController < ApplicationController
     if @week.destroy
       redirect_to admin_weeks_path, notice: 'Week was successfully deleted.'
     else
-      redirect_to admin_weeks_path, alert: 'Failed to delete week.'
+      redirect_to admin_week_job_path(@week.id), alert: 'Failed to delete week.'
     end
   end
 
-  # def toggle_invisible
-  #   @week = Week.find(params[:id])
-  #   @week.update!(is_invisible: !@week.is_invisible)
-
-  #   @users = User.all
-  #   @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
-
-  #   respond_to do |format|
-  #     format.turbo_stream { render }
-  #     format.html { redirect_back fallback_location: week_jobs_path(@week.id) }
-  #   end
-
-  #   ActionCable.server.broadcast("reload_week_#{@week.id}", { action: "reload" })
-
-  # end
+  def past
+    past_load_weeks
+    load_calendar
+    @admin = current_admin
+  end
 
 
   private
@@ -58,6 +54,12 @@ class Admin::WeeksController < ApplicationController
     @today = Date.today
     after_tommorow = Date.today + 7
     @weeks = Week.order(monday: :asc).where("monday > ?", after_tommorow)
+  end
+
+  def past_load_weeks
+    @today = Date.today
+    after_tommorow = Date.today + 7
+    @weeks = Week.order(monday: :asc).where("monday <= ?", after_tommorow)
   end
 
   def load_calendar
@@ -74,6 +76,7 @@ class Admin::WeeksController < ApplicationController
     latest_date   = @weeks.maximum(:monday)
     @start_date = earliest_date.beginning_of_month
     @end_date = latest_date.end_of_month
+    @past_start_date = latest_date.beginning_of_month
 
     week_by_start = @start_date.cwday # 週番号（1:月曜, 7:日曜）
     week_by_end   = @end_date.cwday

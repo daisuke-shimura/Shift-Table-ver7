@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 f2bb8a94190a6eb253f06adf22f1f65bed2acc2b daisuke-shimura <daisuke.s0707@icloud.com> 1760373952 +0900	branch: Created from HEAD
+f2bb8a94190a6eb253f06adf22f1f65bed2acc2b 1d40659a5f95cefbac0443bb8c33b68174d9f153 daisuke-shimura <daisuke.s0707@icloud.com> 1760408336 +0900	commit: 一旦ボタンを切り分ける
+1d40659a5f95cefbac0443bb8c33b68174d9f153 bc408e2653a9c187ba65a12ee27ddf4b7636353c daisuke-shimura <daisuke.s0707@icloud.com> 1760523046 +0900	commit: ブロードキャストが一旦できた
+bc408e2653a9c187ba65a12ee27ddf4b7636353c 8a2882610179ce3115da77593363129fb4e98a8a daisuke-shimura <daisuke.s0707@icloud.com> 1760537416 +0900	commit: ブロードキャスト整理
+8a2882610179ce3115da77593363129fb4e98a8a 6df465d249382c1776996b3a104a7b2b224c622d daisuke-shimura <daisuke.s0707@icloud.com> 1760629051 +0900	commit: シフト非同期処理できた

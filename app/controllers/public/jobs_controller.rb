@@ -79,6 +79,14 @@ class Public::JobsController < ApplicationController
     end
   end
 
+  def past
+    @week = Week.find(params[:week_id])
+    @users = User.all
+    @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
+    @user = current_user
+    @setting = Setting.instance
+  end
+
   private
   def job_params
     params.require(:job).permit(:time1, :time2, :time3, :time4, :time5, :time6, :time7, :comment)

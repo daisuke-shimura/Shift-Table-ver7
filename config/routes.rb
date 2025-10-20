@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     post "login",  to: "user_sessions#create"
     delete "logout", to: "user_sessions#destroy"
     # Week routes
-    resources :weeks, only: [:index, :create, :destroy] do
+    get 'weeks/past', to: 'weeks#past'
+    resources :weeks, only: [:index] do
       # Job routes
+      get 'jobs/past', to: 'jobs#past'
       resources :jobs, only: [:index, :create, :edit, :update, :destroy]
     end
   end
@@ -22,7 +24,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     patch 'settings/toggle_visible', to: 'settings#toggle_visible'
+    get 'weeks/past', to: 'weeks#past'
     resources :weeks, only: [:index, :create, :destroy] do
+      get 'jobs/past', to: 'jobs#past'
       resources :jobs, only: [:index] do 
         collection do
           get :print

@@ -9,8 +9,13 @@
 <hr>
 
 <p>管理者ユーザ</p>
-
 <%= link_to "印刷", print_admin_week_jobs_path(@week.id), class: "btn btn-outline-primary", target: "_blank" %>
+<%= link_to "削除", admin_week_path(@week.id), 
+    data: { turbo_method: :delete, 
+            turbo_confirm: "#{(@week.monday).day}日～#{(@week.sunday).day}日のシフト表を削除します。よろしいですか？\n※入力されているシフト希望がすべて削除されます" }, 
+    class: 'btn btn-danger' %>
+<%= @week.is_created %>
+<%= Time.zone.now %>
 
 <div id="week_content_<%= @week.id %>">
   <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>

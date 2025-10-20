@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_10_17_151447) do
+ActiveRecord::Schema[7.0].define(version: 2025_10_19_155212) do
   create_table "admins", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_17_151447) do
     t.boolean "is_created", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["monday"], name: "index_weeks_on_monday", unique: true
   end
 
 end
