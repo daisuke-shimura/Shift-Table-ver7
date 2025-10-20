@@ -241,6 +241,29 @@
 }
 
 
+.created-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 500;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.status-dot {
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* スマホの押下時に少し沈む */
+.created-status:active {
+  transform: scale(0.97);
+  opacity: 0.6;
+}
+
+
+
 /* 印刷 */
 @media print {
   header, footer, .no-print {

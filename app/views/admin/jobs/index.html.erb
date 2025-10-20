@@ -1,6 +1,11 @@
 <%= turbo_stream_from "weeks" %>
 
-<h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
+<div class="d-flex align-items-center gap-3">
+  <h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
+  <div id="week-is_created-<%= @week.id %>">
+    <%= render "admin/jobs/is-created-switch", week: @week %>
+  </div>
+</div>
 
 <hr>
 <div id="setting-visible">

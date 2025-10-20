@@ -1,6 +1,8 @@
 class Public::JobsController < ApplicationController
+  before_action :set_week
+  before_action :check_week_created, only: [:create, :update, :destroy]
+
   def index
-    @week = Week.find(params[:week_id])
     @users = User.all
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
@@ -14,7 +16,6 @@ class Public::JobsController < ApplicationController
 
   def create
     job = Job.new(job_params)
-    @week = Week.find(params[:week_id])
     job.week_id = @week.id
     job.user_id = current_user.id
     if job.save
@@ -32,7 +33,6 @@ class Public::JobsController < ApplicationController
   end
 
   def edit
-    @week = Week.find(params[:week_id])
     @users = User.all
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
@@ -46,7 +46,6 @@ class Public::JobsController < ApplicationController
 
   def update
     job = Job.find(params[:id])
-    @week = Week.find(params[:week_id])
     if job.update(job_params)
       @users = User.all
       @jobs  = Job.where(week_id: @week.id).group_by(&:user_id)
@@ -63,7 +62,6 @@ class Public::JobsController < ApplicationController
 
   def destroy
     job = Job.find(params[:id])
-    @week = Week.find(params[:week_id])
     if job.destroy
       @users = User.all
       @jobs  = Job.where(week_id: @week.id).group_by(&:user_id)
@@ -80,7 +78,6 @@ class Public::JobsController < ApplicationController
   end
 
   def past
-    @week = Week.find(params[:week_id])
     @users = User.all
     @jobs = Job.where(week_id: @week.id).group_by(&:user_id)
     @user = current_user
@@ -90,5 +87,15 @@ class Public::JobsController < ApplicationController
   private
   def job_params
     params.require(:job).permit(:time1, :time2, :time3, :time4, :time5, :time6, :time7, :comment)
+  end
+
+  def set_week
+    @week = Week.find(params[:week_id])
+  end
+
+  def check_week_created
+    if @week.is_created
+      redirect_to week_jobs_past_path(@week), alert: "既に締め切られた週です。\n変更はできません。"
+    end
   end
 end

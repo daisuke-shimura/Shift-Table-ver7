@@ -8,16 +8,32 @@
 </div>
 <hr>
 
-<h3>新規作成</h3>
-<%= form_with model: @week, url: weeks_path do |f| %>
-  <div class="mb-3">
-    <%= f.label :monday, "週の初めの日付を選択" %><br>
-    <%= f.date_field :monday, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= f.submit "作成", class: "btn btn-primary" %>
+<% if flash[:notice] %>
+  <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+    <%= flash[:notice] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
+
+
+<% if @week.errors.any? %>
+  <div id="week_errors">
+    <div class="alert alert-danger">
+      <% @week.errors.each do |error| %>
+        <%= error.message %><br>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div id="week_errors"></div>
+<% end %>
+
+
+<h3>新規作成</h3>
+<div class="card-body" id="week_form">
+  <%= render "form", week: @week %>
+</div>
+
 
 <%= link_to "過去のシフト", admin_weeks_past_path %>
 
@@ -30,7 +46,7 @@
 
 
 <h3><span id="calendar-title"><%= @start_date.strftime('%-m月') %></span></h3>
-<div id="calendar-container" data-controller="calendar" class="calendar-grid box theme-dark">
+<div id="calendar-container" data-controller="calendar" data-earliest-date="<%= @earliest_date.to_date %>" class="calendar-grid box theme-dark">
   <div class="calendar-grid header public-calendar">
     <div class="week-day">月</div>
     <div class="week-day">火</div>

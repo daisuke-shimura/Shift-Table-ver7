@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     patch 'settings/toggle_visible', to: 'settings#toggle_visible'
     get 'weeks/past', to: 'weeks#past'
     resources :weeks, only: [:index, :create, :destroy] do
+      member do
+        patch :is_created
+      end
       get 'jobs/past', to: 'jobs#past'
       resources :jobs, only: [:index] do 
         collection do
