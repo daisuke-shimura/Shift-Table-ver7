@@ -2,11 +2,7 @@ import consumer from "channels/consumer"
 
 function setupSwitchChannel() {
   // URLが /weeks/:id/jobs のときだけ購読
-<<<<<<< HEAD
-  const match = window.location.pathname.match(/^\/weeks\/\d+\/jobs/)
-=======
   const match = window.location.pathname.match(/^\/weeks\/\d+\/jobs(?:\/past)?$/)
->>>>>>> 82fe933 (復元)
   if (!match) return
 
   // グローバル購読（id関係なし）
