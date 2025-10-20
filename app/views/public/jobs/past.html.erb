@@ -1,3 +1,9 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <% if @setting.is_visible %>
   <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
 <% else %>

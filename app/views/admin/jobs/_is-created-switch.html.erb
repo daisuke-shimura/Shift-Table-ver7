@@ -1,0 +1,21 @@
+<% if week.is_created %>
+  <%= link_to is_created_admin_week_path(week.id),
+    data: {
+      turbo_method: :patch,
+      turbo_confirm: "シフト希望の入力が可能になります\nよろしいですか？"
+    },
+    class: "created-status text-success text-decoration-none" do %>
+      <span class="status-dot bg-success"></span>
+      <span>作成済み</span>
+  <% end %>
+<% else %>
+  <%= link_to is_created_admin_week_path(week.id),
+    data: {
+      turbo_method: :patch,
+      turbo_confirm: "作成済みにすると、シフト希望の受付を締め切ります。\nよろしいですか？"
+    },
+    class: "created-status text-secondary text-decoration-none" do %>
+      <span class="status-dot bg-secondary"></span>
+      <span>未作成</span>
+  <% end %>
+<% end %>

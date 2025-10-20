@@ -23,6 +23,9 @@ export default class extends Controller {
     this.container.addEventListener('scroll', this.onScroll, { passive: true })
     window.addEventListener('resize', this.onResize)
 
+    // 初期スクロール位置設定
+    this.scrollToEarliestDate()
+
     // 初期描画
     this.updateTitleAndCellsIfNeeded()
   }
@@ -109,4 +112,29 @@ export default class extends Controller {
     this.titleEl.textContent = `${currentMonth}月`
     this.syncCellsWithMonth(currentMonth)
   }
+
+  scrollToEarliestDate() {
+    const earliestDate = this.container.dataset.earliestDate
+    if (!earliestDate) return
+  
+    // @earliest_date を持つ .date 要素を探す
+    const target = this.container.querySelector(`.date[data-date="${earliestDate}"]`)
+    if (target) {
+      // 週単位でスクロールさせたいなら、親の week-row に移動
+      const weekRow = target.closest('.week-row, .week-row-2, .week-row-3')
+      if (weekRow) {
+        const containerTop = this.container.getBoundingClientRect().top
+        const rowTop = weekRow.getBoundingClientRect().top
+        const currentScroll = this.container.scrollTop
+
+        // ✅ ヘッダー分だけオフセット（例：60px）
+        const offset = 50
+
+        // スクロール量を計算して適用
+        const scrollTo = currentScroll + (rowTop - containerTop) - offset
+        this.container.scrollTo({ top: scrollTo, behavior: 'auto' })
+      }
+    }
+  }
+  
 }
