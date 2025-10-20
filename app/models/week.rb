@@ -2,12 +2,14 @@ class Week < ApplicationRecord
   has_many :jobs
 
   validate :monday_validate
-  validates :monday, presence: true, uniqueness: true
+  validates :monday,
+    presence: { message: '日付を入力してください。' },
+    uniqueness: { message: '既に作成済みの日程です。' }
 
   def monday_validate
     return if monday.blank?
     unless monday.monday?
-      errors.add(:monday, 'must be a Monday')
+      errors.add(:monday, '月曜日を指定してください。')
     end
   end
 

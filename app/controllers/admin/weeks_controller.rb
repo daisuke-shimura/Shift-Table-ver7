@@ -4,9 +4,8 @@ class Admin::WeeksController < ApplicationController
     load_weeks
     load_calendar
     @admin = current_admin
-    # @month = params[:month] ? Date.parse(params[:month]) : Date.today.beginning_of_month
     @setting = Setting.instance
-    @date = @today.beginning_of_week(:monday) + 21
+    @date = @today.beginning_of_week(:monday) + 28
     if Time.zone.now.hour >= 9 && !@weeks.exists?(monday: @date)
       puts "＝＝＝＝＝＝＝＝＝＝自動作成: #{@date}＝＝＝＝＝＝＝＝＝＝"
       Week.create(monday: @date)
@@ -17,20 +16,24 @@ class Admin::WeeksController < ApplicationController
   def create
     @week = Week.new(week_params)
     if @week.save
-      redirect_to weeks_path, notice: 'Week was successfully created.'
+      redirect_to admin_weeks_path, notice: "#{(@week.monday).month}月#{(@week.monday).day}日～#{(@week.sunday).month}月#{(@week.sunday).day}日の週を作成しました。"
     else
       @weeks = Week.all
       load_weeks
       load_calendar
-      @user = current_user 
-      render :index, alert: 'Failed to create week.'
+      @admin = current_admin
+      @setting = Setting.instance
+      respond_to do |format|
+        format.html { render :index, status: :unprocessable_entity }
+        format.turbo_stream { render 'create_failed', status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @week = Week.find(params[:id])
     if @week.destroy
-      redirect_to admin_weeks_path, notice: 'Week was successfully deleted.'
+      redirect_to admin_weeks_path, notice: "#{(@week.monday).month}月#{(@week.monday).day}日～#{(@week.sunday).month}月#{(@week.sunday).day}日の週を削除しました。"
     else
       redirect_to admin_week_job_path(@week.id), alert: 'Failed to delete week.'
     end

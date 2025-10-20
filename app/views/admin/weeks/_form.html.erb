@@ -1,0 +1,9 @@
+<%= form_with model: week, url: admin_weeks_path, class: "d-flex align-items-end gap-1" do |f| %>
+  <div>
+    <%= f.label :monday, "作成したい週の月曜の日付を選択", class: "form-label fw-semibold text-secondary small" %>
+    <%= f.date_field :monday, class: "form-control border-primary-subtle shadow-sm", required: true %>
+  </div>
+  <div>
+    <%= f.submit "作成", class: "btn btn-primary shadow-sm" %>
+  </div>
+<% end %>

@@ -95,7 +95,7 @@ class Public::JobsController < ApplicationController
 
   def check_week_created
     if @week.is_created
-      redirect_to week_jobs_past_path(@week), alert: "既に締め切られた週です。\n変更は変更できません。"
+      redirect_to week_jobs_past_path(@week), alert: "既に締め切られた週です。\n変更はできません。"
     end
   end
 end
