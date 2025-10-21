@@ -1,0 +1,18 @@
+<nav class="navbar navbar-light border-bottom px-3" style="background-color: #d3e7f5;">
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to weeks_path, class: "nav-link d-flex align-items-center gap-1 fw-semibold px-3 py-2 rounded header-link", style: "color: #dd5b9c;" do %>
+        <span class="material-symbols-outlined fs-5">calendar_month</span>
+        日程一覧
+      <% end %>
+    </li>
+  </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to logout_path, data: { turbo_method: :delete }, class: "nav-link d-flex align-items-center gap-1 fw-semibold px-3 py-2 rounded header-link", style: "color: #f3abc0;" do %>
+        <span class="material-symbols-outlined">logout</span>
+        ログアウト
+      <% end %>
+    </li>
+  </ul>
+</nav>
