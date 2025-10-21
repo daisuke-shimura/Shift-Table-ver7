@@ -3,7 +3,7 @@
 
 /* レイアウト */
 body {
-  background: linear-gradient(180deg, #fff6f9 0%, #f4f9ff 100%);
+  background: linear-gradient(180deg, #f4f9ff 0%, #fff6f9 100%);
   min-height: 100vh;
 }
 
@@ -275,6 +275,14 @@ main .bg-white {
   opacity: 0.6;
 }
 
+
+/* ヘッダー */
+.header-link:active,
+.header-link:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(0.98);
+  transition: all 0.1s ease;
+}
 
 
 /* 印刷 */
