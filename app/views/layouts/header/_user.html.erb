@@ -1,4 +1,12 @@
-<ul>
-  <li><%= link_to "週一覧", weeks_path %></li>
-  <li><%= link_to "ログアウト", logout_path, data: {turbo_method: :delete} %></li>
-</ul>
+<nav class="navbar navbar-light bg-light border-bottom px-3">
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to "週一覧", weeks_path, class: "nav-link" %>
+    </li>
+  </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "nav-link text-danger" %>
+    </li>
+  </ul>
+</nav>
