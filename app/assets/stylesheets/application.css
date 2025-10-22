@@ -83,7 +83,6 @@ main .bg-white {
 }
 
 
-
 /* 週行の見た目（hover を無効化、角丸をなくす） */
 .week-row, .week-row-2, .week-row-3 {
   display: grid;
@@ -91,7 +90,7 @@ main .bg-white {
   gap: 0;                 /* 表っぽくするため隙間は 0 */
   align-items: stretch;
   padding: 0;
-  /* margin-bottom: 6px; */
+  margin-bottom: 12px;
   transition: none;       /* hover アニメ無効 */
   background: transparent;
 }
@@ -102,10 +101,9 @@ main .bg-white {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative; /* overlay 用の基準にする */
   overflow: visible;
-}
-
-.week-row + .week-row {
-  border-top: none;
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .week-row::after {
@@ -120,10 +118,37 @@ main .bg-white {
   z-index: 2;
 }
 
+/* タップ時のエフェクト */
+.week-row:active {
+  transform: scale(0.97); /* 少し沈む感じ */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* 影も軽く */
+}
+
+.week-row:active::after {
+  opacity: 0.5; /* 少し暗くする */
+}
+
 .week-row-2 {
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
 }
+
+.week-row-2.past-link {
+  position: relative;
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.week-row-2.past-link:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.week-row-2.past-link:active::after {
+  opacity: 0.55;
+}
+
 
 /*無効用*/
 .week-row-3 {
