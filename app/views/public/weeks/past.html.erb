@@ -26,7 +26,7 @@
   <div class="calendar-grid body">
     <% @calendar_rows.each do |date, week| %>
         <% if week %>
-        <div class="week-row public-calendar">
+        <div class="week-row-2 public-calendar">
           <%= link_to week_jobs_past_path(week_id: week.id), class:"week-link" do %>
             <% [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday].each do |day| %>
               <% d = week.send(day).to_date %>
