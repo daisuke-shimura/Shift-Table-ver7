@@ -25,7 +25,7 @@ main .bg-white {
   border: 1px solid rgba(0,0,0,0.08);
   width: 100%;
   max-width: 1080px;
-  margin: 18px auto;
+  margin: 0 auto 10px;
   max-height: 78vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -58,6 +58,26 @@ main .bg-white {
   display: block;
   margin-top: 8px;
 }
+
+/* 月 */
+.calendar-title-line {
+  font-weight: 600;
+  color: #dd5b9c;
+  font-size: 1.5rem;
+  margin: 12px 0;
+}
+
+.calendar-title-line::after {
+  content: "";
+  display: block;
+  width: 70%;
+  height: 3px;
+  background-color: #f3abc0;
+  border-radius: 3px;
+  margin: 6px auto 0;
+}
+
+
 
 /* 週行の見た目（hover を無効化、角丸をなくす） */
 .week-row, .week-row-2, .week-row-3 {
@@ -290,6 +310,32 @@ main .bg-white {
   background-color: rgba(255, 255, 255, 0.4);
   transform: scale(0.98);
   transition: all 0.1s ease;
+}
+
+/* 過去のシフトボタン */
+.btn-past-link {
+  background-color: #dd5b9c;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 25px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(221, 91, 156, 0.2);
+}
+
+.btn-past-link:active {
+  background-color: #f3abc0; /* SUB */
+}
+
+/* ユーザー情報 */
+.user-info-box {
+  background-color: #ffffff;
+  border: 1px solid #f3abc0; /* SUB */
+  border-radius: 12px;
+}
+
+.text-accent {
+  color: #dd5b9c;
 }
 
 
