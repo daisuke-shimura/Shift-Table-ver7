@@ -323,15 +323,6 @@ td {
 }
 
 
-/* ボタン */
-.btn-outline-primary.no-hover-reverse:hover,
-.btn-outline-primary.no-hover-reverse:focus {
-  color: #0d6efd;          /* 通常の文字色 */
-  background-color: transparent; /* 背景は透明のまま */
-  border-color: #0d6efd;   /* 枠線の色は維持 */
-}
-
-
 .created-status {
   display: inline-flex;
   align-items: center;
@@ -353,13 +344,21 @@ td {
   opacity: 0.6;
 }
 
-
 /* ヘッダー */
 .header-link:active,
 .header-link:focus {
   background-color: rgba(255, 255, 255, 0.4);
   transform: scale(0.98);
   transition: all 0.1s ease;
+}
+
+
+/* ボタン */
+.btn-outline-primary.no-hover-reverse:hover,
+.btn-outline-primary.no-hover-reverse:focus {
+  color: #0d6efd;          /* 通常の文字色 */
+  background-color: transparent; /* 背景は透明のまま */
+  border-color: #0d6efd;   /* 枠線の色は維持 */
 }
 
 /* 過去のシフトボタン */

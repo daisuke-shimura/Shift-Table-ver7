@@ -13,14 +13,24 @@
 </div>
 <hr>
 
-<p>管理者ユーザ</p>
-<%= link_to "印刷", print_admin_week_jobs_path(@week.id), class: "btn btn-outline-primary", target: "_blank" %>
-<%= link_to "削除", admin_week_path(@week.id), 
-    data: { turbo_method: :delete, 
-            turbo_confirm: "#{(@week.monday).day}日～#{(@week.sunday).day}日のシフト表を削除します。よろしいですか？\n※入力されているシフト希望がすべて削除されます" }, 
-    class: 'btn btn-danger' %>
-<%= @week.is_created %>
-<%= Time.zone.now %>
+<div class="d-flex gap-2 align-items-center justify-content-end">
+  <!-- 印刷ボタン -->
+  <%= link_to print_admin_week_jobs_path(@week.id), 
+      class: "btn btn-primary shadow d-flex", 
+      target: "_blank" do %>
+    <span class="material-symbols-outlined me-1">print</span>
+    印刷
+  <% end %>
+
+  <!-- 削除ボタン -->
+  <%= link_to admin_week_path(@week.id), 
+      data: { turbo_method: :delete, 
+              turbo_confirm: "#{(@week.monday).day}日～#{(@week.sunday).day}日のシフト表を削除します。よろしいですか？\n※入力されているシフト希望がすべて削除されます" }, 
+      class: "btn btn-danger shadow d-flex" do %>
+    <span class="material-symbols-outlined me-1">delete</span>
+    削除
+  <% end %>
+</div>
 
 <div id="week_content_<%= @week.id %>">
   <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
