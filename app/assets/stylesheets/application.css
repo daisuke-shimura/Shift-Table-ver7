@@ -393,35 +393,6 @@ td {
 }
 
 
-/* 印刷 */
-@media print {
-  header, footer, .no-print {
-    display: none;
-  }
-  body {
-    background: white;
-    font-size: 12pt;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    white-space: nowrap; /* 改行防止 */
-  }
-  .thick-left {
-    border-left: 1px solid black !important;
-  }
-  .thick-right {
-    border-right: 3px solid black;
-  }
-}
-
-@page {
-  size: A4 landscape;
-}
-
-
-
 /* レスポンシブ */
 @media (max-width: 900px) {
   .date { height: 64px; padding: 6px; }
