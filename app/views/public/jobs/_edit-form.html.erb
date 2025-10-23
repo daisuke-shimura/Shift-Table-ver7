@@ -9,12 +9,12 @@
       <% users.each do |user| %>
         <% if user == login_user %>
           <tr class="">
-            <td><%= login_user.full_name %></td>
+            <td class="table-lightblue"><%= login_user.full_name %></td>
             <% (1..7).each do |n| %>
               <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
             <% end %>
             <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
-            <td class=" text-nowrap">
+            <td class="text-nowrap">
               <%= link_to 'キャンセル',
                 week_jobs_path(week.id, format: :turbo_stream), 
                 data: { turbo_stream: true },
@@ -24,7 +24,7 @@
           </tr>
         <% else %>
         <tr class="">
-          <td><%= user.full_name %></td>
+          <td class="table-lightblue"><%= user.full_name %></td>
           <% (1..7).each do |n| %>
             <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
           <% end %>
@@ -35,7 +35,7 @@
       <% end %>
     <% else %>
       <tr class="">
-        <td><%= login_user.full_name %></td>
+        <td class="table-lightblue"><%= login_user.full_name %></td>
         <% (1..7).each do |n| %>
           <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
         <% end %>

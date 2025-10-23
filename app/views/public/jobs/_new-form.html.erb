@@ -7,7 +7,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= login_user.full_name %></td>
+          <td class="table-lightblue"><%= login_user.full_name %></td>
           <% (1..7).each do |n| %>
             <td><%= f.text_area :"time#{n}", class: 'form-control' %></td>
           <% end %>

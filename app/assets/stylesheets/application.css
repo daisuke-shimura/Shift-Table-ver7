@@ -300,8 +300,28 @@ main .bg-white {
 
 .table-no-left-border td:first-child,
 .table-no-left-border th:first-child {
-  border-left: none;
+  border-left: none !important;
 }
+
+/* tableカラー */
+.table-lightblue {
+  --bs-table-bg: #d3e7f5;
+  --bs-table-striped-bg: #c7dbee;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #bcd0e6;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #c2d6eb;
+  --bs-table-hover-color: #000;
+  --bs-table-border-color: #9fbad3;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+  border-width: var(--bs-border-width);
+}
+
+td {
+  border: 1px solid #9fbad3 !important;
+}
+
 
 /* ボタン */
 .btn-outline-primary.no-hover-reverse:hover,
@@ -366,6 +386,10 @@ main .bg-white {
 
 .text-accent {
   color: #dd5b9c;
+}
+
+.text-base {
+  color: #d3e7f5
 }
 
 

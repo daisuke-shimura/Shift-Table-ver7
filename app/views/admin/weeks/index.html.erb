@@ -1,6 +1,12 @@
-<h1>Admin::Weeks#index</h1>
+<h2 class="text-accent">
+  <span class="material-symbols-outlined fs-5">calendar_month</span>
+  日程一覧
+</h2>
 
-<h3><%= @admin %>さんがログイン中</h3>
+<div class="d-flex align-items-center user-info-box my-4 pt-3 ps-3 rounded">
+  <p class="text-muted">ログイン中のユーザ：</p>
+  <p class="fw-bold text-accent"><%= @admin %></p>
+</div>
 
 <hr>
 <div id="setting-visible">
@@ -15,7 +21,6 @@
   </div>
 <% end %>
 
-
 <div id="week_errors">
   <% if @week.errors.any? %>
     <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
@@ -28,23 +33,18 @@
 </div>
 
 
-<h3>新規作成</h3>
+<h3 class="text-accent">新規作成</h3>
 <div class="card-body" id="week_form">
   <%= render "form", week: @week %>
 </div>
 
+<hr class="mb-4">
 
-<%= link_to "過去のシフト", admin_weeks_past_path %>
+<%= link_to "過去のシフト", admin_weeks_past_path, class: "pink-btn-link" %>
 
-<h3>日程一覧</h3>
-<% @weeks.each do |week| %>
-  <%= link_to admin_week_jobs_path(week_id: week.id) do %>
-    <%= (week.monday).month %>月<%= (week.monday).day %>日～<%= (week.sunday).month %>月<%= (week.sunday).day %>日<br>
-  <% end %>
-<% end %>
-
-
-<h3><span id="calendar-title"><%= @start_date.strftime('%-m月') %></span></h3>
+<h3 class="calendar-title-line text-center">
+  <span id="calendar-title"><%= @start_date.strftime('%-m月') %></span>
+</h3>
 <div id="calendar-container" data-controller="calendar" data-earliest-date="<%= @earliest_date.to_date %>" class="calendar-grid box theme-dark">
   <div class="calendar-grid header public-calendar">
     <div class="week-day">月</div>

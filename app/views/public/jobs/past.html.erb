@@ -1,3 +1,5 @@
+<h3 class="text-accent"><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
+
 <% if flash[:alert] %>
   <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
     <%= flash[:alert] %>
@@ -5,17 +7,19 @@
   </div>
 <% end %>
 
+<hr>
+
 <% if @setting.is_visible %>
   <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
 <% else %>
-  <h3>希望一覧</h3>
+  <h3 class="text-accent">希望一覧</h3>
   <table class="table table-bordered">
     <thead>
       <%= render "public/jobs/header-shift", week: @week %>
     </thead>
     <tbody>
       <tr>
-        <td class="table-secondary"><%= @user.full_name %></td>
+        <td class="table-lightblue"><%= @user.full_name %></td>
         <% (1..7).each do |n| %>
           <td><%= @user.job_for(@jobs)&.public_send("time#{n}") %></td>
         <% end %>
