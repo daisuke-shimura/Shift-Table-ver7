@@ -1,5 +1,5 @@
 <% unless Job.exists?(week_id: week.id, user_id: login_user.id) %>
-  <h3>希望提出</h3>
+  <h3 class="text-accent">希望提出</h3>
   <%= form_with model:[week, job], url: week_jobs_path(week.id), method: :post, local: false do |f| %>
     <table class="table table-bordered">
       <thead>

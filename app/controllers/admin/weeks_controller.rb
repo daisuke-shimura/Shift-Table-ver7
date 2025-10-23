@@ -5,8 +5,8 @@ class Admin::WeeksController < ApplicationController
     load_calendar
     @admin = current_admin
     @setting = Setting.instance
-    @date = @today.beginning_of_week(:monday) + 28
-    if Time.zone.now.hour >= 9 && !@weeks.exists?(monday: @date)
+    @date = @today.beginning_of_week(:monday) + 21
+    if (!Time.zone.today.monday? || Time.zone.now.hour >= 9) && !@weeks.exists?(monday: @date)
       puts "＝＝＝＝＝＝＝＝＝＝自動作成: #{@date}＝＝＝＝＝＝＝＝＝＝"
       Week.create(monday: @date)
       Week.find_by(monday: @date - 21)&.update(is_created: true)

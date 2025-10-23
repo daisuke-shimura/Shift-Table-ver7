@@ -1,8 +1,7 @@
 <%= turbo_stream_from "weeks" %>
 
-<h3><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
+<h3 class="text-accent"><%= (@week.monday).day %>日～<%= (@week.sunday).day %>日のシフト希望</h3>
 
-<p>ログインユーザがこの週出したか：<%= Job.exists?(week_id: @week.id, user_id: @user.id) %></p>
 <hr>
 
 <div id="week_form_<%= @week.id %>_user_<%= @user.id %>">

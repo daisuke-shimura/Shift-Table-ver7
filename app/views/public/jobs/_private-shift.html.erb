@@ -1,5 +1,5 @@
 <% if Job.exists?(week_id: week.id, user_id: login_user.id) %>
-  <h3>希望一覧</h3>
+  <h3 class="text-accent">希望一覧</h3>
   <table class="table table-bordered">
     <thead>
       <%= render "public/jobs/header-form", week: week %>

@@ -343,7 +343,7 @@ main .bg-white {
 }
 
 /* 過去のシフトボタン */
-.btn-past-link {
+.pink-btn-link {
   background-color: #dd5b9c;
   color: #fff;
   font-weight: 500;
@@ -353,7 +353,7 @@ main .bg-white {
   box-shadow: 0 2px 4px rgba(221, 91, 156, 0.2);
 }
 
-.btn-past-link:active {
+.pink-btn-link:active {
   background-color: #f3abc0; /* SUB */
 }
 

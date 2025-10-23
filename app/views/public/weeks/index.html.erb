@@ -1,11 +1,11 @@
-<div class="d-flex align-items-center user-info-box mb-4 pt-3 ps-3 rounded">
-  <p class="text-muted">ログイン中のユーザ：</p>
-  <p class="fw-bold text-accent"><%= current_user.full_name %></p>
-</div>
+<h2 class="text-accent">
+  <span class="material-symbols-outlined fs-5">calendar_month</span>
+  日程一覧
+</h2>
 
-<div class="mb-1">
-  <%= link_to "過去のシフト", weeks_past_path, class: "btn-past-link" %>
-</div>
+<%= render "public/weeks/current-user", user: @user %>
+
+<%= link_to "過去のシフト", weeks_past_path, class: "pink-btn-link mb-1" %>
 
 <h3 class="calendar-title-line text-center">
   <span id="calendar-title"><%= @start_date.strftime('%-m月') %></span>
