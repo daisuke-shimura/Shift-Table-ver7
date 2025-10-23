@@ -1,16 +1,15 @@
-<h1>Public::Weeks#index</h1>
+<h2 class="text-accent">
+  <span class="material-symbols-outlined fs-5">calendar_month</span>
+  日程一覧
+</h2>
 
-<h3><%= @user.full_name %>さんがログイン中</h3>
+<%= render "public/weeks/current-user", user: @user %>
 
-<div class="d-flex align-items-center mb-3">
-  <p>ステータス：<%= @user.status %></p>
-  <%= link_to "マイページ", user_path(@user.id), class: "btn btn-sm btn-primary ms-3" %>
-</div>
+<%= link_to "過去のシフト", weeks_past_path, class: "pink-btn-link mb-1" %>
 
-<hr>
-<%= link_to "過去のシフト", weeks_past_path %>
-
-<h3><span id="calendar-title"><%= @start_date.strftime('%-m月') %></span></h3>
+<h3 class="calendar-title-line text-center">
+  <span id="calendar-title"><%= @start_date.strftime('%-m月') %></span>
+</h3>
 <div id="calendar-container" data-controller="calendar" data-earliest-date="<%= @earliest_date.to_date %>" class="calendar-grid box theme-dark">
   <div class="calendar-grid header public-calendar">
     <div class="week-day">月</div>

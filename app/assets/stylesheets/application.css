@@ -25,12 +25,12 @@ main .bg-white {
   border: 1px solid rgba(0,0,0,0.08);
   width: 100%;
   max-width: 1080px;
-  margin: 18px auto;
+  margin: 0 auto 10px;
   max-height: 78vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
-  background: linear-gradient(180deg,#ffffff,#fbfbff);
+  /* background: linear-gradient(180deg,#ffffff,#fbfbff); */
   /* border-radius: 10px; */
   /*padding: 12px;*/
   box-shadow: 0 8px 24px rgba(16,24,40,0.06);
@@ -49,7 +49,7 @@ main .bg-white {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(4px);
   padding: 8px 6px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  /* border-bottom: 1px solid rgba(0,0,0,0.06); */
   /* border-radius: 6px; */
 }
 
@@ -59,6 +59,30 @@ main .bg-white {
   margin-top: 8px;
 }
 
+/* 月 */
+.calendar-title-line {
+  font-weight: 600;
+  color: #dd5b9c;
+  font-size: 1.5rem;
+  margin: 12px 0;
+}
+
+.calendar-title-line::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    #f3abc0 50%,
+    white 100%
+  );
+  border-radius: 3px;
+  margin: 6px auto 0;
+}
+
+
 /* 週行の見た目（hover を無効化、角丸をなくす） */
 .week-row, .week-row-2, .week-row-3 {
   display: grid;
@@ -66,17 +90,20 @@ main .bg-white {
   gap: 0;                 /* 表っぽくするため隙間は 0 */
   align-items: stretch;
   padding: 0;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   transition: none;       /* hover アニメ無効 */
   background: transparent;
 }
 
 .week-row {
-  background-color: rgba(61, 139, 255, 0.3);
-  border: 2px solid #ff69b4; /* 鮮やかなピンクの太い実線 */
+  /* background-color: rgba(61, 139, 255, 0.3); */
+  border: 2px solid #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative; /* overlay 用の基準にする */
   overflow: visible;
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .week-row::after {
@@ -84,18 +111,51 @@ main .bg-white {
   position: absolute;
   inset: 0; /* top:0; right:0; bottom:0; left:0; と同じ */
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(175, 132, 154, 0.12), rgba(255,105,180,0.08));
+  background: linear-gradient(180deg, rgba(42, 122, 222, 0.12), rgba(0, 100, 200, 0.08));
   mix-blend-mode: multiply; /* 色の馴染みを良くする */
   transition: opacity 160ms ease;
   opacity: 1;
   z-index: 2;
 }
 
+/* タップ時のエフェクト */
+.week-row:active {
+  transform: scale(0.97); /* 少し沈む感じ */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* 影も軽く */
+}
+
+.week-row:active::after {
+  opacity: 0.5; /* 少し暗くする */
+}
+
+.week-row-2 {
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+.week-row-2.past-link {
+  position: relative;
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.week-row-2.past-link:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.week-row-2.past-link:active::after {
+  opacity: 0.55;
+}
+
+
 /*無効用*/
 .week-row-3 {
   position: relative;
   pointer-events: none; /* クリック無効 */
-  border-color: rgba(0, 0, 0, 0.05);
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
   transition: all 0.2s ease;
 }
 
@@ -122,7 +182,6 @@ main .bg-white {
   border-radius: 0;
   text-align: center;
   height: 72px;           /* 表風に高さを揃える（必要なら調整） */
-  padding: 8px;
   box-sizing: border-box;
   position: relative; /* 必要 */
   display: flex;
@@ -132,7 +191,6 @@ main .bg-white {
   transition: none;
   overflow: hidden;
   box-shadow: none;
-  padding-top: 28px;  /* 左上ラベル分の余白を確保 */
 }
 
 /* 明示的なラベルがある場合（推奨） */
@@ -158,9 +216,9 @@ main .bg-white {
   z-index: 1;
 }
 
-/* 月での背景色は廃止して線だけにする */
+/* 奇数月・偶数月で背景色を分ける */
 .date.odd-month {
-  background: #dcdcdc;
+  background: #f2f2f2;
 }
 .date.even-month {
   background: #ffffff;
@@ -174,8 +232,8 @@ main .bg-white {
 .week-row-2 .date,
 .week-row-3 .date,
 .calendar-grid.header > .week-day {
-  border-left: 1px solid rgba(0,0,0,0.06);
-  border-top: 1px solid rgba(0,0,0,0.03);
+  border-left: 1px solid rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(0,0,0,0.2);
 }
 
 /* 左端だけ線を消す */
@@ -187,14 +245,14 @@ main .bg-white {
 }
 
 
-/* today は控えめに色付け（影は消す）*/
+/* today は控えめに色付け*/
 .date.today {
-  position: relative; /* ← これ必須！ */
-  z-index: 3; /* week-row-3::after より前に出す */
-  background: #fffbe6;
-  border-color: rgba(245,158,11,0.14);
-  border: 1px solid #f5f10b;
+  position: relative; 
+  z-index: 3; 
+  background-color: #fffacd; 
+  border: 1px solid #ffd700; 
   box-shadow: none;
+  color: #555555; 
 }
 
 
@@ -242,15 +300,26 @@ main .bg-white {
 
 .table-no-left-border td:first-child,
 .table-no-left-border th:first-child {
-  border-left: none;
+  border-left: none !important;
 }
 
-/* ボタン */
-.btn-outline-primary.no-hover-reverse:hover,
-.btn-outline-primary.no-hover-reverse:focus {
-  color: #0d6efd;          /* 通常の文字色 */
-  background-color: transparent; /* 背景は透明のまま */
-  border-color: #0d6efd;   /* 枠線の色は維持 */
+/* tableカラー */
+.table-lightblue {
+  --bs-table-bg: #d3e7f5;
+  --bs-table-striped-bg: #c7dbee;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #bcd0e6;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #c2d6eb;
+  --bs-table-hover-color: #000;
+  --bs-table-border-color: #9fbad3;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+  border-width: var(--bs-border-width);
+}
+
+td {
+  border: 1px solid #9fbad3 !important;
 }
 
 
@@ -275,7 +344,6 @@ main .bg-white {
   opacity: 0.6;
 }
 
-
 /* ヘッダー */
 .header-link:active,
 .header-link:focus {
@@ -285,33 +353,43 @@ main .bg-white {
 }
 
 
-/* 印刷 */
-@media print {
-  header, footer, .no-print {
-    display: none;
-  }
-  body {
-    background: white;
-    font-size: 12pt;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    white-space: nowrap; /* 改行防止 */
-  }
-  .thick-left {
-    border-left: 1px solid black !important;
-  }
-  .thick-right {
-    border-right: 3px solid black;
-  }
+/* ボタン */
+.btn-outline-primary.no-hover-reverse:hover,
+.btn-outline-primary.no-hover-reverse:focus {
+  color: #0d6efd;          /* 通常の文字色 */
+  background-color: transparent; /* 背景は透明のまま */
+  border-color: #0d6efd;   /* 枠線の色は維持 */
 }
 
-@page {
-  size: A4 landscape;
+/* 過去のシフトボタン */
+.pink-btn-link {
+  background-color: #dd5b9c;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 25px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(221, 91, 156, 0.2);
 }
 
+.pink-btn-link:active {
+  background-color: #f3abc0; /* SUB */
+}
+
+/* ユーザー情報 */
+.user-info-box {
+  background-color: #ffffff;
+  border: 1px solid #f3abc0; /* SUB */
+  border-radius: 12px;
+}
+
+.text-accent {
+  color: #dd5b9c;
+}
+
+.text-base {
+  color: #d3e7f5
+}
 
 
 /* レスポンシブ */

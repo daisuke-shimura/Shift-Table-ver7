@@ -1,5 +1,5 @@
 <% unless Job.exists?(week_id: week.id, user_id: login_user.id) %>
-  <h3>希望提出</h3>
+  <h3 class="text-accent">希望提出</h3>
   <%= form_with model:[week, job], url: week_jobs_path(week.id), method: :post, local: false do |f| %>
     <table class="table table-bordered">
       <thead>
@@ -7,7 +7,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= login_user.full_name %></td>
+          <td class="table-lightblue"><%= login_user.full_name %></td>
           <% (1..7).each do |n| %>
             <td><%= f.text_area :"time#{n}", class: 'form-control' %></td>
           <% end %>
