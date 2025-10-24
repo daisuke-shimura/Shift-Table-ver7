@@ -408,6 +408,13 @@ td {
   .calendar-grid.box {
     max-height: 485px;
   }
+  .user-name {
+    display: block;
+  }
+  .middle-name::after {
+    content: "\A";
+    white-space: pre;
+  }
   /* .date {
     height: 75px;
   } */

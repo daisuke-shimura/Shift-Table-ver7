@@ -9,7 +9,9 @@
       <% users.each do |user| %>
         <% if user == login_user %>
           <tr class="">
-            <td class="table-lightblue"><%= login_user.full_name %></td>
+            <td class="table-lightblue">
+              <%= render "public/jobs/user-name", user: login_user %>
+            </td>
             <% (1..7).each do |n| %>
               <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
             <% end %>
@@ -24,7 +26,9 @@
           </tr>
         <% else %>
         <tr class="">
-          <td class="table-lightblue"><%= user.full_name %></td>
+          <td class="table-lightblue">
+            <%= render "public/jobs/user-name", user: user %>
+          </td>
           <% (1..7).each do |n| %>
             <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
           <% end %>
@@ -35,7 +39,9 @@
       <% end %>
     <% else %>
       <tr class="">
-        <td class="table-lightblue"><%= login_user.full_name %></td>
+        <td class="table-lightblue">
+          <%= render "public/jobs/user-name", user: login_user %>
+        </td>
         <% (1..7).each do |n| %>
           <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
         <% end %>

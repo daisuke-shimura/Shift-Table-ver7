@@ -6,7 +6,9 @@
     </thead>
     <tbody>
       <tr>
-        <td class="table-lightblue"><%= login_user.full_name %></td>
+        <td class="table-lightblue">
+          <%= render "public/jobs/user-name", user: login_user %>
+        </td>
         <% (1..7).each do |n| %>
           <td><%= login_user.job_for(jobs)&.public_send("time#{n}") %></td>
         <% end %>
