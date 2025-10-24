@@ -325,6 +325,9 @@ td {
   border: 1px solid #9fbad3 !important;
 }
 
+/* .table-responsive {
+  scrollbar-width: thin;
+} */
 
 .created-status {
   display: inline-flex;
