@@ -1,16 +1,16 @@
 <div id="week_content_<%= week.id %>">
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
       <%= render "public/jobs/header-shift", week: week %>
     </thead>
     <tbody>
       <% users.each do |user| %>
         <tr>
-          <td class="table-lightblue sticky-col">
+          <td class="table-lightblue sticky-col text-nowrap">
             <%= render "public/jobs/user-name", user: user %>
           </td>
           <% (1..7).each do |n| %>
-            <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
+            <td class="text-center"><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
           <% end %>
           <td><%= user.job_for(jobs)&.comment %></td>
         </tr>

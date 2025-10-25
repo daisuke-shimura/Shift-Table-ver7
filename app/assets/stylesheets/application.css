@@ -302,7 +302,7 @@ main .bg-white {
 }
 
 .tables-grid tbody tr {
-  height: 60px;
+  height: 68px;
 }
 
 .table-no-left-border td:first-child,
@@ -333,6 +333,16 @@ td {
 .sticky-col {
   position: sticky; 
   left: 0;
+  z-index: 1;
+}
+
+/* セルの幅指定 */
+.table-week {
+  min-width: 92px;
+}
+
+.table-comment {
+  min-width: 220px;
 }
 
 /* .table-responsive {
@@ -421,9 +431,9 @@ td {
   .calendar-grid.box {
     max-height: 485px;
   }
-  .tables-grid tbody tr {
+  /* .tables-grid tbody tr {
     height: 68px;
-  }
+  } */
   .user-name {
     display: block;
   }
