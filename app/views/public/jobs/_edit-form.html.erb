@@ -1,62 +1,59 @@
-<h3 class="text-accent">希望編集</h3>
 <%= form_with model:[week, job], local: false do |f| %>
-  <div class="table-responsive">
-    <table class="table table-bordered">
-      <thead>
-        <%= render "header-form", week:week %>
-      </thead>
-      <tbody>
-        <% if setting.is_visible %>
-          <% users.each do |user| %>
-            <% if user == login_user %>
-              <tr class="">
-                <td class="table-lightblue">
-                  <%= render "public/jobs/user-name", user: login_user %>
-                </td>
-                <% (1..7).each do |n| %>
-                  <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
-                <% end %>
-                <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
-                <td class="text-nowrap">
-                  <%= link_to 'キャンセル',
-                    week_jobs_path(week.id, format: :turbo_stream), 
-                    data: { turbo_stream: true },
-                    class: 'btn btn-outline-primary no-hover-reverse' %>
-                  <%= f.submit "保存", class: "btn btn-primary " %>
-                </td>
-              </tr>
-            <% else %>
+  <table class="table table-bordered">
+    <thead>
+      <%= render "header-form", week:week %>
+    </thead>
+    <tbody>
+      <% if setting.is_visible %>
+        <% users.each do |user| %>
+          <% if user == login_user %>
             <tr class="">
               <td class="table-lightblue">
-                <%= render "public/jobs/user-name", user: user %>
+                <%= render "public/jobs/user-name", user: login_user %>
               </td>
               <% (1..7).each do |n| %>
-                <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
+                <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
               <% end %>
-              <td><%= user.job_for(jobs)&.comment %></td>
-              <td></td>
+              <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
+              <td class="text-nowrap">
+                <%= link_to 'キャンセル',
+                  week_jobs_path(week.id, format: :turbo_stream), 
+                  data: { turbo_stream: true },
+                  class: 'btn btn-outline-primary no-hover-reverse' %>
+                <%= f.submit "保存", class: "btn btn-primary " %>
+              </td>
             </tr>
-            <% end %>
-          <% end %>
-        <% else %>
+          <% else %>
           <tr class="">
             <td class="table-lightblue">
-              <%= render "public/jobs/user-name", user: login_user %>
+              <%= render "public/jobs/user-name", user: user %>
             </td>
             <% (1..7).each do |n| %>
-              <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
+              <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
             <% end %>
-            <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
-            <td class=" text-nowrap">
-              <%= link_to 'キャンセル',
-                week_jobs_path(week.id, format: :turbo_stream), 
-                data: { turbo_stream: true },
-                class: 'btn btn-outline-primary no-hover-reverse' %>
-              <%= f.submit "保存", class: "btn btn-primary " %>
-            </td>
+            <td><%= user.job_for(jobs)&.comment %></td>
+            <td></td>
           </tr>
+          <% end %>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% else %>
+        <tr class="">
+          <td class="table-lightblue">
+            <%= render "public/jobs/user-name", user: login_user %>
+          </td>
+          <% (1..7).each do |n| %>
+            <td><%= f.text_area :"time#{n}", value: login_user.job_for(jobs)&.public_send("time#{n}"), class: 'form-control' %></td>
+          <% end %>
+          <td><%= f.text_area :comment ,value: login_user.job_for(jobs)&.comment, class: 'form-control' %></td>
+          <td class=" text-nowrap">
+            <%= link_to 'キャンセル',
+              week_jobs_path(week.id, format: :turbo_stream), 
+              data: { turbo_stream: true },
+              class: 'btn btn-outline-primary no-hover-reverse' %>
+            <%= f.submit "保存", class: "btn btn-primary " %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>

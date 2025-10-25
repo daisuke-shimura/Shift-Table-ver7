@@ -8,20 +8,26 @@
   <%= render "public/jobs/new-form", week: @week, job: @job, login_user: @user %>
 </div>
 
-<% if @setting.is_visible %>
-<div class="tables-grid table-responsive">
-  <div id="week_content_<%= @week.id %>">
-    <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
-  </div>
-
-  <div id="week_unhide-button_<%= @week.id %>">
-    <div id="week_button_<%= @week.id %>">
-      <%= render "public/jobs/button", week: @week, users: @users, jobs: @jobs, login_user: @user %>
-    </div>
-  </div>
+<div id ="week_index_<%= @week.id %>">
+  <% if @setting.is_visible || Job.exists?(week_id: @week.id, user_id: @user.id)%>
+    <h3 class="text-accent">希望一覧</h3>
+  <% end %>
 </div>
-<% else %>
-  <div id="week_private_<%= @week.id %>">
-    <%= render "public/jobs/private-shift", week: @week, users: @users, jobs: @jobs, login_user: @user %>
-  </div>
-<% end %>
+
+<div class="tables-grid table-responsive">
+  <% if @setting.is_visible %>
+    <div id="week_content_<%= @week.id %>">
+      <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
+    </div>
+
+    <div id="week_unhide-button_<%= @week.id %>">
+      <div id="week_button_<%= @week.id %>">
+        <%= render "public/jobs/button", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+      </div>
+    </div>
+  <% else %>
+    <div id="week_private_<%= @week.id %>">
+      <%= render "public/jobs/private-shift", week: @week, users: @users, jobs: @jobs, login_user: @user %>
+    </div>
+  <% end %>
+</div>
