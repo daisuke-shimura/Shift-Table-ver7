@@ -3,9 +3,9 @@ class User < ApplicationRecord
   
   def full_name
     if middle_name.present?
-      "#{first_name}・#{middle_name}・#{last_name}"
+      "#{last_name}・#{middle_name}・#{first_name}"
     else 
-      "#{first_name} #{last_name}"
+      "#{last_name} #{first_name} "
     end
   end  
   
