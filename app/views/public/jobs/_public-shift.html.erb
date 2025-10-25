@@ -6,7 +6,7 @@
     <tbody>
       <% users.each do |user| %>
         <tr>
-          <td class="table-lightblue">
+          <td class="table-lightblue sticky-col">
             <%= render "public/jobs/user-name", user: user %>
           </td>
           <% (1..7).each do |n| %>

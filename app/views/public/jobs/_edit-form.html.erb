@@ -8,7 +8,7 @@
         <% users.each do |user| %>
           <% if user == login_user %>
             <tr class="">
-              <td class="table-lightblue">
+              <td class="table-lightblue sticky-col">
                 <%= render "public/jobs/user-name", user: login_user %>
               </td>
               <% (1..7).each do |n| %>
@@ -25,7 +25,7 @@
             </tr>
           <% else %>
           <tr class="">
-            <td class="table-lightblue">
+            <td class="table-lightblue sticky-col">
               <%= render "public/jobs/user-name", user: user %>
             </td>
             <% (1..7).each do |n| %>
@@ -38,7 +38,7 @@
         <% end %>
       <% else %>
         <tr class="">
-          <td class="table-lightblue">
+          <td class="table-lightblue sticky-col">
             <%= render "public/jobs/user-name", user: login_user %>
           </td>
           <% (1..7).each do |n| %>

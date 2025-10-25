@@ -325,6 +325,12 @@ td {
   border: 1px solid #9fbad3 !important;
 }
 
+/* スクロール固定 */
+.sticky-col {
+  position: sticky; 
+  left: 0;
+}
+
 /* .table-responsive {
   scrollbar-width: thin;
 } */
