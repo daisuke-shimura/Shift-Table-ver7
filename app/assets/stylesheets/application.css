@@ -336,6 +336,40 @@ td {
   z-index: 1;
 }
 
+/* 縦スクロール制御 */
+.table-scroll-vertical {
+  max-height: 70vh; /* 画面の70%までをスクロール領域に */
+  overflow-y: auto;
+}
+
+/* thead固定 */
+/* 1行目（上段） */
+thead tr:first-child th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* 2行目（下段） */
+thead tr:nth-child(2) th {
+  position: sticky;
+  top: 44px; /* ← 1行目の高さに合わせて調整 */
+  z-index: 2;
+}
+
+.sticky-col.top-left {
+  top: 0;
+  left: 0;
+  z-index: 3; /* 最も前面に */
+}
+
+.sticky-col.top-left-2 {
+  top: 44px;
+  left: 0;
+  z-index: 3; /* 最も前面に */
+}
+
+
 /* セルの幅指定 */
 .table-week {
   min-width: 92px;

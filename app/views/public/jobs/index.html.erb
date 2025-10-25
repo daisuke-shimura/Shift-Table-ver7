@@ -14,7 +14,7 @@
   <% end %>
 </div>
 
-<div class="tables-grid table-responsive">
+<div class="tables-grid table-responsive table-scroll-vertical">
   <% if @setting.is_visible %>
     <div id="week_content_<%= @week.id %>">
       <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
