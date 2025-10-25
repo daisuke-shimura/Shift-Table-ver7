@@ -4,6 +4,12 @@
   </div>
 <% end %>
 
+<%= turbo_stream.replace "week_index_#{@week.id}" do %>
+  <div id ="week_index_<%= @week.id %>">
+    <h3 class="text-accent">希望一覧</h3>
+  </div>
+<% end %>
+
 <% if @setting.is_visible %>
   <%= turbo_stream.replace "week_content_#{@week.id}" do %>
       <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>

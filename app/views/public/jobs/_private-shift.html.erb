@@ -1,17 +1,18 @@
 <% if Job.exists?(week_id: week.id, user_id: login_user.id) %>
-  <h3 class="text-accent">希望一覧</h3>
   <table class="table table-bordered">
     <thead>
       <%= render "public/jobs/header-form", week: week %>
     </thead>
     <tbody>
       <tr>
-        <td class="table-lightblue"><%= login_user.full_name %></td>
+        <td class="table-lightblue sticky-col">
+          <%= render "public/jobs/user-name", user: login_user %>
+        </td>
         <% (1..7).each do |n| %>
           <td><%= login_user.job_for(jobs)&.public_send("time#{n}") %></td>
         <% end %>
         <td><%= login_user.job_for(jobs)&.comment %></td>
-        <td>
+        <td class="text-nowrap">
           <%= button_to "編集", edit_week_job_path(week, login_user.job_for(jobs).id, format: :turbo_stream),
                 method: :get,
                 form: { data: { turbo: true }, class: 'd-inline'},

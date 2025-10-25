@@ -1,5 +1,4 @@
 <% if Job.exists?(week_id: week.id, user_id: login_user.id) %>
-<h3>　</h3>
 <table class="table table-bordered table-no-left-border">
   <thead>
     <tr class="table-lightblue"><th></th></tr>
@@ -9,7 +8,7 @@
     <% users.each do |user| %>
       <% if user == login_user %>
         <tr>
-          <td class="">
+          <td class="text-nowrap">
             <%= button_to "編集", edit_week_job_path(week, login_user.job_for(jobs).id, format: :turbo_stream),
                   method: :get,
                   form: { data: { turbo: true }, class: 'd-inline'},

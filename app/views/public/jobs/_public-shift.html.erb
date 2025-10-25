@@ -1,5 +1,4 @@
 <div id="week_content_<%= week.id %>">
-  <h3 class="text-accent">希望一覧</h3>
   <table class="table table-bordered">
     <thead>
       <%= render "public/jobs/header-shift", week: week %>
@@ -7,7 +6,9 @@
     <tbody>
       <% users.each do |user| %>
         <tr>
-          <td class="table-lightblue"><%= user.full_name %></td>
+          <td class="table-lightblue sticky-col">
+            <%= render "public/jobs/user-name", user: user %>
+          </td>
           <% (1..7).each do |n| %>
             <td><%= user.job_for(jobs)&.public_send("time#{n}") %></td>
           <% end %>

@@ -8,12 +8,8 @@
 </div>
 
 <hr>
-<div id="setting-visible">
-  <%= render "admin/settings/switch", setting: @setting %>
-</div>
-<hr>
 
-<div class="d-flex gap-2 align-items-center justify-content-end">
+<div class="d-flex gap-2 align-items-center justify-content-end mb-3">
   <!-- 印刷ボタン -->
   <%= link_to print_admin_week_jobs_path(@week.id), 
       class: "btn btn-primary shadow d-flex", 

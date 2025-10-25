@@ -19,7 +19,9 @@
     </thead>
     <tbody>
       <tr>
-        <td class="table-lightblue"><%= @user.full_name %></td>
+        <td class="table-lightblue">
+          <%= render "public/jobs/user-name", user: @user %>
+        </td>
         <% (1..7).each do |n| %>
           <td><%= @user.job_for(@jobs)&.public_send("time#{n}") %></td>
         <% end %>
