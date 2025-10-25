@@ -297,8 +297,12 @@ main .bg-white {
   border-collapse: collapse;
 }
 
-.tables-grid tr {
-  height: 65px; 
+.tables-grid thead tr {
+  height: 44px;
+}
+
+.tables-grid tbody tr {
+  height: 60px;
 }
 
 .table-no-left-border td:first-child,
@@ -416,6 +420,9 @@ td {
   }
   .calendar-grid.box {
     max-height: 485px;
+  }
+  .tables-grid tbody tr {
+    height: 68px;
   }
   .user-name {
     display: block;
