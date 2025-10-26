@@ -28,7 +28,8 @@
   <% end %>
 </div>
 
-<div id="week_content_<%= @week.id %>">
-  <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
+<div class="table-responsive table-scroll-vertical">
+  <div id="week_content_<%= @week.id %>">
+    <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
+  </div>
 </div>
-

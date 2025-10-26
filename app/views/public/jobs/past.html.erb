@@ -9,24 +9,25 @@
 
 <hr>
 
-<% if @setting.is_visible %>
-  <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
-<% else %>
-  <h3 class="text-accent">希望一覧</h3>
-  <table class="table table-bordered">
-    <thead>
-      <%= render "public/jobs/header-shift", week: @week %>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="table-lightblue">
-          <%= render "public/jobs/user-name", user: @user %>
-        </td>
-        <% (1..7).each do |n| %>
-          <td><%= @user.job_for(@jobs)&.public_send("time#{n}") %></td>
-        <% end %>
-        <td><%= @user.job_for(@jobs)&.comment %></td>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
+<div class="tables-grid table-responsive table-scroll-vertical">
+  <% if @setting.is_visible %>
+    <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
+  <% else %>
+    <table class="table table-bordered">
+      <thead>
+        <%= render "public/jobs/header-shift", week: @week %>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table-lightblue">
+            <%= render "public/jobs/user-name", user: @user %>
+          </td>
+          <% (1..7).each do |n| %>
+            <td><%= @user.job_for(@jobs)&.public_send("time#{n}") %></td>
+          <% end %>
+          <td><%= @user.job_for(@jobs)&.comment %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>

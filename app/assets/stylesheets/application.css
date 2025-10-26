@@ -26,7 +26,7 @@ main .bg-white {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto 10px;
-  max-height: 78vh;
+  max-height: 82vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
@@ -297,8 +297,12 @@ main .bg-white {
   border-collapse: collapse;
 }
 
-.tables-grid tr {
-  height: 65px; 
+thead tr {
+  height: 44px;
+}
+
+.tables-grid tbody tr {
+  height: 68px;
 }
 
 .table-no-left-border td:first-child,
@@ -329,6 +333,50 @@ td {
 .sticky-col {
   position: sticky; 
   left: 0;
+  z-index: 1;
+}
+
+/* 縦スクロール制御 */
+.table-scroll-vertical {
+  max-height: 70vh; /* 画面の70%までをスクロール領域に */
+  overflow-y: auto;
+}
+
+/* thead固定 */
+/* 1行目（上段） */
+thead tr:first-child th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* 2行目（下段） */
+thead tr:nth-child(2) th {
+  position: sticky;
+  top: 44px; /* ← 1行目の高さに合わせて調整 */
+  z-index: 2;
+}
+
+.sticky-col.top-left {
+  top: 0;
+  left: 0;
+  z-index: 3; /* 最も前面に */
+}
+
+.sticky-col.top-left-2 {
+  top: 44px;
+  left: 0;
+  z-index: 3; /* 最も前面に */
+}
+
+
+/* セルの幅指定 */
+.table-week {
+  min-width: 92px;
+}
+
+.table-comment {
+  min-width: 220px;
 }
 
 /* .table-responsive {
@@ -414,9 +462,12 @@ td {
     left: 5px;
     top: 5px;
   }
-  .calendar-grid.box {
-    max-height: 485px;
-  }
+  /* .calendar-grid.box {
+    max-height: 84vh;
+  } */
+  /* .tables-grid tbody tr {
+    height: 68px;
+  } */
   .user-name {
     display: block;
   }

@@ -1,7 +1,7 @@
 <% if user.middle_name.present? %>
-  <span class="middle-name text-nowrap"><%= user.first_name.mb_chars[0,2] %></span>
-  <span class="text-nowrap"><%= user.first_name.mb_chars[2,2] %></span>
+  <span class="middle-name text-nowrap"><%= user.last_name.mb_chars[0,2] %></span>
+  <span class="text-nowrap"><%= user.last_name.mb_chars[2,2] %></span>
 <% else %>
-  <span class="user-name text-nowrap"><%= user.first_name %></span>
   <span class="user-name text-nowrap"><%= user.last_name %></span>
+  <span class="user-name text-nowrap"><%= user.first_name %></span>
 <% end %>
