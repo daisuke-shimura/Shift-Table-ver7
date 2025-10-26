@@ -26,7 +26,7 @@ main .bg-white {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto 10px;
-  max-height: 78vh;
+  max-height: 82vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
@@ -297,7 +297,7 @@ main .bg-white {
   border-collapse: collapse;
 }
 
-.tables-grid thead tr {
+thead tr {
   height: 44px;
 }
 
@@ -462,9 +462,9 @@ thead tr:nth-child(2) th {
     left: 5px;
     top: 5px;
   }
-  .calendar-grid.box {
-    max-height: 485px;
-  }
+  /* .calendar-grid.box {
+    max-height: 84vh;
+  } */
   /* .tables-grid tbody tr {
     height: 68px;
   } */
