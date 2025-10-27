@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "ユーザを作成し、ログインしました"
+      redirect_to weeks_path, notice: "ユーザを作成し、ログインしました"
     else
       render :new
     end

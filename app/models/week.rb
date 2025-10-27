@@ -1,5 +1,5 @@
 class Week < ApplicationRecord
-  has_many :jobs
+  has_many :jobs, dependent: :destroy
 
   validate :monday_validate
   validates :monday,

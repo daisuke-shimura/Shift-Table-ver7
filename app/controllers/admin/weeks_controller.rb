@@ -9,7 +9,8 @@ class Admin::WeeksController < ApplicationController
     if (!Time.zone.today.monday? || Time.zone.now.hour >= 9) && !@weeks.exists?(monday: @date)
       puts "＝＝＝＝＝＝＝＝＝＝自動作成: #{@date}＝＝＝＝＝＝＝＝＝＝"
       Week.create(monday: @date)
-      Week.find_by(monday: @date - 21)&.update(is_created: true)
+      Week.find_by(monday: @date - 14)&.update(is_created: true)
+      puts "＝＝＝＝＝＝＝＝＝＝#{@date - 14}＝＝＝＝＝＝＝＝＝＝"
     end
   end
 
