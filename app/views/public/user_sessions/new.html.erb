@@ -5,11 +5,13 @@
     <%= form_with url: login_path, local: true do |f| %>
       <div class="mb-3">
         <%= f.label :user_id, "名前を選択", class: "form-label fw-semibold" %>
-        <%= f.select :user_id,
-              options_from_collection_for_select(@users, :id, :full_name),
-              { prompt: "選択" },
-              class: "form-control border-0 shadow-sm",
-              required: true %>
+        <div class="select-wrapper">
+          <%= f.select :user_id,
+                options_from_collection_for_select(@users, :id, :full_name),
+                { prompt: "選択" },
+                class: "original-select",
+                required: true %>
+        </div>
       </div>
 
       <div class="d-grid mt-4">

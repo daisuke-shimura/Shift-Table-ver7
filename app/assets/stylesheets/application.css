@@ -533,7 +533,7 @@ thead tr:nth-child(2) th {
 
 .original-input:focus {
   border-color: #dd5b9c;
-  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.05)
+  box-shadow: 0 0 0 0.25rem rgba(221, 91, 156, 0.25);
 }
 
 /* アニメーション本体 */
@@ -546,47 +546,76 @@ thead tr:nth-child(2) th {
 }
 
 
-/* 名前 セレクトボックス */
-/* --- セレクトボックス全体 --- */
-.form-select {
+/* セレクトボックス */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* ▼アイコン */
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #555; /* ▼の色 */
+  transform: translateY(-50%);
+  transition: border-top-color 0.2s ease;
+}
+
+/* セレクト本体 */
+.original-select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
-  background-color: #ffffff;
-  border: 2px solid #b7d3e8;
-  border-radius: 0.75rem;
-  padding: 0.75rem 1rem;
   width: 100%;
+  padding: 10px 40px 10px 14px;
+  border: 2px solid #bcd7e9;
+  border-radius: 8px;
+  background-color: #fafdff;
   font-size: 1rem;
   color: #333;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
-  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* --- フォーカス時（タップ時）の効果 --- */
-.form-select:focus {
-  border-color: #80bce0;
-  box-shadow: 0 0 0 3px rgba(173, 216, 230, 0.4);
+/* ホバー時の見た目 */
+.original-select:hover {
+  border-color: #8dc1e0;
+  box-shadow: 0 0 6px rgba(141, 193, 224, 0.4);
+}
+
+/* フォーカス時（選択中） */
+.original-select:focus {
   outline: none;
+  border-color: #4ea3d8;
+  box-shadow: 0 0 0 0.2rem rgba(78, 163, 216, 0.25);
+  background-color: #f0faff;
 }
 
-/* --- ▼ のアイコンを自作して上品に --- */
-.form-select {
-  background-image: linear-gradient(45deg, #f3abc0, #dd5b9c);
-  background-repeat: no-repeat;
-  background-size: 1rem 1rem;
-  background-position: right 1rem center;
-  background-clip: content-box;
+/* フォーカス時は▼の色も変える */
+.select-wrapper:has(.original-select:focus)::after {
+  border-top-color: #4ea3d8;
+}
+
+/* option文字 */
+.original-select option {
   color: #333;
 }
 
-/* アイコンと背景が被らないように */
-.form-select option {
-  background-color: #fff;
-  color: #333;
+/* 無効状態 */
+.original-select:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
 }
+
+
 
 /* --- スマホでタップしやすくするために少し大きめに --- */
 @media (max-width: 576px) {
