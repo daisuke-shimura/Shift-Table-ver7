@@ -9,23 +9,32 @@
 
 <hr>
 
-<div class="d-flex gap-2 align-items-center justify-content-end mb-3">
-  <!-- 印刷ボタン -->
-  <%= link_to print_admin_week_jobs_path(@week.id), 
-      class: "btn btn-primary shadow d-flex", 
-      target: "_blank" do %>
-    <span class="material-symbols-outlined me-1">print</span>
-    印刷
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <%= link_to admin_weeks_path, class: "pink-btn-link d-inline-flex align-items-center mb-1 gap-2" do %>
+    <span class="material-symbols-outlined">
+      arrow_back_ios_new
+    </span>
+    戻る
   <% end %>
 
-  <!-- 削除ボタン -->
-  <%= link_to admin_week_path(@week.id), 
-      data: { turbo_method: :delete, 
-              turbo_confirm: "#{(@week.monday).day}日～#{(@week.sunday).day}日のシフト表を削除します。よろしいですか？\n※入力されているシフト希望がすべて削除されます" }, 
-      class: "btn btn-danger shadow d-flex" do %>
-    <span class="material-symbols-outlined me-1">delete</span>
-    削除
-  <% end %>
+  <div class="d-flex gap-2 align-items-center justify-content-end">
+    <!-- 印刷ボタン -->
+    <%= link_to print_admin_week_jobs_path(@week.id), 
+        class: "btn btn-primary shadow d-flex", 
+        target: "_blank" do %>
+      <span class="material-symbols-outlined me-1">print</span>
+      印刷
+    <% end %>
+
+    <!-- 削除ボタン -->
+    <%= link_to admin_week_path(@week.id), 
+        data: { turbo_method: :delete, 
+                turbo_confirm: "#{(@week.monday).day}日～#{(@week.sunday).day}日のシフト表を削除します。よろしいですか？\n※入力されているシフト希望がすべて削除されます" }, 
+        class: "btn btn-danger shadow d-flex" do %>
+      <span class="material-symbols-outlined me-1">delete</span>
+      削除
+    <% end %>
+  </div>
 </div>
 
 <div class="table-responsive table-scroll-vertical">

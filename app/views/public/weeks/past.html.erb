@@ -5,7 +5,12 @@
 
 <%= render "public/weeks/current-user", user: @user %>
 
-<%= link_to "日程一覧へ戻る", weeks_path, class: "pink-btn-link mb-1" %>
+<%= link_to weeks_path, class: "pink-btn-link d-inline-flex align-items-center gap-2" do %>
+  <span class="material-symbols-outlined">
+    arrow_back_ios_new
+  </span>
+  戻る
+<% end %>
 
 <h3 class="calendar-title-line text-center">
   <span id="calendar-title"><%= @past_start_date.strftime('%-m月') %></span>

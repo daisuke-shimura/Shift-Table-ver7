@@ -9,6 +9,13 @@
 
 <hr>
 
+<%= link_to weeks_past_path, class: "pink-btn-link d-inline-flex align-items-center mb-3 gap-2" do %>
+  <span class="material-symbols-outlined">
+    arrow_back_ios_new
+  </span>
+  戻る
+<% end %>
+
 <div class="tables-grid table-responsive table-scroll-vertical">
   <% if @setting.is_visible %>
     <%= render "public/jobs/public-shift", week: @week, users: @users, jobs: @jobs %>
