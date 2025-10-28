@@ -1,0 +1,8 @@
+ja:
+  enums:
+    user:
+      status:
+        beginner: 研修中
+        active:   レギュラー
+        inactive: 休職中
+        retired:  退職

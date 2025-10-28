@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :jobs, dependent: :destroy
+
+  enum status: { beginner: 0, active: 1, inactive: 2, retired: 3 }
   
   def full_name
     if middle_name.present?

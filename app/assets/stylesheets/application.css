@@ -731,13 +731,104 @@ thead tr:nth-child(2) th {
 }
 
 
+/* mypageユーザーカード */
+/* 共通カード設定 */
+.user-profile-card {
+  border-radius: 0.75rem;
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 1rem;
+  color: #000;
+}
+
+/* 左ライン */
+.user-profile-card .left-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  border-radius: 1rem 0 0 1rem;
+}
+
+/* 名前 + ステータスのバッジ */
+.user-profile-card .status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 入職日セクション */
+.user-profile-card .join-date {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* -----------------------------
+   ステータス別カラー
+----------------------------- */
+
+/* 1: 黄緑系 */
+.status-beginner {
+  background: linear-gradient(135deg, #ffffff, #d8fce6);
+}
+.status-beginner .left-line { background-color: #7fd9a6; }   /* 柔らかい緑 */
+.status-beginner .status-badge { background-color: #6ccf98; } /* 少し濃いめでアクセント */
+.status-beginner .join-date { 
+  background-color: #e3fff0; 
+  border: 1px solid #7fd9a6;
+}
+
+
+
+/* 2: ピンク系 */
+.status-active {
+  background: linear-gradient(135deg, #ffffff, #f3abc0);
+}
+.status-active .left-line { background-color: #dd5b9c; }
+.status-active .status-badge { background-color: #dd5b9c; }
+.status-active .join-date { 
+  background-color: #f9c5d8;
+  border: 1px solid #dd5b9c;
+}
+
+/* 3: 青系 */
+.status-inactive {
+  background: linear-gradient(135deg, #ffffff, #d3e7f5);
+}
+.status-inactive .left-line { background-color: #5c9ed9; }
+.status-inactive .status-badge { background-color: #5c9ed9; }
+.status-inactive .join-date { 
+  background-color: #d3e7f5; 
+  border: 1px solid #5c9ed9;
+}
+
+/* 4: グレー系 */
+.status-retired {
+  background: linear-gradient(135deg, #ffffff, #d9d9d9);
+}
+.status-retired .left-line { background-color: #b0b0b0; }
+.status-retired .status-badge { background-color: #888888; }
+.status-retired .join-date { 
+  background-color: #e0e0e0; 
+  border: 1px solid #b0b0b0;
+}
+
+
+
 /* --- スマホでタップしやすくするために少し大きめに --- */
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .form-select {
     font-size: 1.05rem;
     padding: 0.9rem 1.2rem;
   }
-}
+} */
 
 
 /* レスポンシブ */

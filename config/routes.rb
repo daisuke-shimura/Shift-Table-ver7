@@ -4,10 +4,12 @@ Rails.application.routes.draw do
     # root to: "homes#top"
     get "home", to:"homes#top"
     # User routes
-    resources :users, only: [:index, :show, :new, :create, :edit, :update]
+    resource :users, only: [:index, :new, :create, :edit, :update]
     root  to: "user_sessions#new"
-    post "login",  to: "user_sessions#create"
-    delete "logout", to: "user_sessions#destroy"
+    post "login"    , to: "user_sessions#create"
+    delete "logout" , to: "user_sessions#destroy"
+    get "mypage"    , to: "users#show"
+    get "myshift"   , to: "users#myshift"
     # Week routes
     get 'weeks/past', to: 'weeks#past'
     resources :weeks, only: [:index] do

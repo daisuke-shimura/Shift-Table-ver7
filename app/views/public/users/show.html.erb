@@ -1,0 +1,58 @@
+
+  <div class="row justify-content-center g-4">
+    <!-- プロフィールカード -->
+    <div class="col-12 col-md-6">
+      <div class="user-profile-card status-<%= @user.status %> text-dark">
+
+      <div class="left-line"></div>
+
+      <div style="margin-left: 1rem;">
+        <!-- 名前 + ステータス -->
+        <div class="d-flex align-items-center mb-3 gap-3">
+          <h4 class="fw-bold mb-0"><%= @user.full_name %></h4>
+          <span class="status-badge"><%= @user.status_i18n %></span>
+          <%= link_to "編集", edit_users_path %>
+        </div>
+
+        <!-- 入職日 -->
+        <div class="join-date">
+          <span class="material-symbols-outlined me-2 text-muted">
+            calendar_month
+          </span>
+          <div>
+            <p class="text-muted mb-0 small">入職日</p>
+            <p class="fw-semibold mb-0"><%= @user.created_at.strftime('%Y年%-m月') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="col-12 col-md-6">
+      <!-- 固定シフトカード -->
+      <h5 class="fw-bold text-center mb-3 text-accent">固定シフト希望</h5>
+      <table class="table table-bordered text-center mb-0">
+        <thead>
+          <tr class="table-lightblue">
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th class="text-primary">土</th>
+            <th class="text-danger">日</th>
+            <th>備考</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% (1..7).each do |n| %>
+              <td><%= @user.public_send("time#{n}") %></td>
+            <% end %>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
