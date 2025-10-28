@@ -1,9 +1,23 @@
-<h1>ユーザーログイン</h1>
+<div class="d-flex justify-content-center align-items-center">
+  <div  class="card m-3 p-4"
+        style="width: 360px; border-radius: 1rem; border: 2px solid #f3abc0; box-shadow: 0 6px 18px rgba(221, 91, 156, 0.25);">
+    <h2 class="text-center mb-4 fw-bold text-accent">ログイン</h2>
 
-<%= form_with url: login_path, local: true do |f| %>
-  <div class="mb-3">
-    <%= label_tag :user_id, "名前を選択" %>
-    <%= select_tag :user_id, options_from_collection_for_select(@users, :id, :full_name), prompt: "選択", class: "form-select" %>
+    <%= form_with url: login_path, local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :user_id, "名前を選択", class: "form-label fw-semibold text-accent" %>
+        <div class="select-wrapper">
+          <%= f.select :user_id,
+                options_from_collection_for_select(@users, :id, :full_name),
+                { prompt: "選択" },
+                class: "original-select",
+                required: true %>
+        </div>
+      </div>
+
+      <div class="d-grid mt-4">
+        <button type="submit" class="btn-login">ログイン</button>
+      </div>
+    <% end %>
   </div>
-  <%= submit_tag "ログイン", class: "btn btn-primary" %>
-<% end %>
+</div>

@@ -9,7 +9,7 @@ class Public:: UserSessionsController < ApplicationController
     user = User.find(params[:user_id])
     if user
       session[:user_id] = user.id
-      redirect_to root_path, notice: "ログインしました"
+      redirect_to weeks_path, notice: "ログインしました"
     else
       redirect_to login_path, alert: "ユーザーが見つかりません"
     end

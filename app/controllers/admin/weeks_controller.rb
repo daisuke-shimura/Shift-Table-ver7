@@ -9,7 +9,8 @@ class Admin::WeeksController < ApplicationController
     if (!Time.zone.today.monday? || Time.zone.now.hour >= 9) && !@weeks.exists?(monday: @date)
       puts "＝＝＝＝＝＝＝＝＝＝自動作成: #{@date}＝＝＝＝＝＝＝＝＝＝"
       Week.create(monday: @date)
-      Week.find_by(monday: @date - 21)&.update(is_created: true)
+      Week.find_by(monday: @date - 14)&.update(is_created: true)
+      puts "＝＝＝＝＝＝＝＝＝＝#{@date - 14}＝＝＝＝＝＝＝＝＝＝"
     end
   end
 
@@ -113,10 +114,11 @@ class Admin::WeeksController < ApplicationController
     end
 
     earliest_date = @weeks.minimum(:monday)
-    latest_date   = @weeks.maximum(:monday)
+    # latest_date   = @weeks.maximum(:monday)
     @start_date = earliest_date.beginning_of_month
-    @end_date = latest_date.end_of_month
-    @past_start_date = latest_date.beginning_of_month
+    # @end_date = latest_date.end_of_month
+    @end_date = @weeks.maximum(:monday)
+    @past_start_date = @end_date.beginning_of_month
 
     week_by_start = @start_date.cwday # 週番号（1:月曜, 7:日曜）
     week_by_end   = @end_date.cwday

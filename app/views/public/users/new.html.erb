@@ -1,15 +1,31 @@
-<h1>新規ユーザ登録</h1>
+<div class="d-flex justify-content-center align-items-center">
+  <div  class="card  m-3 p-4" 
+        style="width: 360px; border-radius: 1rem; border: 2px solid #d3e7f5; box-shadow: 0 6px 18px rgba(92, 158, 217, 0.25);">
+    <h2 class="text-center mb-4 fw-bold text-dark-bule">新規登録</h2>
 
-<%= form_with model: @user, local: true do |f| %>
-  <div class="mb-3">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "form-control" %>
-  </div>
+    <%= form_with model: @user, local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :last_name, "姓", class: "form-label fw-semibold text-dark-bule" %>
+        <%= f.text_field :last_name, class: "form-control", style: "border-color: #5c9ed9;", required: true %>
+      </div>
 
-  <div class="mb-3">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "form-control" %>
+      <div class="mb-3">
+        <%= f.label :first_name, "名", class: "form-label fw-semibold text-dark-bule" %>
+        <%= f.text_field :first_name, class: "form-control", style: "border-color: #5c9ed9;", required: true %>
+      </div>
+
+      <div class="d-grid mt-4">
+        <button type="submit" class="btn-signup">登録</button> 
+      </div>
+    <% end %>
+
+    <div class="text-end mt-5">
+      <%= link_to login_path, class: "text-accent fw-semibold text-decoration-none d-inline-flex align-items-center gap-1" do %>
+        <span class="material-symbols-outlined">login</span>
+        ログインはこちら
+      <% end %>
+    </div>
   </div>
-  
-  <%= f.submit "作成", class: "btn btn-primary" %>
-<% end %>
+</div>
+
+

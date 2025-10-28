@@ -73,10 +73,9 @@ class Public::WeeksController < ApplicationController
     end
 
     earliest_date = @weeks.minimum(:monday)
-    latest_date   = @weeks.maximum(:monday)
+    @end_date   = @weeks.maximum(:monday)
     @start_date = earliest_date.beginning_of_month
-    @end_date = latest_date.end_of_month
-    @past_start_date = latest_date.beginning_of_month
+    @past_start_date = @end_date.beginning_of_month
 
     week_by_start = @start_date.cwday # 週番号（1:月曜, 7:日曜）
     week_by_end   = @end_date.cwday

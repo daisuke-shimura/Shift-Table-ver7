@@ -5,11 +5,16 @@
 
 <div class="d-flex align-items-center user-info-box my-4 pt-3 ps-3 rounded">
   <p class="text-muted">ログイン中のユーザ：</p>
-  <p class="fw-bold text-accent"><%= @admin %></p>
+  <p class="fw-bold text-accent">マネージャー</p>
 </div>
 
 
-<%= link_to "日程一覧へ戻る", admin_weeks_path, class: "pink-btn-link mb-1" %>
+<%= link_to admin_weeks_path, class: "pink-btn-link d-inline-flex align-items-center mb-1 gap-2" do %>
+  <span class="material-symbols-outlined">
+    arrow_back_ios_new
+  </span>
+  戻る
+<% end %>
 
 <h3 class="calendar-title-line text-center">
   <span id="calendar-title"><%= @past_start_date.strftime('%-m月') %></span>

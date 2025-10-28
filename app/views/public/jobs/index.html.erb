@@ -4,6 +4,13 @@
 
 <hr>
 
+<%= link_to weeks_path, class: "pink-btn-link d-inline-flex align-items-center mb-3 gap-2" do %>
+  <span class="material-symbols-outlined">
+    arrow_back_ios_new
+  </span>
+  戻る
+<% end %>
+
 <div id="week_form_<%= @week.id %>_user_<%= @user.id %>">
   <%= render "public/jobs/new-form", week: @week, job: @job, login_user: @user %>
 </div>

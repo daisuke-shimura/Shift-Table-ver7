@@ -443,12 +443,283 @@ thead tr:nth-child(2) th {
   border-radius: 12px;
 }
 
+/* フラッシュメッセージ */
+.alert-blue {
+  background-color: #d3e7f5;
+  color: #084d77;
+  border: 1px solid #b5d2e8;
+}
+
+/* テキスト */
 .text-accent {
   color: #dd5b9c;
 }
 
 .text-base {
   color: #d3e7f5
+}
+
+.text-dark-bule {
+  color: #5c9ed9 ;
+}
+
+
+/* ログインボタン */
+.btn-login {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  border: 0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f3abc0 0%, #dd5b9c 100%);
+  /* 深みある多層シャドウ */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 6px 18px rgba(16,24,40,0.10),
+    0 2px 6px rgba(16,24,40,0.06);
+  transition: transform 200ms cubic-bezier(.2,.9,.3,1), box-shadow 200ms ease, filter 200ms ease;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+
+/* 文字を確実に前面へ */
+.btn-login > * { position: relative; z-index: 3; }
+
+/* 光沢（流れる） */
+.btn-login::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -140%;
+  width: 42%;
+  height: 120%;
+  background: linear-gradient(120deg,
+    rgba(255,235,242,0) 0%,
+    rgba(255,230,240,0.85) 45%,
+    rgba(255,210,230,0.12) 60%,
+    rgba(255,235,242,0) 100%);
+  transform: skewX(-20deg);
+  filter: blur(10px);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: btn-sheen 6s cubic-bezier(.2,.9,.2,1) infinite;
+  mix-blend-mode: screen;
+}
+
+/* 控えめなハイライト（常時） */
+.btn-login::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* hover / focus / active */
+.btn-login:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 14px 36px rgba(16,24,40,0.14),
+    0 4px 10px rgba(16,24,40,0.08);
+  filter: saturate(1.03);
+}
+.btn-login:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.10);
+}
+.btn-login:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(214,75,143,0.12),
+    0 8px 24px rgba(16,24,40,0.10);
+}
+
+/* 登録ボタン */
+.btn-signup {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  border: 0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #d3e7f5 0%, #5c9ed9 100%);
+  /* 深みある多層シャドウ */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 6px 18px rgba(16,24,40,0.10),
+    0 2px 6px rgba(16,24,40,0.06);
+  transition: transform 200ms cubic-bezier(.2,.9,.3,1), box-shadow 200ms ease, filter 200ms ease;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+
+/* テキストを確実に前面へ */
+.btn-signup > * { position: relative; z-index: 3; }
+
+/* 光沢（流れる） */
+.btn-signup::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -140%;
+  width: 42%;
+  height: 120%;
+  background: linear-gradient(120deg,
+    rgba(230,245,255,0) 0%,
+    rgba(230,245,255,0.85) 45%,
+    rgba(210,235,255,0.12) 60%,
+    rgba(230,245,255,0) 100%);
+  transform: skewX(-20deg);
+  filter: blur(10px);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: btn-sheen 6s cubic-bezier(.2,.9,.2,1) infinite;
+  mix-blend-mode: screen;
+}
+
+/* 控えめなハイライト（常時） */
+.btn-signup::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* hover / focus / active */
+.btn-signup:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 14px 36px rgba(16,24,40,0.14),
+    0 4px 10px rgba(16,24,40,0.08);
+  filter: saturate(1.04);
+}
+.btn-signup:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.10);
+}
+.btn-signup:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(80,160,220,0.15),
+    0 8px 24px rgba(16,24,40,0.10);
+}
+
+
+/* アニメーション本体 */
+@keyframes btn-sheen {
+  0%   { left: -140%; opacity: 0; }
+  6%   { opacity: 0.9; }
+  50%  { left: 140%; opacity: 0.95; }
+  60%  { opacity: 0; }
+  100% { left: 140%; opacity: 0; }
+}
+
+.original-input {
+  border-color: #dd5b9c;
+  /* box-shadow: 0 0 0 0.25rem rgba(221, 91, 156, 0.25); */
+}
+
+.original-input:focus {
+  border-color: #dd5b9c;
+  box-shadow: 0 0 0 0.25rem rgba(221, 91, 156, 0.25);
+}
+
+
+
+/* セレクトボックス */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* ▼アイコン */
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #555; /* ▼の色 */
+  transform: translateY(-50%);
+  transition: border-top-color 0.2s ease;
+}
+
+/* セレクト本体 */
+.original-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  border: 2px solid #f3abc0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ホバー時の見た目 */
+.original-select:hover {
+  border-color: #e589ad;
+  box-shadow: 0 0 6px rgba(221, 91, 156, 0.35);
+}
+
+/* フォーカス時（選択中） */
+.original-select:focus {
+  outline: none;
+  border-color: #dd5b9c;
+  box-shadow: 0 0 0 0.2rem rgba(221, 91, 156, 0.25);
+  background-color: #ffffff;
+}
+
+/* フォーカス時は▼の色も変える */
+.select-wrapper:has(.original-select:focus)::after {
+  border-top-color: #dd5b9c;
+}
+
+/* option文字 */
+.original-select option {
+  color: #333;
+}
+
+/* 無効状態 */
+.original-select:disabled {
+  background-color: #f4f4f4;
+  cursor: not-allowed;
+}
+
+
+/* --- スマホでタップしやすくするために少し大きめに --- */
+@media (max-width: 576px) {
+  .form-select {
+    font-size: 1.05rem;
+    padding: 0.9rem 1.2rem;
+  }
 }
 
 
