@@ -443,6 +443,14 @@ thead tr:nth-child(2) th {
   border-radius: 12px;
 }
 
+/* フラッシュメッセージ */
+.alert-blue {
+  background-color: #d3e7f5;
+  color: #084d77;
+  border: 1px solid #b5d2e8;
+}
+
+/* テキスト */
 .text-accent {
   color: #dd5b9c;
 }
@@ -536,7 +544,6 @@ thead tr:nth-child(2) th {
 }
 
 /* 登録ボタン */
-/* サインアップボタン */
 .btn-signup {
   position: relative;
   display: inline-block;
@@ -704,23 +711,6 @@ thead tr:nth-child(2) th {
 .original-select:disabled {
   background-color: #f4f4f4;
   cursor: not-allowed;
-}
-
-
-/* 登録ボタン */
-.btn-registration {
-  background: linear-gradient(135deg, #4ca9ff, #1e88e5);
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  font-weight: bold;
-  padding: 0.6rem 0;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn-registration:hover {
-  background: linear-gradient(135deg, #1e88e5, #1565c0);
-  transform: translateY(-1px);
 }
 
 

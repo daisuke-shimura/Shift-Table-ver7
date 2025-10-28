@@ -7,6 +7,13 @@
       管理者ログイン
     </h2>
 
+    <% if flash[:alert] %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= flash[:alert] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+
     <%= form_with model: @admin, url: admin_session_path, class: "needs-validation" do |f| %>
       <%= f.hidden_field :email, value: "admin@example.com" %>
 
@@ -16,7 +23,7 @@
               class: "form-control form-control-lg original-input",
               autofocus: true,
               autocomplete: "current-password",
-              placeholder: "••••••••",
+              placeholder: "••••••",
               required: true %>
       </div>
 
