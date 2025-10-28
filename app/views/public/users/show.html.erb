@@ -10,8 +10,9 @@
         <!-- 名前 + ステータス -->
         <div class="d-flex align-items-center mb-3 gap-3">
           <h4 class="fw-bold mb-0"><%= @user.full_name %></h4>
-          <span class="status-badge"><%= @user.status_i18n %></span>
-          <%= link_to "編集", edit_users_path %>
+          <%= link_to edit_users_path, class:"status-badge text-decoration-none" do %>
+            <%= @user.status_i18n %>
+          <% end %>
         </div>
 
         <!-- 入職日 -->
