@@ -451,8 +451,12 @@ thead tr:nth-child(2) th {
   color: #d3e7f5
 }
 
+.text-dark-bule {
+  color: #5c9ed9 ;
+}
 
-/* ログインボタン — 改良版 */
+
+/* ログインボタン */
 .btn-login {
   position: relative;
   display: inline-block;
@@ -531,10 +535,86 @@ thead tr:nth-child(2) th {
     0 8px 24px rgba(16,24,40,0.10);
 }
 
-.original-input:focus {
-  border-color: #dd5b9c;
-  box-shadow: 0 0 0 0.25rem rgba(221, 91, 156, 0.25);
+/* 登録ボタン */
+/* サインアップボタン */
+.btn-signup {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  border: 0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #d3e7f5 0%, #5c9ed9 100%);
+  /* 深みある多層シャドウ */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 6px 18px rgba(16,24,40,0.10),
+    0 2px 6px rgba(16,24,40,0.06);
+  transition: transform 200ms cubic-bezier(.2,.9,.3,1), box-shadow 200ms ease, filter 200ms ease;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+  z-index: 1;
 }
+
+/* テキストを確実に前面へ */
+.btn-signup > * { position: relative; z-index: 3; }
+
+/* 光沢（流れる） */
+.btn-signup::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -140%;
+  width: 42%;
+  height: 120%;
+  background: linear-gradient(120deg,
+    rgba(230,245,255,0) 0%,
+    rgba(230,245,255,0.85) 45%,
+    rgba(210,235,255,0.12) 60%,
+    rgba(230,245,255,0) 100%);
+  transform: skewX(-20deg);
+  filter: blur(10px);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: btn-sheen 6s cubic-bezier(.2,.9,.2,1) infinite;
+  mix-blend-mode: screen;
+}
+
+/* 控えめなハイライト（常時） */
+.btn-signup::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* hover / focus / active */
+.btn-signup:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 14px 36px rgba(16,24,40,0.14),
+    0 4px 10px rgba(16,24,40,0.08);
+  filter: saturate(1.04);
+}
+.btn-signup:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.10);
+}
+.btn-signup:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(80,160,220,0.15),
+    0 8px 24px rgba(16,24,40,0.10);
+}
+
 
 /* アニメーション本体 */
 @keyframes btn-sheen {
@@ -544,6 +624,17 @@ thead tr:nth-child(2) th {
   60%  { opacity: 0; }
   100% { left: 140%; opacity: 0; }
 }
+
+.original-input {
+  border-color: #dd5b9c;
+  /* box-shadow: 0 0 0 0.25rem rgba(221, 91, 156, 0.25); */
+}
+
+.original-input:focus {
+  border-color: #dd5b9c;
+  box-shadow: 0 0 0 0.25rem rgba(221, 91, 156, 0.25);
+}
+
 
 
 /* セレクトボックス */
@@ -575,9 +666,9 @@ thead tr:nth-child(2) th {
   -moz-appearance: none;
   width: 100%;
   padding: 10px 40px 10px 14px;
-  border: 2px solid #bcd7e9;
+  border: 2px solid #f3abc0;
   border-radius: 8px;
-  background-color: #fafdff;
+  background-color: #ffffff;
   font-size: 1rem;
   color: #333;
   cursor: pointer;
@@ -587,21 +678,21 @@ thead tr:nth-child(2) th {
 
 /* ホバー時の見た目 */
 .original-select:hover {
-  border-color: #8dc1e0;
-  box-shadow: 0 0 6px rgba(141, 193, 224, 0.4);
+  border-color: #e589ad;
+  box-shadow: 0 0 6px rgba(221, 91, 156, 0.35);
 }
 
 /* フォーカス時（選択中） */
 .original-select:focus {
   outline: none;
-  border-color: #4ea3d8;
-  box-shadow: 0 0 0 0.2rem rgba(78, 163, 216, 0.25);
-  background-color: #f0faff;
+  border-color: #dd5b9c;
+  box-shadow: 0 0 0 0.2rem rgba(221, 91, 156, 0.25);
+  background-color: #ffffff;
 }
 
 /* フォーカス時は▼の色も変える */
 .select-wrapper:has(.original-select:focus)::after {
-  border-top-color: #4ea3d8;
+  border-top-color: #dd5b9c;
 }
 
 /* option文字 */
@@ -611,10 +702,26 @@ thead tr:nth-child(2) th {
 
 /* 無効状態 */
 .original-select:disabled {
-  background-color: #e9ecef;
+  background-color: #f4f4f4;
   cursor: not-allowed;
 }
 
+
+/* 登録ボタン */
+.btn-registration {
+  background: linear-gradient(135deg, #4ca9ff, #1e88e5);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  padding: 0.6rem 0;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-registration:hover {
+  background: linear-gradient(135deg, #1e88e5, #1565c0);
+  transform: translateY(-1px);
+}
 
 
 /* --- スマホでタップしやすくするために少し大きめに --- */
