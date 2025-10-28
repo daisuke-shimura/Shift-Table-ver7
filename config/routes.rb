@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
   scope module: :public do
-    root to: "homes#top"
+    # root to: "homes#top"
+    get "home", to:"homes#top"
     # User routes
     resources :users, only: [:index, :show, :new, :create, :edit, :update]
-    get  "login",  to: "user_sessions#new"
+    root  to: "user_sessions#new"
     post "login",  to: "user_sessions#create"
     delete "logout", to: "user_sessions#destroy"
     # Week routes

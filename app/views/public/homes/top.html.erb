@@ -1,11 +1,16 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container text-center py-5">
+  <div class="d-flex justify-content-center align-items-center mb-4">
+    <h2 class="fw-bold text-accent">シフト希望管理</h2>
+    <%= link_to new_admin_session_path, class:"text-accent" do %>
+      <span class="material-symbols-outlined ms-2"
+            style="font-size: 2rem;" >
+        manage_accounts
+      </span>
+    <% end %>
+  </div>
 
-<hr>
-
-<ul>
-  <li><%= link_to "管理者作成", new_admin_registration_path %></li>
-  <li><%= link_to "管理者ログイン", new_admin_session_path %></li>
-  <li><%= link_to "新規登録", new_user_path %></li>
-  <li><%= link_to "ログイン", login_path %></li>
-</ul>
+  <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+    <%= link_to "ログイン", root_path, class: "pink-btn-link btn-lg fw-semibold px-4" %>
+    <%= link_to "新規登録", new_user_path, class: "blue-btn-link btn-lg fw-semibold px-4" %>
+  </div>
+</div>
