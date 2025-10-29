@@ -30,6 +30,15 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
 
+  def reset
+    user = current_user
+    user.update(
+      time1: nil, time2: nil, time3: nil, time4: nil,
+      time5: nil, time6: nil, time7: nil, comment: nil
+    )
+    redirect_to mypage_path, notice: "固定シフト希望をリセットしました"
+  end
+
   def update
     user = current_user
     if user.update(user_params)

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     delete "logout" , to: "user_sessions#destroy"
     get "mypage"    , to: "users#show"
     get "myshift"   , to: "users#myshift"
+    patch "reset"   , to: "users#reset"
     # Week routes
     get 'weeks/past', to: 'weeks#past'
     resources :weeks, only: [:index] do

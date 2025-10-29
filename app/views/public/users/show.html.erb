@@ -35,6 +35,12 @@
 
     <div class="col-12 col-md-6      position-relative" style="overflow: hidden;">
       <%= link_to "登録", myshift_path %>
+      <% unless @user.fixed_shift_blank? %>
+        <%= link_to "リセット", reset_path,
+          data: { turbo_method: :patch, turbo_confirm: "固定シフトをリセットします。よろしいですか？" },
+          class: "btn btn-outline-secondary btn-sm" %>
+      <% end %>
+      
       <!-- 固定シフトカード -->
       <h5 class="fw-bold text-center mb-3 text-accent">固定シフト希望</h5>
       <div class="table-responsive">

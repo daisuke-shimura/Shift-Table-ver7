@@ -18,4 +18,8 @@ class User < ApplicationRecord
       [].first
     end
   end
+
+  def fixed_shift_blank?
+    [time1, time2, time3, time4, time5, time6, time7, comment].all?(&:blank?)
+  end
 end
