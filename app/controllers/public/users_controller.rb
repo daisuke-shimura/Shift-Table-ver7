@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
   end
 
   def myshift
-    
+    @user = current_user
   end
 
   def update

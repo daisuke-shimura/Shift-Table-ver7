@@ -1,0 +1,26 @@
+<h2 class="text-accent">固定シフト登録</h2>
+<%= form_with model: @user, url: users_path, method: :patch do |f| %>
+  <table class="table table-bordered text-center mb-0">
+    <thead>
+      <tr class="table-lightblue">
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th class="text-primary">土</th>
+        <th class="text-danger">日</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% (1..7).each do |n| %>
+          <td><%= f.text_area :"time#{n}", class: 'form-control' %></td>
+        <% end %>
+        <td><%= f.text_area :comment, class: 'form-control' %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= f.submit "登録", class: "btn btn-primary" %>
+<% end %>
