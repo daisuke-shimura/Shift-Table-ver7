@@ -37,28 +37,30 @@
       <%= link_to "登録", myshift_path %>
       <!-- 固定シフトカード -->
       <h5 class="fw-bold text-center mb-3 text-accent">固定シフト希望</h5>
-      <table class="table table-bordered text-center mb-0">
-        <thead>
-          <tr class="table-lightblue">
-            <th>月</th>
-            <th>火</th>
-            <th>水</th>
-            <th>木</th>
-            <th>金</th>
-            <th class="text-primary">土</th>
-            <th class="text-danger">日</th>
-            <th>備考</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <% (1..7).each do |n| %>
-              <td><%= @user.public_send("time#{n}") %></td>
-            <% end %>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered text-center mb-0">
+          <thead>
+            <tr class="table-lightblue">
+              <th class="table-week">月</th>
+              <th class="table-week">火</th>
+              <th class="table-week">水</th>
+              <th class="table-week">木</th>
+              <th class="table-week">金</th>
+              <th class="text-primary table-week">土</th>
+              <th class="text-danger table-week">日</th>
+              <th class="text-nowrap table-comment">備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% (1..7).each do |n| %>
+                <td><%= @user.public_send("time#{n}") %></td>
+              <% end %>
+              <td><%= @user.comment %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <%# <div style="
         position: absolute;
         top: 0;
