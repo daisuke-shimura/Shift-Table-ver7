@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :jobs, dependent: :destroy
+
+  enum status: { beginner: 0, active: 1, inactive: 2, retired: 3 }
   
   def full_name
     if middle_name.present?
@@ -15,5 +17,9 @@ class User < ApplicationRecord
     else
       [].first
     end
+  end
+
+  def fixed_shift_blank?
+    [time1, time2, time3, time4, time5, time6, time7, comment].all?(&:blank?)
   end
 end

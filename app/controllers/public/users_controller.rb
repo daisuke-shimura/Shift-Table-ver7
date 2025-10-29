@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
   end
 
   def show 
-    
+    @user = current_user
   end
 
   def new
@@ -23,16 +23,38 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    
+    @user = current_user
+  end
+
+  def myshift
+    @user = current_user
+  end
+
+  def reset
+    user = current_user
+    user.update(
+      time1: nil, time2: nil, time3: nil, time4: nil,
+      time5: nil, time6: nil, time7: nil, comment: nil
+    )
+    redirect_to mypage_path, notice: "固定シフト希望をリセットしました"
   end
 
   def update
-    
+    user = current_user
+    if user.update(user_params)
+      redirect_to mypage_path, notice: "ユーザ情報を更新しました"
+    else
+      @user = user
+      render :edit
+    end
   end
 
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name)
+    params.require(:user).permit(
+      :first_name, :last_name, :middle_name, :status,
+      :time1, :time2, :time3, :time4, :time5, :time6, :time7
+    )
   end
 end

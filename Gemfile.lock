@@ -96,6 +96,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    enum_help (0.0.20)
+      activesupport (>= 3.0.0)
     erb (4.0.4)
       cgi (>= 0.3.3)
     erubi (1.13.1)
@@ -250,6 +252,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  enum_help
   holidays
   importmap-rails
   jbuilder
