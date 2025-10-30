@@ -770,6 +770,42 @@ thead tr:nth-child(2) th {
   margin-top: 0.5rem;
 }
 
+
+/* adminのUser#indexのバッチ */
+[class^="badge-"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+
+  border: 1px solid #ddd;
+  border-radius: 9999px;
+  width: 90px;
+  height: 28px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  padding-left: 1.2em; /* ●用の余白を確保 */
+}
+
+/* 丸印を左に固定配置 */
+[class^="badge-"]::before {
+  content: "●";
+  position: absolute;
+  left: 1em;
+  font-size: 0.7em;
+  line-height: 1;
+}
+
+.no-focus-style:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #ccc !important; /* 必要なら枠線を薄く保つ */
+}
+
 /* -----------------------------
    ステータス別カラー
 ----------------------------- */
@@ -785,6 +821,9 @@ thead tr:nth-child(2) th {
   border: 1px solid #7fd9a6;
 }
 
+.badge-beginner::before {
+  color: #6ccf98; 
+}
 
 
 /* 2: ピンク系 */
@@ -797,6 +836,9 @@ thead tr:nth-child(2) th {
   background-color: #f9c5d8;
   border: 1px solid #dd5b9c;
 }
+.badge-active::before {
+  color: #dd5b9c; 
+}
 
 /* 3: 青系 */
 .status-inactive {
@@ -807,6 +849,9 @@ thead tr:nth-child(2) th {
 .status-inactive .join-date { 
   background-color: #d3e7f5; 
   border: 1px solid #5c9ed9;
+}
+.badge-inactive::before {
+  color: #5c9ed9; 
 }
 
 /* 4: グレー系 */
@@ -819,7 +864,9 @@ thead tr:nth-child(2) th {
   background-color: #e0e0e0; 
   border: 1px solid #b0b0b0;
 }
-
+.badge-retired::before {
+  color: #888888; 
+}
 
 
 /* --- スマホでタップしやすくするために少し大きめに --- */

@@ -1,0 +1,25 @@
+<h1 class="mb-4 fw-bold text-accent">従業員一覧</h1>
+
+<% @users.each do |user| %>
+  <div class="row mb-2 p-1" style="border-bottom: 1px solid #ddd;">
+    <div class="col-12 col-md">
+      <div class="row fw-semibold fs-5"><%= user.full_name %></div>
+      <div class="row fw-light">入職日：<%= user.created_at.strftime('%Y年%-m月') %></div>
+    </div>
+    <div class="col-12 col-md d-flex justify-content-end align-items-center">
+      <%= form_with model: user, url: admin_user_path(user), method: :patch, local: true, class: "m-0" do |f| %>
+        <%= f.select :status,
+          [
+            ["研修中", "beginner"],
+            ["レギュラー", "active"],
+            ["休職中", "inactive"],
+            ["退職", "retired"]
+          ],
+          {},
+          class: "form-select form-select-sm w-auto no-focus-style",
+          onchange: "this.form.requestSubmit()" %>
+      <% end %>
+      <%= render "badge", user: user %>
+    </div>
+  </div>
+<% end %>
