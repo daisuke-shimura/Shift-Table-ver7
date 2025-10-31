@@ -2,6 +2,17 @@ class Admin::UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result
+    if params[:keyword].present?
+      keywords = params[:keyword].split(/[[:space:]]+/)
+      keywords.each do |kw|
+        @users = @users.where(
+          "CONCAT(users.last_name, users.first_name) LIKE :kw
+           OR users.last_name LIKE :kw
+           OR users.first_name LIKE :kw",
+          kw: "%#{kw}%"
+        )
+      end
+    end
   end
 
   def show
