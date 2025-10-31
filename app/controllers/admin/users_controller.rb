@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result
   end
 
   def show
@@ -26,6 +27,6 @@ class Admin::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :status)
+    params.require(:user).permit(:first_name, :middle_name, :last_name, :status)
   end
 end

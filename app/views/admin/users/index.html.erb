@@ -1,5 +1,27 @@
 <h1 class="mb-4 fw-bold text-accent">従業員一覧</h1>
 
+<%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
+  <%= f.label :last_name_or_middle_name_or_first_name_cont, 'ユーザー名' %>
+  <%= f.search_field :last_name_or_middle_name_or_first_name_cont,
+        class: "form-control w-auto d-inline-block" %>
+
+  <%= f.label :status_eq, 'ステータス' %>
+  <%= f.select :status_eq,
+        [
+          ["すべて", ""],
+          ["研修中", 0],
+          ["レギュラー", 1],
+          ["休職中", 2],
+          ["退職", 3]
+        ],
+        { include_blank: false },
+        class: "form-select form-select-sm w-auto d-inline-block" %>
+
+  <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
+  <%= link_to "リセット", admin_users_path, class: "btn btn-outline-secondary btn-sm" %>
+<% end %>
+
+
 <% @users.each do |user| %>
   <div class="row mb-2 py-1" style="border-bottom: 1px solid #ddd;">
     <div class="col-12 col-md">

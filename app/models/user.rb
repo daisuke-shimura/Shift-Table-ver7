@@ -22,4 +22,13 @@ class User < ApplicationRecord
   def fixed_shift_blank?
     [time1, time2, time3, time4, time5, time6, time7, comment].all?(&:blank?)
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["last_name", "middle_name", "first_name", "status"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
 end
