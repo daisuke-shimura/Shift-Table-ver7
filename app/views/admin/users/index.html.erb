@@ -1,25 +1,37 @@
 <h1 class="mb-4 fw-bold text-accent">従業員一覧</h1>
 
-<%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
-    <%= label_tag :keyword, "ユーザー名" %>
-    <%= text_field_tag :keyword, params[:keyword],
-          class: "form-control d-inline-block w-auto" %>
+<%= search_form_for @q, url: admin_users_path, method: :get, html: { class: "mb-3" } do |f| %>
+  <div class="d-flex flex-wrap align-items-end gap-2 mb-5">
+    <!-- ユーザー名 -->
+    <div class="d-flex flex-column">
+      <%= label_tag :keyword, "ユーザー名", class: "form-label mb-1 fw-semibold" %>
+      <%= text_field_tag :keyword, params[:keyword],
+            class: "form-control form-control-sm" %>
+    </div>
 
-  <%= f.label :status_eq, 'ステータス' %>
-  <%= f.select :status_eq,
-        [
-          ["すべて", ""],
-          ["研修中", 0],
-          ["レギュラー", 1],
-          ["休職中", 2],
-          ["退職", 3]
-        ],
-        { include_blank: false },
-        class: "form-select form-select-sm w-auto d-inline-block" %>
+    <!-- ステータス -->
+    <div class="d-flex flex-column">
+      <%= f.label :status_eq, 'ステータス', class: "form-label mb-1 fw-semibold" %>
+      <%= f.select :status_eq,
+            [
+              ["すべて", ""],
+              ["研修中", 0],
+              ["レギュラー", 1],
+              ["休職中", 2],
+              ["退職", 3]
+            ],
+            { include_blank: false },
+            class: "form-select form-select-sm" %>
+    </div>
 
-  <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
-  <%= link_to "リセット", admin_users_path, class: "btn btn-outline-secondary btn-sm" %>
+    <!-- ボタン -->
+    <div class="d-flex gap-2 mt-1 mt-md-0">
+      <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
+      <%= link_to "リセット", admin_users_path, class: "btn btn-outline-secondary btn-sm" %>
+    </div>
+  </div>
 <% end %>
+
 
 
 <% @users.each do |user| %>

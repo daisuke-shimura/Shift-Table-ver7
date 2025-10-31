@@ -3,11 +3,12 @@ class Admin::UsersController < ApplicationController
     @q = User.ransack(params[:q])
     @users = @q.result
     if params[:keyword].present?
-      keywords = params[:keyword].split(/[[:space:]]+/)
+      keywords = params[:keyword].split(/[[:space:]・.,]+/)
       keywords.each do |kw|
         @users = @users.where(
-          "CONCAT(users.last_name, users.first_name) LIKE :kw
+          "CONCAT(users.last_name, users.middle_name, users.first_name) LIKE :kw
            OR users.last_name LIKE :kw
+           OR users.middle_name LIKE :kw
            OR users.first_name LIKE :kw",
           kw: "%#{kw}%"
         )
