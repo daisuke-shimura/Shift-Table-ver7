@@ -1,4 +1,4 @@
-<h1 class="mb-4 fw-bold text-accent">従業員一覧</h1>
+<h2 class="mb-4 text-accent">従業員一覧</h2>
 
 <%= search_form_for @q, url: admin_users_path, method: :get, html: { class: "mb-3" } do |f| %>
   <div class="d-flex flex-wrap align-items-end gap-2 mb-5">
@@ -32,12 +32,14 @@
   </div>
 <% end %>
 
-
-
 <% @users.each do |user| %>
   <div class="row mb-2 py-1" style="border-bottom: 1px solid #ddd;">
     <div class="col-12 col-md">
-      <div class="row fw-semibold fs-5 ms-1"><%= user.full_name %></div>
+      <div class="row">
+        <%= link_to admin_user_path(user.id), class:"fw-semibold fs-5" do %>
+          <%= user.full_name %>
+        <% end %>
+      </div>
       <div class="row fw-light ms-1">入職日：<%= user.created_at.strftime('%Y年%-m月') %></div>
     </div>
     <div class="col-12 col-md d-flex justify-content-end align-items-center">

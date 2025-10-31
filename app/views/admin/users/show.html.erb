@@ -1,2 +1,33 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<h2 class="text-accent">従業員詳細</h2>
+
+<div class="row mt-3 mb-1">
+  <div class="col text-accent fw-semibold fs-5">
+    <%= @user.full_name %>
+  </div>
+  <div class="col">
+    <%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-outline-primary btn-sm" %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col">姓</div>
+  <div class="col"><%= @user.last_name %></div>
+</div>
+
+<div class="row">
+  <div class="col">名</div>
+  <div class="col"><%= @user.first_name %></div>
+</div>
+
+<div class="row">
+  <div class="col">入職日</div>
+  <div class="col"><%= @user.created_at.strftime('%Y年%-m月%-d日') %></div>
+</div>
+
+<div class="row">
+  <div class="col">ステータス</div>
+  <div class="col">
+    <span class="badge-<%= @user.status %>"><%= @user.status_i18n %></span>
+  </div>
+</div>

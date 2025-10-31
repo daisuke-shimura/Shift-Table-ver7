@@ -17,6 +17,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -28,7 +29,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to admin_users_path, notice: "ステータスを更新しました" }
+        format.html { redirect_to admin_user_path(@user.id), notice: "ステータスを更新しました" }
       end
     else
       respond_to do |format|
@@ -39,6 +40,6 @@ class Admin::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :middle_name, :last_name, :status)
+    params.require(:user).permit(:first_name, :middle_name, :last_name, :status, :created_at)
   end
 end
