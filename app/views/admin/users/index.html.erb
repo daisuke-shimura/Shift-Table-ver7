@@ -1,0 +1,61 @@
+<h2 class="mb-4 text-accent">従業員一覧</h2>
+
+<%= search_form_for @q, url: admin_users_path, method: :get, html: { class: "mb-3" } do |f| %>
+  <div class="d-flex flex-wrap align-items-end gap-2 mb-5">
+    <!-- ユーザー名 -->
+    <div class="d-flex flex-column">
+      <%= label_tag :keyword, "ユーザー名", class: "form-label mb-1 fw-semibold" %>
+      <%= text_field_tag :keyword, params[:keyword],
+            class: "form-control form-control-sm" %>
+    </div>
+
+    <!-- ステータス -->
+    <div class="d-flex flex-column">
+      <%= f.label :status_eq, 'ステータス', class: "form-label mb-1 fw-semibold" %>
+      <%= f.select :status_eq,
+            [
+              ["すべて", ""],
+              ["研修中", 0],
+              ["レギュラー", 1],
+              ["休職中", 2],
+              ["退職", 3]
+            ],
+            { include_blank: false },
+            class: "form-select form-select-sm" %>
+    </div>
+
+    <!-- ボタン -->
+    <div class="d-flex gap-2 mt-1 mt-md-0">
+      <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
+      <%= link_to "リセット", admin_users_path, class: "btn btn-outline-secondary btn-sm" %>
+    </div>
+  </div>
+<% end %>
+
+<% @users.each do |user| %>
+  <div class="row mb-2 py-1" style="border-bottom: 1px solid #ddd;">
+    <div class="col-12 col-md">
+      <div class="row">
+        <%= link_to admin_user_path(user.id), class:"text-accent fw-semibold fs-5 text-decoration-none" do %>
+          <%= user.full_name %>
+        <% end %>
+      </div>
+      <div class="row fw-light ms-1">入職日：<%= user.created_at.strftime('%Y年%-m月') %></div>
+    </div>
+    <div class="col-12 col-md d-flex justify-content-end align-items-center">
+      <%= form_with model: user, url: admin_user_path(user), method: :patch, local: true, class: "m-0" do |f| %>
+        <%= f.select :status,
+          [
+            ["研修中", "beginner"],
+            ["レギュラー", "active"],
+            ["休職中", "inactive"],
+            ["退職", "retired"]
+          ],
+          {},
+          class: "form-select form-select-sm w-auto no-focus-style",
+          onchange: "this.form.requestSubmit()" %>
+      <% end %>
+      <%= render "badge", user: user %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,49 @@
+<h2 class="text-accent mb-4">従業員情報編集</h2>
+
+<div class="text-accent fw-semibold fs-5"><%= @user.full_name %></div>
+
+<%= form_with model: @user, url: admin_user_path(@user.id), method: :patch, data: { turbo: false } do |f| %>
+  <div class="row mb-3 align-items-end">
+    <div class="col">
+      <%= f.label :last_name, "姓", class: "form-label" %>
+    </div>
+    <div class="col">
+      <%= f.text_field :last_name, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="row mb-3 align-items-end">
+    <div class="col">
+      <%= f.label :first_name, "名", class: "form-label" %>
+    </div>
+    <div class="col">
+      <%= f.text_field :first_name, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="row mb-3 align-items-end">
+    <div class="col">
+      <%= f.label :created_at, "入職日", class:"form-label" %>
+    </div>
+    <div class="col">
+      <%= f.date_field :created_at, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="row mb-3 align-items-end">
+    <div class="col">
+      <%= f.label :status, "ステータス", class: "form-label" %>
+    </div>
+    <div class="col">
+      <%= f.select :status,
+        [["研修中", "beginner"],
+        ["レギュラー", "active"],
+        ["休職中", "inactive"],
+        ["退職", "retired"]],
+        {}, class: "form-select", required: true %>
+    </div>
+  </div>
+
+  <%= link_to "キャンセル", admin_user_path(@user.id), class:"btn btn-outline-primary" %>
+  <%= f.submit "更新", class: "btn btn-primary" %>
+<% end %>

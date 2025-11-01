@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     patch 'settings/toggle_visible', to: 'settings#toggle_visible'
+    resources :users, only: [:index, :show, :edit, :update]
     get 'weeks/past', to: 'weeks#past'
     resources :weeks, only: [:index, :create, :destroy] do
       member do

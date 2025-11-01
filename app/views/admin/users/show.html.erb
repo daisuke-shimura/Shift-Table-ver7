@@ -1,0 +1,32 @@
+<h2 class="text-accent fw-bold mb-4">従業員詳細</h2>
+
+<div class="row align-items-center mb-3">
+  <div class="col text-accent fw-semibold fs-5">
+    <%= @user.full_name %>
+  </div>
+  <div class="col">
+    <%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-outline-primary btn-sm" %>
+  </div>
+</div>
+
+<div class="row py-2 border-bottom">
+  <div class="col text-muted fw-semibold">姓</div>
+  <div class="col"><%= @user.last_name %></div>
+</div>
+
+<div class="row py-2 border-bottom">
+  <div class="col text-muted fw-semibold">名</div>
+  <div class="col"><%= @user.first_name %></div>
+</div>
+
+<div class="row py-2 border-bottom">
+  <div class="col text-muted fw-semibold">入職日</div>
+  <div class="col"><%= @user.created_at.strftime('%Y年%-m月%-d日') %></div>
+</div>
+
+<div class="row py-2">
+  <div class="col text-muted fw-semibold">ステータス</div>
+  <div class="col">
+    <span class="badge-<%= @user.status %>"><%= @user.status_i18n %></span>
+  </div>
+</div>
