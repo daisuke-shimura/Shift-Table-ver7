@@ -29,7 +29,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to admin_user_path(@user.id), notice: "ステータスを更新しました" }
+        format.html { redirect_to admin_user_path(@user.id) }
       end
     else
       respond_to do |format|
